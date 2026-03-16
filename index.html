@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  <title>Pokemon Magazine</title>
+</head>
+
+<body>
+  <!-- Login Screen -->
+  <div id="login-screen">
+    <div id="login-box">
+      <h2>Isay ika?</h2>
+      <p>Enter ur Neym</p>
+      <input type="text" id="name-input" placeholder="Your name..." autocomplete="off" />
+      <button id="enter-btn">Enter</button>
+      <p id="login-error" class="login-error"></p>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div id="main-content" class="hidden-main">
+    <div id="gradient-bg"></div>
+    <div id="particles-default"></div>
+    <div id="tsparticles"></div>
+  
+
+  <div class="book-wrapper">
+    <div class="flipbook">
+
+      <!-- Front cover -->
+      <div class="hard">
+          <div class="cover-title">
+              <span class="cover-main-title">Empty Book</span>
+              <div class="cover-divider"></div>
+              <span class="cover-subtitle">~ by Nobody</span>
+          </div>
+      </div>
+      <div class="hard"></div>
+      
+
+      <!-- Inner pages -->
+      <div class="page"><span class="page-num right">1</span></div>
+      <div class="page"><span class="page-num left">2</span></div>
+      <div class="page"><span class="page-num right">3</span></div>
+      <div class="page"><span class="page-num left">4</span></div>
+      <div class="page"><span class="page-num right">5</span></div>
+      <div class="page" id="image-page">
+          <div class="taped-photo">
+              <img src="images/1stTogetherPic1.jpeg" alt="Our First Photo" />
+          </div>
+          <small>Keep Smiling</small>
+          <span class="page-num left">6</span>
+      </div>
+      <div class="page" id="notes-page">
+          <div class="notes-container" id="notes-container"></div>
+          <span class="page-num right">7</span>
+      </div>
+      <div class="page"><span class="page-num left">8</span></div>
+
+      <!-- Back cover -->
+      <div class="hard"></div>
+      <div class="hard">Thank You</div>
+
+    </div>
+
+  </div>
+
+     
+
+  </div> <!-- end main-content -->
+
+  <script src="jquery.js"></script>
+  <script src="turn.js"></script>
+  <script src="particles.min.js"></script>
+  <script src="mainJS.js"></script>
+  <script id="c07xnp">
+    // Login logic
+    function tryEnter() {
+      const val = document.getElementById("name-input").value.trim().toLowerCase();
+      if (val === "kurdapya") {
+        const loginScreen = document.getElementById("login-screen");
+        const mainContent = document.getElementById("main-content");
+        loginScreen.style.opacity = "0";
+        loginScreen.style.transition = "opacity 0.8s ease";
+        setTimeout(() => {
+          loginScreen.style.display = "none";
+          mainContent.classList.remove("hidden-main");
+          mainContent.style.opacity = "0";
+          mainContent.style.transition = "opacity 0.8s ease";
+          setTimeout(() => { mainContent.style.opacity = "1"; }, 50);
+        }, 800);
+      } else {
+        const err = document.getElementById("login-error");
+        err.textContent = "That's not right. Try again.";
+        document.getElementById("name-input").classList.add("shake");
+        setTimeout(() => document.getElementById("name-input").classList.remove("shake"), 500);
+      }
+    }
+
+    document.getElementById("enter-btn").addEventListener("click", tryEnter);
+    document.getElementById("name-input").addEventListener("keydown", function(e) {
+      if (e.key === "Enter") tryEnter();
+    });
+
+    // Random notes on page 7 — runs before turn.js init
+    const allNotes = [
+      "sungit baga ISUS ISUS",
+      "ah ah ah",
+      "Salamat na very cold, grrrr....",
+      "Ya wowers haha",
+      "Hiii",
+      "Iniwi, Goood luck and ulways wish U the best of outcome!",
+      "Diri ika malingaw na mag smile",
+      "Ya WOW haha",
+      "Thank you?"
+    ];
+    const picked = allNotes[Math.floor(Math.random() * allNotes.length)];
+    const noteContainer = document.getElementById("notes-container");
+    const p = document.createElement("p");
+    p.className = "note-item";
+    p.textContent = "\u201C" + picked + "\u201D";
+    noteContainer.appendChild(p);
+
+    const audioFiles = [
+      "audio_list/Boys_Like_Girls_Two_Is_Better_Than_One_feat_Taylor_Swift_A.mp3",
+      "audio_list/Amazed - The Best Of CD 1 TRACK 1 (320).mp3",
+      "audio_list/Owl City - Be Brave.mp3",
+      "audio_list/Owl City - Lucid Dream.mp3",
+      "audio_list/Chris Brown - Next To You (feat. Justin Bieber).mp3",
+      "audio_list/Michael W. Smith - I Will Be Here For You.mp3",
+      "audio_list/Miley Cyrus - The Climb.mp3",
+      "audio_list/Céline Dion - Then You Look at Me.mp3",
+      "audio_list/Wham! - Last Christmas.mp3"
+    ];
+
+    const audio = new Audio();
+    let musicLocked = false;
+    let wasVisible = false;
+    let hasPlayed = false;
+    let lastPage = 1;
+
+    function playRandomTrack() {
+      const track = audioFiles[Math.floor(Math.random() * audioFiles.length)];
+      audio.src = track;
+      musicLocked = true;
+      audio.play();
+      document.getElementById("gradient-bg").classList.add("active");
+      document.getElementById("tsparticles").classList.add("active");
+      document.getElementById("particles-default").classList.add("hidden");
+      audio.onended = () => { musicLocked = false; };
+    }
+
+    function isImagePageVisible() {
+      const el = document.getElementById("image-page");
+      if (!el) return false;
+      const rect = el.getBoundingClientRect();
+      const bookRect = document.querySelector(".flipbook").getBoundingClientRect();
+      // must be fully within the book bounds, not mid-flip
+      return rect.width > 50 && rect.left >= bookRect.left && rect.right <= bookRect.right + 5;
+    }
+
+    // Poll at 100ms for fast flips, only after user starts flipping
+    let userHasFlipped = false;
+    let flipSettled = true;
+
+    function getBookSize() {
+      const vw = window.innerWidth;
+      if (vw >= 1600) return { width: 1120, height: 700 };
+      if (vw >= 1024) return { width: 800, height: 500 };
+      if (vw >= 768)  return { width: 600, height: 375 };
+      if (vw >= 600)  return { width: 400, height: 250 };
+      return { width: 280, height: 175 };
+    }
+
+    const bookSize = getBookSize();
+
+    $(".flipbook").turn({
+      width: bookSize.width,
+      height: bookSize.height,
+      gradients: true,
+      acceleration: true,
+      when: {
+        turning: function(e) {
+          userHasFlipped = true;
+          if (musicLocked) e.preventDefault();
+        },
+        turned: function(e, page) {
+          userHasFlipped = true;
+          lastPage = page;
+          const visible = isImagePageVisible();
+          if (visible && !hasPlayed) {
+            hasPlayed = true;
+            playRandomTrack();
+          } else if (!visible) {
+            audio.pause();
+            audio.currentTime = 0;
+            musicLocked = false;
+            document.getElementById("gradient-bg").classList.remove("active");
+            document.getElementById("tsparticles").classList.remove("active");
+            document.getElementById("particles-default").classList.remove("hidden");
+          }
+        }
+      }
+    });
+  </script>
+</body>
+
