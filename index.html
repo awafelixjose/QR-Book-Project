@@ -77,32 +77,45 @@
   <script src="particles.min.js"></script>
   <script src="mainJS.js"></script>
   <script id="c07xnp">
-    // Login logic
-    function tryEnter() {
-      const val = document.getElementById("name-input").value.trim().toLowerCase();
-      if (val === "kurdapya") {
-        const loginScreen = document.getElementById("login-screen");
-        const mainContent = document.getElementById("main-content");
-        loginScreen.style.opacity = "0";
-        loginScreen.style.transition = "opacity 0.8s ease";
-        setTimeout(() => {
-          loginScreen.style.display = "none";
-          mainContent.classList.remove("hidden-main");
-          mainContent.style.opacity = "0";
-          mainContent.style.transition = "opacity 0.8s ease";
-          setTimeout(() => { mainContent.style.opacity = "1"; }, 50);
-        }, 800);
-      } else {
-        const err = document.getElementById("login-error");
-        err.textContent = "That's not right. Try again.";
-        document.getElementById("name-input").classList.add("shake");
-        setTimeout(() => document.getElementById("name-input").classList.remove("shake"), 500);
+    // Gate logic
+    (function() {
+      var _x = [107,117,114,100,97,112,121,97];
+      function _chk(s) {
+        if (s.length !== _x.length) return false;
+        for (var i = 0; i < s.length; i++) {
+          if (s.charCodeAt(i) !== _x[i]) return false;
+        }
+        return true;
       }
-    }
+      function _unlock() {
+        var ls = document.getElementById("login-screen");
+        var mc = document.getElementById("main-content");
+        ls.style.transition = "opacity 0.8s ease";
+        ls.style.opacity = "0";
+        setTimeout(function() {
+          ls.style.display = "none";
+          mc.classList.remove("hidden-main");
+          mc.style.opacity = "0";
+          mc.style.transition = "opacity 0.8s ease";
+          setTimeout(function() { mc.style.opacity = "1"; }, 50);
+        }, 800);
+      }
+      function _fail() {
+        var err = document.getElementById("login-error");
+        err.textContent = "That\u2019s not right. Try again.";
+        var inp = document.getElementById("name-input");
+        inp.classList.add("shake");
+        setTimeout(function() { inp.classList.remove("shake"); }, 500);
+      }
+      window._gate = function() {
+        var v = document.getElementById("name-input").value.trim().toLowerCase();
+        if (_chk(v)) { _unlock(); } else { _fail(); }
+      };
+    })();
 
-    document.getElementById("enter-btn").addEventListener("click", tryEnter);
+    document.getElementById("enter-btn").addEventListener("click", function() { window._gate(); });
     document.getElementById("name-input").addEventListener("keydown", function(e) {
-      if (e.key === "Enter") tryEnter();
+      if (e.key === "Enter") window._gate();
     });
 
     // Random notes on page 7 — runs before turn.js init
