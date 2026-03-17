@@ -72,7 +72,7 @@
 
   </div> <!-- end main-content -->
 
-  <!-- Music player UI — shown below book on mobile when on image page -->
+  <!-- Music bar sits just below the book, centered -->
   <div id="music-bar">
     <button id="music-play-btn" onclick="window.triggerMusic()">&#9654; Play Music</button>
   </div>
@@ -110,12 +110,9 @@
       document.getElementById("tsparticles").classList.add("active");
       document.getElementById("particles-default").classList.add("hidden");
       document.getElementById("music-bar").style.display = "none";
-      setTimeout(function() { noteEl.style.opacity = "1"; }, 400);
+      noteEl.style.opacity = "1";
       audio.onended = function() { musicLocked = false; };
     };
-
-    // Gate logic
-    (function() {
       var _x = [107,117,114,100,97,112,121,97];
       function _chk(s) {
         if (s.length !== _x.length) return false;
@@ -224,8 +221,7 @@
               document.getElementById("gradient-bg").classList.add("active");
               document.getElementById("tsparticles").classList.add("active");
               document.getElementById("particles-default").classList.add("hidden");
-              setTimeout(function() { noteEl.style.opacity = "1"; }, 400);
-              audio.onended = function() { musicLocked = false; };
+              setTimeout(function() { noteEl.style.opacity = "1"; }, 400);              audio.onended = function() { musicLocked = false; };
             } else {
               document.getElementById("music-bar").style.display = "flex";
             }
