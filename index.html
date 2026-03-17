@@ -52,7 +52,6 @@
               <img src="images/1stTogetherPic1.jpeg" alt="Our First Photo" />
           </div>
           <small>Keep Smiling</small>
-          <button id="play-btn" onclick="triggerMusic()">▶ Play</button>
           <span class="page-num left">6</span>
       </div>
       <div class="page" id="notes-page">
@@ -72,6 +71,11 @@
      
 
   </div> <!-- end main-content -->
+
+  <!-- Music player UI — shown below book on mobile when on image page -->
+  <div id="music-bar">
+    <button id="music-play-btn" onclick="window.triggerMusic()">&#9654; Play Music</button>
+  </div>
 
   <script src="jquery.js"></script>
   <script src="turn.js"></script>
@@ -93,7 +97,21 @@
     const audio = new Audio();
     let musicLocked = false;
     let hasPlayed = false;
-    const isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+    window.triggerMusic = function() {
+      if (hasPlayed) return;
+      hasPlayed = true;
+      musicLocked = true;
+      const track = audioFiles[Math.floor(Math.random() * audioFiles.length)];
+      audio.src = track;
+      audio.volume = 1;
+      audio.play().catch(function(e) { console.warn("play failed:", e); });
+      document.getElementById("gradient-bg").classList.add("active");
+      document.getElementById("tsparticles").classList.add("active");
+      document.getElementById("particles-default").classList.add("hidden");
+      document.getElementById("music-bar").style.display = "none";
+      audio.onended = function() { musicLocked = false; };
+    };
 
     // Gate logic
     (function() {
@@ -136,7 +154,7 @@
       if (e.key === "Enter") window._gate();
     });
 
-    // Random notes — fade in on music trigger
+    // Random notes
     const allNotes = [
       "sungit baga ISUS ISUS",
       "ah ah ah",
@@ -154,42 +172,15 @@
     const noteEl = document.createElement("p");
     noteEl.className = "note-item";
     noteEl.textContent = "\u201C" + picked + "\u201D";
-    noteEl.style.opacity = "0";
-    noteEl.style.transition = "opacity 1.5s ease";
     noteContainer.appendChild(noteEl);
 
-    function activateEffects() {
-      document.getElementById("gradient-bg").classList.add("active");
-      document.getElementById("tsparticles").classList.add("active");
-      document.getElementById("particles-default").classList.add("hidden");
-      // Fade in the note
-      setTimeout(function() { noteEl.style.opacity = "1"; }, 300);
-      var btn = document.getElementById("play-btn");
-      if (btn) btn.style.display = "none";
-      audio.onended = function() { musicLocked = false; };
+    function isImagePageVisible() {
+      const el = document.getElementById("image-page");
+      if (!el) return false;
+      const rect = el.getBoundingClientRect();
+      const bookRect = document.querySelector(".flipbook").getBoundingClientRect();
+      return rect.width > 50 && rect.left >= bookRect.left && rect.right <= bookRect.right + 5;
     }
-
-    function deactivateEffects() {
-      audio.pause();
-      audio.currentTime = 0;
-      musicLocked = false;
-      noteEl.style.opacity = "0";
-      document.getElementById("gradient-bg").classList.remove("active");
-      document.getElementById("tsparticles").classList.remove("active");
-      document.getElementById("particles-default").classList.remove("hidden");
-    }
-
-    // Called by play button on mobile (direct user gesture)
-    window.triggerMusic = function() {
-      if (hasPlayed) return;
-      hasPlayed = true;
-      musicLocked = true;
-      var track = audioFiles[Math.floor(Math.random() * audioFiles.length)];
-      audio.src = track;
-      audio.volume = 1;
-      audio.play().catch(function(e) { console.warn("play failed:", e); });
-      activateEffects();
-    };
 
     function getBookSize() {
       const vw = window.innerWidth;
@@ -206,12 +197,6 @@
 
     const bookSize = getBookSize();
 
-    // Show/hide play button based on platform
-    var playBtn = document.getElementById("play-btn");
-    if (!isMobile) {
-      if (playBtn) playBtn.style.display = "none";
-    }
-
     $(".flipbook").turn({
       width: bookSize.width,
       height: bookSize.height,
@@ -223,38 +208,34 @@
         },
         turned: function(e, page) {
           const visible = isImagePageVisible();
-          if (visible) {
-            // Show play button on mobile, auto-play on desktop
-            if (isMobile) {
-              var btn = document.getElementById("play-btn");
-              if (btn && !hasPlayed) btn.style.display = "block";
-            } else if (!hasPlayed) {
+          if (visible && !hasPlayed) {
+            // Desktop: auto-play. Mobile: show the music bar below the book
+            if (window.innerWidth >= 1024) {
               hasPlayed = true;
               musicLocked = true;
-              var track = audioFiles[Math.floor(Math.random() * audioFiles.length)];
+              const track = audioFiles[Math.floor(Math.random() * audioFiles.length)];
               audio.src = track;
               audio.volume = 1;
               audio.play().catch(function(e) { console.warn("play failed:", e); });
-              activateEffects();
+              document.getElementById("gradient-bg").classList.add("active");
+              document.getElementById("tsparticles").classList.add("active");
+              document.getElementById("particles-default").classList.add("hidden");
+              audio.onended = function() { musicLocked = false; };
+            } else {
+              document.getElementById("music-bar").style.display = "flex";
             }
           } else if (!visible) {
-            if (isMobile) {
-              var btn = document.getElementById("play-btn");
-              if (btn) btn.style.display = "none";
-            }
-            deactivateEffects();
+            document.getElementById("music-bar").style.display = "none";
+            audio.pause();
+            audio.currentTime = 0;
+            musicLocked = false;
+            document.getElementById("gradient-bg").classList.remove("active");
+            document.getElementById("tsparticles").classList.remove("active");
+            document.getElementById("particles-default").classList.remove("hidden");
           }
         }
       }
     });
-
-    function isImagePageVisible() {
-      const el = document.getElementById("image-page");
-      if (!el) return false;
-      const rect = el.getBoundingClientRect();
-      const bookRect = document.querySelector(".flipbook").getBoundingClientRect();
-      return rect.width > 50 && rect.left >= bookRect.left && rect.right <= bookRect.right + 5;
-    }
   </script>
 </body>
 
