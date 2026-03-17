@@ -420,6 +420,13 @@ body {
     place-content: center;
 }
 
+@media (max-width: 767px) {
+    #main-content {
+        align-content: center;
+        padding-bottom: 70px;
+    }
+}
+
 @keyframes shake {
     0%, 100% { transform: translateX(0); }
     25% { transform: translateX(-8px); }

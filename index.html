@@ -188,8 +188,9 @@
       if (vw >= 1600) return { width: 1120, height: 700 };
       if (vw >= 1024) return { width: 800, height: 500 };
       if (vw >= 768)  return { width: 600, height: 375 };
-      const maxW = Math.min(vw - 16, 500);
-      const maxH = Math.min(vh - 40, 320);
+      // Mobile: leave 80px at bottom for music bar
+      const maxW = vw - 16;
+      const maxH = vh - 100;
       const byWidth  = { width: maxW, height: Math.round(maxW * 5 / 8) };
       const byHeight = { width: Math.round(maxH * 8 / 5), height: maxH };
       return byWidth.height <= maxH ? byWidth : byHeight;
