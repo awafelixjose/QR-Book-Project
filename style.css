@@ -332,6 +332,7 @@ body {
 }
 
 #play-btn {
+    display: none;
     background: rgba(90, 62, 43, 0.15);
     border: 1px solid rgba(90, 62, 43, 0.3);
     color: #5a3e2b;
@@ -341,6 +342,8 @@ body {
     border-radius: 20px;
     cursor: pointer;
     letter-spacing: 1px;
+    z-index: 10;
+    position: relative;
 }
 
 

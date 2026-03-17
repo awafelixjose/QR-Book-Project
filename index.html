@@ -78,7 +78,6 @@
   <script src="particles.min.js"></script>
   <script src="mainJS.js"></script>
   <script id="c07xnp">
-    // Audio files
     const audioFiles = [
       "audio_list/Boys_Like_Girls_Two_Is_Better_Than_One_feat_Taylor_Swift_A.mp3",
       "audio_list/Amazed - The Best Of CD 1 TRACK 1 (320).mp3",
@@ -94,6 +93,7 @@
     const audio = new Audio();
     let musicLocked = false;
     let hasPlayed = false;
+    const isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 
     // Gate logic
     (function() {
@@ -106,15 +106,6 @@
         return true;
       }
       function _unlock() {
-        // iOS requires play() to be called directly inside a user gesture.
-        // We start playing silently NOW and keep it running — just raise volume later.
-        var track = audioFiles[Math.floor(Math.random() * audioFiles.length)];
-        audio.src = track;
-        audio.volume = 0.001;
-        audio.loop = false;
-        audio.play().catch(function() {});
-        // Immediately mute — we'll unmute when image page is reached
-        audio.volume = 0.001;
         var ls = document.getElementById("login-screen");
         var mc = document.getElementById("main-content");
         ls.style.transition = "opacity 0.8s ease";
@@ -145,7 +136,7 @@
       if (e.key === "Enter") window._gate();
     });
 
-    // Random notes container
+    // Random notes — fade in on music trigger
     const allNotes = [
       "sungit baga ISUS ISUS",
       "ah ah ah",
@@ -163,35 +154,42 @@
     const noteEl = document.createElement("p");
     noteEl.className = "note-item";
     noteEl.textContent = "\u201C" + picked + "\u201D";
+    noteEl.style.opacity = "0";
+    noteEl.style.transition = "opacity 1.5s ease";
     noteContainer.appendChild(noteEl);
 
-    function triggerMusic() {
-      if (hasPlayed) return;
-      hasPlayed = true;
-      var track = audioFiles[Math.floor(Math.random() * audioFiles.length)];
-      audio.src = track;
-      audio.volume = 1;
-      musicLocked = true;
-      audio.play().catch(function(e) { console.warn("play failed:", e); });
+    function activateEffects() {
       document.getElementById("gradient-bg").classList.add("active");
       document.getElementById("tsparticles").classList.add("active");
       document.getElementById("particles-default").classList.add("hidden");
+      // Fade in the note
+      setTimeout(function() { noteEl.style.opacity = "1"; }, 300);
       var btn = document.getElementById("play-btn");
       if (btn) btn.style.display = "none";
       audio.onended = function() { musicLocked = false; };
     }
 
-    function playRandomTrack() {
-      triggerMusic();
+    function deactivateEffects() {
+      audio.pause();
+      audio.currentTime = 0;
+      musicLocked = false;
+      noteEl.style.opacity = "0";
+      document.getElementById("gradient-bg").classList.remove("active");
+      document.getElementById("tsparticles").classList.remove("active");
+      document.getElementById("particles-default").classList.remove("hidden");
     }
 
-    function isImagePageVisible() {
-      const el = document.getElementById("image-page");
-      if (!el) return false;
-      const rect = el.getBoundingClientRect();
-      const bookRect = document.querySelector(".flipbook").getBoundingClientRect();
-      return rect.width > 50 && rect.left >= bookRect.left && rect.right <= bookRect.right + 5;
-    }
+    // Called by play button on mobile (direct user gesture)
+    window.triggerMusic = function() {
+      if (hasPlayed) return;
+      hasPlayed = true;
+      musicLocked = true;
+      var track = audioFiles[Math.floor(Math.random() * audioFiles.length)];
+      audio.src = track;
+      audio.volume = 1;
+      audio.play().catch(function(e) { console.warn("play failed:", e); });
+      activateEffects();
+    };
 
     function getBookSize() {
       const vw = window.innerWidth;
@@ -199,7 +197,6 @@
       if (vw >= 1600) return { width: 1120, height: 700 };
       if (vw >= 1024) return { width: 800, height: 500 };
       if (vw >= 768)  return { width: 600, height: 375 };
-      // Mobile: fill screen with padding, keep 8:5 ratio
       const maxW = Math.min(vw - 16, 500);
       const maxH = Math.min(vh - 40, 320);
       const byWidth  = { width: maxW, height: Math.round(maxW * 5 / 8) };
@@ -208,6 +205,12 @@
     }
 
     const bookSize = getBookSize();
+
+    // Show/hide play button based on platform
+    var playBtn = document.getElementById("play-btn");
+    if (!isMobile) {
+      if (playBtn) playBtn.style.display = "none";
+    }
 
     $(".flipbook").turn({
       width: bookSize.width,
@@ -220,21 +223,38 @@
         },
         turned: function(e, page) {
           const visible = isImagePageVisible();
-          if (visible && !hasPlayed) {
-            hasPlayed = true;
-            playRandomTrack();
+          if (visible) {
+            // Show play button on mobile, auto-play on desktop
+            if (isMobile) {
+              var btn = document.getElementById("play-btn");
+              if (btn && !hasPlayed) btn.style.display = "block";
+            } else if (!hasPlayed) {
+              hasPlayed = true;
+              musicLocked = true;
+              var track = audioFiles[Math.floor(Math.random() * audioFiles.length)];
+              audio.src = track;
+              audio.volume = 1;
+              audio.play().catch(function(e) { console.warn("play failed:", e); });
+              activateEffects();
+            }
           } else if (!visible) {
-            audio.volume = 0.001;
-            audio.pause();
-            audio.currentTime = 0;
-            musicLocked = false;
-            document.getElementById("gradient-bg").classList.remove("active");
-            document.getElementById("tsparticles").classList.remove("active");
-            document.getElementById("particles-default").classList.remove("hidden");
+            if (isMobile) {
+              var btn = document.getElementById("play-btn");
+              if (btn) btn.style.display = "none";
+            }
+            deactivateEffects();
           }
         }
       }
     });
+
+    function isImagePageVisible() {
+      const el = document.getElementById("image-page");
+      if (!el) return false;
+      const rect = el.getBoundingClientRect();
+      const bookRect = document.querySelector(".flipbook").getBoundingClientRect();
+      return rect.width > 50 && rect.left >= bookRect.left && rect.right <= bookRect.right + 5;
+    }
   </script>
 </body>
 
