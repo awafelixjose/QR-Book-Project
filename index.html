@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="style.css" />
-  <title>Pokemon Magazine</title>
+  <title>&#8203;</title>
 </head>
 
 <body>
@@ -106,30 +106,18 @@
         return true;
       }
       function _unlock() {
-        // iOS/Android require audio interaction within a direct user gesture.
-        // We load + play silently here to associate the audio element with this tap.
-        var randomTrack = audioFiles[Math.floor(Math.random() * audioFiles.length)];
-        audio.src = randomTrack;
-        audio.volume = 0;
+        // Pick track now, during the user gesture tap — iOS requires this
+        var track = audioFiles[Math.floor(Math.random() * audioFiles.length)];
+        audio.src = track;
+        audio.volume = 0.001;
         audio.load();
-        var promise = audio.play();
-        if (promise !== undefined) {
-          promise.then(function() {
-            audio.pause();
-            audio.currentTime = 0;
-            audio.volume = 1;
-            // Store the preloaded track so playRandomTrack uses it
-            audio._unlockedSrc = randomTrack;
-          }).catch(function(e) {
-            audio.volume = 1;
-            audio._unlockedSrc = randomTrack;
-          });
-        } else {
+        audio.play().then(function() {
           audio.pause();
           audio.currentTime = 0;
           audio.volume = 1;
-          audio._unlockedSrc = randomTrack;
-        }
+        }).catch(function() {
+          audio.volume = 1;
+        });
         var ls = document.getElementById("login-screen");
         var mc = document.getElementById("main-content");
         ls.style.transition = "opacity 0.8s ease";
@@ -181,19 +169,11 @@
     noteContainer.appendChild(noteEl);
 
     function playRandomTrack() {
-      // On iOS, changing audio.src after unlock breaks playback.
-      // Use the track already loaded during the login gesture if available.
-      if (!audio._unlockedSrc) {
-        var track = audioFiles[Math.floor(Math.random() * audioFiles.length)];
-        audio.src = track;
-      }
+      // audio.src already set during login tap — just resume from start
       audio.currentTime = 0;
       audio.volume = 1;
       musicLocked = true;
-      var promise = audio.play();
-      if (promise !== undefined) {
-        promise.catch(function(e) { console.warn("Audio play failed:", e); });
-      }
+      audio.play().catch(function(e) { console.warn("play failed:", e); });
       document.getElementById("gradient-bg").classList.add("active");
       document.getElementById("tsparticles").classList.add("active");
       document.getElementById("particles-default").classList.add("hidden");
