@@ -94,8 +94,9 @@
     audio.preload = "none";
     let musicLocked = false;
     let hasPlayed = false;
+    let audioReady = false;
 
-    // Gate logic — defined first so _unlock can reference unlockAudio via hoisting
+    // Gate logic
     (function() {
       var _x = [107,117,114,100,97,112,121,97];
       function _chk(s) {
@@ -106,17 +107,17 @@
         return true;
       }
       function _unlock() {
-        // Pick track now, during the user gesture tap — iOS requires this
+        // Pick and load track NOW inside the user gesture tap — iOS requires this
         var track = audioFiles[Math.floor(Math.random() * audioFiles.length)];
         audio.src = track;
         audio.volume = 0.001;
-        audio.load();
         audio.play().then(function() {
           audio.pause();
           audio.currentTime = 0;
           audio.volume = 1;
+          audioReady = true;
         }).catch(function() {
-          audio.volume = 1;
+          audioReady = true;
         });
         var ls = document.getElementById("login-screen");
         var mc = document.getElementById("main-content");
@@ -148,7 +149,7 @@
       if (e.key === "Enter") window._gate();
     });
 
-    // Random notes
+    // Random notes container
     const allNotes = [
       "sungit baga ISUS ISUS",
       "ah ah ah",
@@ -169,7 +170,8 @@
     noteContainer.appendChild(noteEl);
 
     function playRandomTrack() {
-      // audio.src already set during login tap — just resume from start
+      // audio.src already set and unlocked during login tap
+      // Just rewind and play — no src change needed (iOS safe)
       audio.currentTime = 0;
       audio.volume = 1;
       musicLocked = true;
