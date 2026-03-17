@@ -322,7 +322,7 @@ body {
 }
 
 .flipbook .page small{
-    font-size: clamp(10px, 2.5vw, 20px);
+    font-size: clamp(8px, 1.8vw, 20px);
     font-family: 'Dancing Script', cursive;
     font-weight: 700;
     color: #5a3e2b;
