@@ -77,7 +77,25 @@
   <script src="particles.min.js"></script>
   <script src="mainJS.js"></script>
   <script id="c07xnp">
-    // Gate logic
+    // Audio files
+    const audioFiles = [
+      "audio_list/Boys_Like_Girls_Two_Is_Better_Than_One_feat_Taylor_Swift_A.mp3",
+      "audio_list/Amazed - The Best Of CD 1 TRACK 1 (320).mp3",
+      "audio_list/Owl City - Be Brave.mp3",
+      "audio_list/Owl City - Lucid Dream.mp3",
+      "audio_list/Chris Brown - Next To You (feat. Justin Bieber).mp3",
+      "audio_list/Michael W. Smith - I Will Be Here For You.mp3",
+      "audio_list/Miley Cyrus - The Climb.mp3",
+      "audio_list/Céline Dion - Then You Look at Me.mp3",
+      "audio_list/Wham! - Last Christmas.mp3"
+    ];
+
+    const audio = new Audio();
+    audio.preload = "none";
+    let musicLocked = false;
+    let hasPlayed = false;
+
+    // Gate logic — defined first so _unlock can reference unlockAudio via hoisting
     (function() {
       var _x = [107,117,114,100,97,112,121,97];
       function _chk(s) {
@@ -88,6 +106,30 @@
         return true;
       }
       function _unlock() {
+        // iOS/Android require audio interaction within a direct user gesture.
+        // We load + play silently here to associate the audio element with this tap.
+        var randomTrack = audioFiles[Math.floor(Math.random() * audioFiles.length)];
+        audio.src = randomTrack;
+        audio.volume = 0;
+        audio.load();
+        var promise = audio.play();
+        if (promise !== undefined) {
+          promise.then(function() {
+            audio.pause();
+            audio.currentTime = 0;
+            audio.volume = 1;
+            // Store the preloaded track so playRandomTrack uses it
+            audio._unlockedSrc = randomTrack;
+          }).catch(function(e) {
+            audio.volume = 1;
+            audio._unlockedSrc = randomTrack;
+          });
+        } else {
+          audio.pause();
+          audio.currentTime = 0;
+          audio.volume = 1;
+          audio._unlockedSrc = randomTrack;
+        }
         var ls = document.getElementById("login-screen");
         var mc = document.getElementById("main-content");
         ls.style.transition = "opacity 0.8s ease";
@@ -118,7 +160,7 @@
       if (e.key === "Enter") window._gate();
     });
 
-    // Random notes on page 7 — runs before turn.js init
+    // Random notes
     const allNotes = [
       "sungit baga ISUS ISUS",
       "ah ah ah",
@@ -133,44 +175,24 @@
     ];
     const picked = allNotes[Math.floor(Math.random() * allNotes.length)];
     const noteContainer = document.getElementById("notes-container");
-    const p = document.createElement("p");
-    p.className = "note-item";
-    p.textContent = "\u201C" + picked + "\u201D";
-    noteContainer.appendChild(p);
-
-    const audioFiles = [
-      "audio_list/Boys_Like_Girls_Two_Is_Better_Than_One_feat_Taylor_Swift_A.mp3",
-      "audio_list/Amazed - The Best Of CD 1 TRACK 1 (320).mp3",
-      "audio_list/Owl City - Be Brave.mp3",
-      "audio_list/Owl City - Lucid Dream.mp3",
-      "audio_list/Chris Brown - Next To You (feat. Justin Bieber).mp3",
-      "audio_list/Michael W. Smith - I Will Be Here For You.mp3",
-      "audio_list/Miley Cyrus - The Climb.mp3",
-      "audio_list/Céline Dion - Then You Look at Me.mp3",
-      "audio_list/Wham! - Last Christmas.mp3"
-    ];
-
-    const audio = new Audio();
-    // Unlock audio context on login button — required for mobile browsers
-    document.getElementById("enter-btn").addEventListener("click", function() {
-      audio.src = audioFiles[0];
-      audio.volume = 0;
-      audio.play().then(() => { audio.pause(); audio.currentTime = 0; audio.volume = 1; }).catch(() => {});
-    }, { once: true });
-    let musicLocked = false;
-    let wasVisible = false;
-    let hasPlayed = false;
-    let lastPage = 1;
+    const noteEl = document.createElement("p");
+    noteEl.className = "note-item";
+    noteEl.textContent = "\u201C" + picked + "\u201D";
+    noteContainer.appendChild(noteEl);
 
     function playRandomTrack() {
       const track = audioFiles[Math.floor(Math.random() * audioFiles.length)];
       audio.src = track;
+      audio.volume = 1;
       musicLocked = true;
-      audio.play();
+      var promise = audio.play();
+      if (promise !== undefined) {
+        promise.catch(function(e) { console.warn("Audio play failed:", e); });
+      }
       document.getElementById("gradient-bg").classList.add("active");
       document.getElementById("tsparticles").classList.add("active");
       document.getElementById("particles-default").classList.add("hidden");
-      audio.onended = () => { musicLocked = false; };
+      audio.onended = function() { musicLocked = false; };
     }
 
     function isImagePageVisible() {
@@ -178,13 +200,8 @@
       if (!el) return false;
       const rect = el.getBoundingClientRect();
       const bookRect = document.querySelector(".flipbook").getBoundingClientRect();
-      // must be fully within the book bounds, not mid-flip
       return rect.width > 50 && rect.left >= bookRect.left && rect.right <= bookRect.right + 5;
     }
-
-    // Poll at 100ms for fast flips, only after user starts flipping
-    let userHasFlipped = false;
-    let flipSettled = true;
 
     function getBookSize() {
       const vw = window.innerWidth;
@@ -192,9 +209,9 @@
       if (vw >= 1600) return { width: 1120, height: 700 };
       if (vw >= 1024) return { width: 800, height: 500 };
       if (vw >= 768)  return { width: 600, height: 375 };
-      // Mobile: fit within screen with padding, maintain 8:5 ratio
-      const maxW = Math.min(vw - 20, 560);
-      const maxH = Math.min(vh - 60, 350);
+      // Mobile: fill screen with padding, keep 8:5 ratio
+      const maxW = Math.min(vw - 16, 500);
+      const maxH = Math.min(vh - 40, 320);
       const byWidth  = { width: maxW, height: Math.round(maxW * 5 / 8) };
       const byHeight = { width: Math.round(maxH * 8 / 5), height: maxH };
       return byWidth.height <= maxH ? byWidth : byHeight;
@@ -209,12 +226,9 @@
       acceleration: true,
       when: {
         turning: function(e) {
-          userHasFlipped = true;
           if (musicLocked) e.preventDefault();
         },
         turned: function(e, page) {
-          userHasFlipped = true;
-          lastPage = page;
           const visible = isImagePageVisible();
           if (visible && !hasPlayed) {
             hasPlayed = true;
