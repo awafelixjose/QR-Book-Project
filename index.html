@@ -94,7 +94,6 @@
     audio.preload = "none";
     let musicLocked = false;
     let hasPlayed = false;
-    let audioReady = false;
 
     // Gate logic
     (function() {
@@ -107,18 +106,15 @@
         return true;
       }
       function _unlock() {
-        // Pick and load track NOW inside the user gesture tap — iOS requires this
+        // iOS requires play() to be called directly inside a user gesture.
+        // We start playing silently NOW and keep it running — just raise volume later.
         var track = audioFiles[Math.floor(Math.random() * audioFiles.length)];
         audio.src = track;
         audio.volume = 0.001;
-        audio.play().then(function() {
-          audio.pause();
-          audio.currentTime = 0;
-          audio.volume = 1;
-          audioReady = true;
-        }).catch(function() {
-          audioReady = true;
-        });
+        audio.loop = false;
+        audio.play().catch(function() {});
+        // Immediately mute — we'll unmute when image page is reached
+        audio.volume = 0.001;
         var ls = document.getElementById("login-screen");
         var mc = document.getElementById("main-content");
         ls.style.transition = "opacity 0.8s ease";
@@ -170,12 +166,11 @@
     noteContainer.appendChild(noteEl);
 
     function playRandomTrack() {
-      // audio.src already set and unlocked during login tap
-      // Just rewind and play — no src change needed (iOS safe)
+      // Audio is already playing silently since login tap (iOS safe)
+      // Just rewind and unmute
       audio.currentTime = 0;
       audio.volume = 1;
       musicLocked = true;
-      audio.play().catch(function(e) { console.warn("play failed:", e); });
       document.getElementById("gradient-bg").classList.add("active");
       document.getElementById("tsparticles").classList.add("active");
       document.getElementById("particles-default").classList.add("hidden");
@@ -221,6 +216,7 @@
             hasPlayed = true;
             playRandomTrack();
           } else if (!visible) {
+            audio.volume = 0.001;
             audio.pause();
             audio.currentTime = 0;
             musicLocked = false;
