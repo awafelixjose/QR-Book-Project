@@ -322,17 +322,13 @@ body {
 }
 
 .flipbook .page small{
-    font-size: clamp(8px, 1.8vw, 20px);
+    font-size: 20px;
     font-family: 'Dancing Script', cursive;
     font-weight: 700;
     color: #5a3e2b;
     letter-spacing: 0.5px;
     margin-top: 4px;
     text-shadow: 0 1px 2px rgba(0,0,0,0.15);
-}
-
-@media (max-width: 767px) {
-    .flipbook .page small { font-size: 9px; }
 }
 
 
