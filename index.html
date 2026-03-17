@@ -91,7 +91,6 @@
     ];
 
     const audio = new Audio();
-    audio.preload = "none";
     let musicLocked = false;
     let hasPlayed = false;
 
@@ -166,11 +165,10 @@
     noteContainer.appendChild(noteEl);
 
     function playRandomTrack() {
-      // Audio is already playing silently since login tap (iOS safe)
-      // Just rewind and unmute
       audio.currentTime = 0;
       audio.volume = 1;
       musicLocked = true;
+      audio.play().catch(function(e) { console.warn("play failed:", e); });
       document.getElementById("gradient-bg").classList.add("active");
       document.getElementById("tsparticles").classList.add("active");
       document.getElementById("particles-default").classList.add("hidden");
