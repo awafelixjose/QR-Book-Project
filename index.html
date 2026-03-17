@@ -224,7 +224,8 @@
               document.getElementById("gradient-bg").classList.add("active");
               document.getElementById("tsparticles").classList.add("active");
               document.getElementById("particles-default").classList.add("hidden");
-              setTimeout(function() { noteEl.style.opacity = "1"; }, 400);              audio.onended = function() { musicLocked = false; };
+              noteEl.style.opacity = "1";
+              audio.onended = function() { musicLocked = false; };
             } else {
               document.getElementById("music-bar").style.display = "flex";
             }
