@@ -110,6 +110,7 @@
       document.getElementById("tsparticles").classList.add("active");
       document.getElementById("particles-default").classList.add("hidden");
       document.getElementById("music-bar").style.display = "none";
+      setTimeout(function() { noteEl.style.opacity = "1"; }, 400);
       audio.onended = function() { musicLocked = false; };
     };
 
@@ -172,6 +173,8 @@
     const noteEl = document.createElement("p");
     noteEl.className = "note-item";
     noteEl.textContent = "\u201C" + picked + "\u201D";
+    noteEl.style.opacity = "0";
+    noteEl.style.transition = "opacity 1.2s ease";
     noteContainer.appendChild(noteEl);
 
     function isImagePageVisible() {
@@ -188,12 +191,12 @@
       if (vw >= 1600) return { width: 1120, height: 700 };
       if (vw >= 1024) return { width: 800, height: 500 };
       if (vw >= 768)  return { width: 600, height: 375 };
-      // Mobile: leave 80px at bottom for music bar
-      const maxW = vw - 16;
-      const maxH = vh - 100;
-      const byWidth  = { width: maxW, height: Math.round(maxW * 5 / 8) };
-      const byHeight = { width: Math.round(maxH * 8 / 5), height: maxH };
-      return byWidth.height <= maxH ? byWidth : byHeight;
+      // Mobile: use almost full screen width, leave 60px for music bar
+      const maxW = vw - 8;
+      const maxH = vh - 70;
+      const h = Math.round(maxW * 5 / 8);
+      if (h <= maxH) return { width: maxW, height: h };
+      return { width: Math.round(maxH * 8 / 5), height: maxH };
     }
 
     const bookSize = getBookSize();
@@ -221,12 +224,14 @@
               document.getElementById("gradient-bg").classList.add("active");
               document.getElementById("tsparticles").classList.add("active");
               document.getElementById("particles-default").classList.add("hidden");
+              setTimeout(function() { noteEl.style.opacity = "1"; }, 400);
               audio.onended = function() { musicLocked = false; };
             } else {
               document.getElementById("music-bar").style.display = "flex";
             }
           } else if (!visible) {
             document.getElementById("music-bar").style.display = "none";
+            noteEl.style.opacity = "0";
             audio.pause();
             audio.currentTime = 0;
             musicLocked = false;
