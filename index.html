@@ -72,7 +72,7 @@
 
   </div> <!-- end main-content -->
 
-  <!-- Music bar sits just below the book, centered -->
+  <!-- Music player UI — shown below book on mobile when on image page -->
   <div id="music-bar">
     <button id="music-play-btn" onclick="window.triggerMusic()">&#9654; Play Music</button>
   </div>
@@ -113,6 +113,9 @@
       noteEl.style.opacity = "1";
       audio.onended = function() { musicLocked = false; };
     };
+
+    // Gate logic
+    (function() {
       var _x = [107,117,114,100,97,112,121,97];
       function _chk(s) {
         if (s.length !== _x.length) return false;

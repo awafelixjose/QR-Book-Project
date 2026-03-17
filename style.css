@@ -322,7 +322,7 @@ body {
 }
 
 .flipbook .page small{
-    font-size: 20px;
+    font-size: clamp(9px, 2vw, 20px);
     font-family: 'Dancing Script', cursive;
     font-weight: 700;
     color: #5a3e2b;
@@ -440,11 +440,10 @@ body {
 #music-bar {
     display: none;
     position: fixed;
-    bottom: 16px;
+    bottom: 8px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 10;
-    white-space: nowrap;
 }
 
 #music-play-btn {
