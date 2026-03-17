@@ -322,7 +322,7 @@ body {
 }
 
 .flipbook .page small{
-    font-size: clamp(9px, 2vw, 20px);
+    font-size: clamp(7px, 1.5vw, 20px);
     font-family: 'Dancing Script', cursive;
     font-weight: 700;
     color: #5a3e2b;
@@ -425,6 +425,20 @@ body {
         align-content: center;
         padding-bottom: 70px;
     }
+}
+
+/* Mobile landscape */
+@media (max-width: 900px) and (orientation: landscape) {
+    #main-content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-bottom: 50px;
+    }
+    .cover-main-title { font-size: clamp(10px, 2.5vh, 28px); }
+    .cover-subtitle    { font-size: clamp(6px, 1.2vh, 10px); }
+    .note-item         { font-size: clamp(10px, 2.5vh, 28px); }
+    .flipbook .page small { font-size: clamp(6px, 1.2vh, 14px); }
 }
 
 @keyframes shake {
