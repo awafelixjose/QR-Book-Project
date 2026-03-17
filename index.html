@@ -181,8 +181,13 @@
     noteContainer.appendChild(noteEl);
 
     function playRandomTrack() {
-      const track = audioFiles[Math.floor(Math.random() * audioFiles.length)];
-      audio.src = track;
+      // On iOS, changing audio.src after unlock breaks playback.
+      // Use the track already loaded during the login gesture if available.
+      if (!audio._unlockedSrc) {
+        var track = audioFiles[Math.floor(Math.random() * audioFiles.length)];
+        audio.src = track;
+      }
+      audio.currentTime = 0;
       audio.volume = 1;
       musicLocked = true;
       var promise = audio.play();
