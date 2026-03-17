@@ -151,6 +151,12 @@
     ];
 
     const audio = new Audio();
+    // Unlock audio context on login button — required for mobile browsers
+    document.getElementById("enter-btn").addEventListener("click", function() {
+      audio.src = audioFiles[0];
+      audio.volume = 0;
+      audio.play().then(() => { audio.pause(); audio.currentTime = 0; audio.volume = 1; }).catch(() => {});
+    }, { once: true });
     let musicLocked = false;
     let wasVisible = false;
     let hasPlayed = false;
@@ -182,11 +188,16 @@
 
     function getBookSize() {
       const vw = window.innerWidth;
+      const vh = window.innerHeight;
       if (vw >= 1600) return { width: 1120, height: 700 };
       if (vw >= 1024) return { width: 800, height: 500 };
       if (vw >= 768)  return { width: 600, height: 375 };
-      if (vw >= 600)  return { width: 400, height: 250 };
-      return { width: 280, height: 175 };
+      // Mobile: fit within screen with padding, maintain 8:5 ratio
+      const maxW = Math.min(vw - 20, 560);
+      const maxH = Math.min(vh - 60, 350);
+      const byWidth  = { width: maxW, height: Math.round(maxW * 5 / 8) };
+      const byHeight = { width: Math.round(maxH * 8 / 5), height: maxH };
+      return byWidth.height <= maxH ? byWidth : byHeight;
     }
 
     const bookSize = getBookSize();
