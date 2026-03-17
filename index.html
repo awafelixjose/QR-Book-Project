@@ -52,6 +52,7 @@
               <img src="images/1stTogetherPic1.jpeg" alt="Our First Photo" />
           </div>
           <small>Keep Smiling</small>
+          <button id="play-btn" onclick="triggerMusic()">▶ Play</button>
           <span class="page-num left">6</span>
       </div>
       <div class="page" id="notes-page">
@@ -164,15 +165,24 @@
     noteEl.textContent = "\u201C" + picked + "\u201D";
     noteContainer.appendChild(noteEl);
 
-    function playRandomTrack() {
-      audio.currentTime = 0;
+    function triggerMusic() {
+      if (hasPlayed) return;
+      hasPlayed = true;
+      var track = audioFiles[Math.floor(Math.random() * audioFiles.length)];
+      audio.src = track;
       audio.volume = 1;
       musicLocked = true;
       audio.play().catch(function(e) { console.warn("play failed:", e); });
       document.getElementById("gradient-bg").classList.add("active");
       document.getElementById("tsparticles").classList.add("active");
       document.getElementById("particles-default").classList.add("hidden");
+      var btn = document.getElementById("play-btn");
+      if (btn) btn.style.display = "none";
       audio.onended = function() { musicLocked = false; };
+    }
+
+    function playRandomTrack() {
+      triggerMusic();
     }
 
     function isImagePageVisible() {
