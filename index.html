@@ -5,7 +5,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="style.css" />
-  <title>&#8203;</title>
+  <title>The Empty Book</title>
+  <style>
+    #main-content { display: none !important; }
+    #login-screen { display: flex; }
+  </style>
 </head>
 
 <body>
@@ -74,7 +78,7 @@
 
   <!-- Music player UI — shown below book on mobile when on image page -->
   <div id="music-bar">
-    <button id="music-play-btn" onclick="window.triggerMusic()">&#9654; Play Music</button>
+    <button id="music-play-btn" onclick="window.triggerMusic()">&#9654; Tap Here</button>
   </div>
 
   <script src="jquery.js"></script>
@@ -132,6 +136,7 @@
         setTimeout(function() {
           ls.style.display = "none";
           mc.classList.remove("hidden-main");
+          mc.style.display = "grid";
           mc.style.opacity = "0";
           mc.style.transition = "opacity 0.8s ease";
           setTimeout(function() { mc.style.opacity = "1"; }, 50);
