@@ -7,8 +7,7 @@
   <link rel="stylesheet" href="style.css" />
   <title>The Empty Book</title>
   <style>
-    #main-content { display: none !important; }
-    #login-screen { display: flex; }
+    #main-content { visibility: hidden; opacity: 0; }
   </style>
 </head>
 
@@ -66,7 +65,7 @@
 
       <!-- Back cover -->
       <div class="hard"></div>
-      <div class="hard">Thank You</div>
+      <div class="hard"><span class="back-thank-you">Thank You</span></div>
 
     </div>
 
@@ -136,7 +135,7 @@
         setTimeout(function() {
           ls.style.display = "none";
           mc.classList.remove("hidden-main");
-          mc.style.display = "grid";
+          mc.style.visibility = "visible";
           mc.style.opacity = "0";
           mc.style.transition = "opacity 0.8s ease";
           setTimeout(function() { mc.style.opacity = "1"; }, 50);
