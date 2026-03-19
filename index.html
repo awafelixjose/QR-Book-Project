@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css?v=2" />
   <title>The Empty Book</title>
   <style>
     #main-content { visibility: hidden; opacity: 0; }
@@ -154,9 +154,20 @@
       };
     })();
 
-    document.getElementById("enter-btn").addEventListener("click", function() { window._gate(); });
+    document.getElementById("enter-btn").addEventListener("click", function() {
+      // Prime audio on user gesture so desktop autoplay is allowed later
+      audio.src = audioFiles[0];
+      audio.volume = 0;
+      audio.play().then(function() { audio.pause(); audio.currentTime = 0; audio.volume = 1; }).catch(function(){});
+      window._gate();
+    });
     document.getElementById("name-input").addEventListener("keydown", function(e) {
-      if (e.key === "Enter") window._gate();
+      if (e.key === "Enter") {
+        audio.src = audioFiles[0];
+        audio.volume = 0;
+        audio.play().then(function() { audio.pause(); audio.currentTime = 0; audio.volume = 1; }).catch(function(){});
+        window._gate();
+      }
     });
 
     // Random notes
