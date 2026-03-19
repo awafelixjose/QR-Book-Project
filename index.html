@@ -28,54 +28,49 @@
     <div id="gradient-bg"></div>
     <div id="particles-default"></div>
     <div id="tsparticles"></div>
-  
 
-  <div class="book-wrapper">
-    <div class="flipbook">
+    <div class="book-wrapper">
+      <div class="flipbook">
 
-      <!-- Front cover -->
-      <div class="hard">
+        <!-- Front cover -->
+        <div class="hard">
           <div class="cover-title">
-              <span class="cover-main-title">Empty Book</span>
-              <div class="cover-divider"></div>
-              <span class="cover-subtitle">~ by Nobody</span>
+            <span class="cover-main-title">Empty Book</span>
+            <div class="cover-divider"></div>
+            <span class="cover-subtitle">~ by Nobody</span>
           </div>
-      </div>
-      <div class="hard"></div>
-      
+        </div>
+        <div class="hard"></div>
 
-      <!-- Inner pages -->
-      <div class="page"><span class="page-num right">1</span></div>
-      <div class="page"><span class="page-num left">2</span></div>
-      <div class="page"><span class="page-num right">3</span></div>
-      <div class="page"><span class="page-num left">4</span></div>
-      <div class="page"><span class="page-num right">5</span></div>
-      <div class="page" id="image-page">
+        <!-- Inner pages -->
+        <div class="page"><span class="page-num right">1</span></div>
+        <div class="page"><span class="page-num left">2</span></div>
+        <div class="page"><span class="page-num right">3</span></div>
+        <div class="page"><span class="page-num left">4</span></div>
+        <div class="page"><span class="page-num right">5</span></div>
+        <div class="page" id="image-page">
           <div class="taped-photo">
-              <img src="images/1stTogetherPic1.jpeg" alt="Our First Photo" />
+            <img src="images/1stTogetherPic1.jpeg" alt="Our First Photo" />
           </div>
           <small>Keep Smiling</small>
           <span class="page-num left">6</span>
-      </div>
-      <div class="page" id="notes-page">
+        </div>
+        <div class="page" id="notes-page">
           <div class="notes-container" id="notes-container"></div>
           <span class="page-num right">7</span>
+        </div>
+        <div class="page"><span class="page-num left">8</span></div>
+
+        <!-- Back cover -->
+        <div class="hard"></div>
+        <div class="hard"><span class="back-thank-you">Thank You</span></div>
+
       </div>
-      <div class="page"><span class="page-num left">8</span></div>
-
-      <!-- Back cover -->
-      <div class="hard"></div>
-      <div class="hard"><span class="back-thank-you">Thank You</span></div>
-
     </div>
-
-  </div>
-
-     
 
   </div> <!-- end main-content -->
 
-  <!-- Music player UI — shown below book on mobile when on image page -->
+  <!-- Music player UI — shown on mobile when image page is visible -->
   <div id="music-bar">
     <button id="music-play-btn" onclick="window.triggerMusic()">&#9654; Tap Here</button>
   </div>
@@ -101,24 +96,21 @@
     let musicLocked = false;
     let hasPlayed = false;
 
-    function playTrack(onReady) {
-      const track = audioFiles[Math.floor(Math.random() * audioFiles.length)];
-      audio.src = track;
+    // Preload a random track in the background after login
+    function preloadTrack() {
+      audio.src = audioFiles[Math.floor(Math.random() * audioFiles.length)];
       audio.volume = 1;
       audio.load();
-      function tryPlay() {
-        audio.play().then(function() {
-          if (onReady) onReady();
-        }).catch(function(e) { console.warn("play failed:", e); });
-      }
-      if (audio.readyState >= 3) {
-        tryPlay();
-      } else {
-        audio.addEventListener("canplay", tryPlay, { once: true });
-      }
+    }
+
+    // Play whatever is already loaded
+    function playTrack() {
+      audio.volume = 1;
+      audio.play().catch(function(e) { console.warn("play failed:", e); });
       audio.onended = function() { musicLocked = false; };
     }
 
+    // Mobile play button
     window.triggerMusic = function() {
       if (hasPlayed) return;
       hasPlayed = true;
@@ -168,28 +160,21 @@
       };
     })();
 
+    // On Enter button/key: unlock audio context with silent play, then gate, then preload real track
     function primeAndGate() {
       audio.src = audioFiles[0];
       audio.volume = 0;
       var p = audio.play();
-      if (p !== undefined) {
-        p.then(function() {
-          audio.pause();
-          audio.currentTime = 0;
-          audio.volume = 1;
-          audio.src = "";
-          window._gate();
-        }).catch(function() {
-          audio.volume = 1;
-          audio.src = "";
-          window._gate();
-        });
-      } else {
+      function afterPrime() {
         audio.pause();
         audio.currentTime = 0;
-        audio.volume = 1;
-        audio.src = "";
         window._gate();
+        preloadTrack(); // starts loading random track while user flips pages
+      }
+      if (p !== undefined) {
+        p.then(afterPrime).catch(afterPrime);
+      } else {
+        afterPrime();
       }
     }
 
@@ -234,7 +219,6 @@
       if (vw >= 1600) return { width: 1120, height: 700 };
       if (vw >= 1024) return { width: 800, height: 500 };
       if (vw >= 768)  return { width: 600, height: 375 };
-      // Mobile: use almost full screen width, leave 60px for music bar
       const maxW = vw - 8;
       const maxH = vh - 70;
       const h = Math.round(maxW * 5 / 8);
@@ -256,8 +240,8 @@
         turned: function(e, page) {
           const visible = isImagePageVisible();
           if (visible && !hasPlayed) {
-            // Desktop: auto-play. Mobile: show the music bar below the book
             if (window.innerWidth >= 1024) {
+              // Desktop: play immediately — track is already preloaded
               hasPlayed = true;
               musicLocked = true;
               playTrack();
@@ -266,6 +250,7 @@
               document.getElementById("particles-default").classList.add("hidden");
               noteEl.style.opacity = "1";
             } else {
+              // Mobile/tablet: show play button
               document.getElementById("music-bar").style.display = "flex";
             }
           } else if (!visible) {
@@ -284,3 +269,4 @@
   </script>
 </body>
 
+</html>
