@@ -101,20 +101,34 @@
     let musicLocked = false;
     let hasPlayed = false;
 
+    function playTrack(onReady) {
+      const track = audioFiles[Math.floor(Math.random() * audioFiles.length)];
+      audio.src = track;
+      audio.volume = 1;
+      audio.load();
+      function tryPlay() {
+        audio.play().then(function() {
+          if (onReady) onReady();
+        }).catch(function(e) { console.warn("play failed:", e); });
+      }
+      if (audio.readyState >= 3) {
+        tryPlay();
+      } else {
+        audio.addEventListener("canplay", tryPlay, { once: true });
+      }
+      audio.onended = function() { musicLocked = false; };
+    }
+
     window.triggerMusic = function() {
       if (hasPlayed) return;
       hasPlayed = true;
       musicLocked = true;
-      const track = audioFiles[Math.floor(Math.random() * audioFiles.length)];
-      audio.src = track;
-      audio.volume = 1;
-      audio.play().catch(function(e) { console.warn("play failed:", e); });
       document.getElementById("gradient-bg").classList.add("active");
       document.getElementById("tsparticles").classList.add("active");
       document.getElementById("particles-default").classList.add("hidden");
       document.getElementById("music-bar").style.display = "none";
       noteEl.style.opacity = "1";
-      audio.onended = function() { musicLocked = false; };
+      playTrack();
     };
 
     // Gate logic
@@ -246,15 +260,11 @@
             if (window.innerWidth >= 1024) {
               hasPlayed = true;
               musicLocked = true;
-              const track = audioFiles[Math.floor(Math.random() * audioFiles.length)];
-              audio.src = track;
-              audio.volume = 1;
-              audio.play().catch(function(e) { console.warn("play failed:", e); });
+              playTrack();
               document.getElementById("gradient-bg").classList.add("active");
               document.getElementById("tsparticles").classList.add("active");
               document.getElementById("particles-default").classList.add("hidden");
               noteEl.style.opacity = "1";
-              audio.onended = function() { musicLocked = false; };
             } else {
               document.getElementById("music-bar").style.display = "flex";
             }
