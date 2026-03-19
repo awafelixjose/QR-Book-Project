@@ -154,20 +154,34 @@
       };
     })();
 
-    document.getElementById("enter-btn").addEventListener("click", function() {
-      // Prime audio on user gesture so desktop autoplay is allowed later
+    function primeAndGate() {
       audio.src = audioFiles[0];
       audio.volume = 0;
-      audio.play().then(function() { audio.pause(); audio.currentTime = 0; audio.volume = 1; }).catch(function(){});
-      window._gate();
-    });
-    document.getElementById("name-input").addEventListener("keydown", function(e) {
-      if (e.key === "Enter") {
-        audio.src = audioFiles[0];
-        audio.volume = 0;
-        audio.play().then(function() { audio.pause(); audio.currentTime = 0; audio.volume = 1; }).catch(function(){});
+      var p = audio.play();
+      if (p !== undefined) {
+        p.then(function() {
+          audio.pause();
+          audio.currentTime = 0;
+          audio.volume = 1;
+          audio.src = "";
+          window._gate();
+        }).catch(function() {
+          audio.volume = 1;
+          audio.src = "";
+          window._gate();
+        });
+      } else {
+        audio.pause();
+        audio.currentTime = 0;
+        audio.volume = 1;
+        audio.src = "";
         window._gate();
       }
+    }
+
+    document.getElementById("enter-btn").addEventListener("click", primeAndGate);
+    document.getElementById("name-input").addEventListener("keydown", function(e) {
+      if (e.key === "Enter") primeAndGate();
     });
 
     // Random notes
