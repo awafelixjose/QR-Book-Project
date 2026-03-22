@@ -182,7 +182,7 @@ window.triggerMusic = function() {
   }
   function _fail() {
     var err = document.getElementById("login-error");
-    err.textContent = "That\u2019s not right. Try again.";
+    err.textContent = "Lipat na ku ngaran niya...";
     var inp = document.getElementById("name-input");
     inp.classList.add("shake");
     setTimeout(function() { inp.classList.remove("shake"); }, 500);
@@ -252,12 +252,12 @@ const allNotes = [
   "Above All, Try --Fatima",
   "Above All, Don't Try --Felix",
   "At least, nag effort. That alone means a lot.",
-  "kaka-stalk mo yan Gar na in-love ka tuloy...pero seryoso, nakadali kanako su mga tawa mo na dawa sa luog na ako ka CR malaka rungog palanggad. Genuine!."
+  "kaka-stalk mo yan Gar na in-love ka tuloy...pero seryoso, nakadali kanako su mga tawa mo na dawa sa luog na ako ka CR malaka rungog palanggad."
   
   
 ];
 
-// Rare note — only enters the pool after 50 visits on this device
+// Rare note — only enters the pool after 40 visits on this device
 const _visitKey = "qrb_visits";
 const _visits = parseInt(localStorage.getItem(_visitKey) || "0") + 1;
 localStorage.setItem(_visitKey, _visits);
