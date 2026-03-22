@@ -531,6 +531,19 @@ body.bg-main {
     place-content: center;
 }
 
+#main-content::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 3;
+    background: radial-gradient(
+        ellipse 100% 100% at 50% 50%,
+        transparent 55%,
+        rgba(0, 0, 0, 0.35) 100%
+    );
+}
+
 @media (max-width: 767px) {
     #main-content {
         align-content: center;
