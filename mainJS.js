@@ -97,6 +97,7 @@ function activateEffects() {
   el.classList.add("active");
   document.getElementById("tsparticles").classList.add("active");
   document.getElementById("particles-default").classList.add("hidden");
+  document.getElementById("main-content").classList.add("vignette-on");
 }
 
 function deactivateEffects() {
@@ -106,6 +107,7 @@ function deactivateEffects() {
   document.getElementById("gradient-bg").classList.remove("active");
   document.getElementById("tsparticles").classList.remove("active");
   document.getElementById("particles-default").classList.remove("hidden");
+  document.getElementById("main-content").classList.remove("vignette-on");
 }
 
 function showNowPlaying(trackPath) {

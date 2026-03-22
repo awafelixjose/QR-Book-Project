@@ -539,9 +539,15 @@ body.bg-main {
     z-index: 3;
     background: radial-gradient(
         ellipse 100% 100% at 50% 50%,
-        transparent 55%,
-        rgba(0, 0, 0, 0.35) 100%
+        transparent 40%,
+        rgba(0, 0, 0, 0.75) 100%
     );
+    opacity: 0;
+    transition: opacity 1.5s ease;
+}
+
+#main-content.vignette-on::after {
+    opacity: 1;
 }
 
 @media (max-width: 767px) {
