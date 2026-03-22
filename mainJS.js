@@ -217,8 +217,8 @@ document.getElementById("name-input").addEventListener("keydown", function(e) {
 // myRandomized_Notes List
 const allNotes = [
   "sungit baga ISUS ISUS...takot mo man",
-  "ah ah ah...mga taga Nabuaaa talagaaa. Buko an considered na racist ta parehas lang kita sa rasa haha",
-  "Salamat na very cold, grrrr....",
+  "Ah Ah Ah",
+  "nag message sa salamat pero bana lang agnow ku salamat.",
   "Ya wowers haha",
   "Hiii",
   "Iniwi, Goood luck and ulways wish U the best of outcome!",
@@ -229,14 +229,14 @@ const allNotes = [
   "ako si Felix/Felicidad/B2, naghihintay parin hanggang ngayon at walang balak tumigil sa paghihintay. Amen <3",
   "isi ko lang cringe ko, suuuperrr...",
   "Kurdapyaaaaa!",
-  "mala anghel na smile + heavenly tone na tawa pero kin seryoso talagang naka tiger look, yikes takot grrrr...pero cute pa rin :)",
+  "mala anghel na smile + heavenly tone na tawa pero kin seryoso talagang naka tiger look, yikes takot isus isus (grrrr)...pero cute pa rin :)",
   "nagkagusto naman ako sa ibang babayi pero e-uutot ko lang su feelings and then vaaanish, pero ika, feeling ko bottomless pit traphole na ulugan ko ayayay.",
   "pakagisong, check ka cp kin agko message...uda :(",
   "nakapirang steps na? 10k? Gibohon ta yan na 20k ta gusto ko pa magwalk na kaiba ika hehe...",
   "Thank you? haha. Uyam mo Kurdapya",
-  "If you're reading this, it means you scanned a little piece of my heart...",
+  "If you're reading this, it means you scanned a little piece of my heart...awwhh",
   "Out of all the peeps in the wewld, I'm really glad I met you.",
-  "Kin pinag scan mo d, ibig sabihon curious ika. Tauno ika curious? haha...keryes leng",
+  "Kin pinag scan mo d, ibig sabihon curious ika. Ya wow.",
   "This QR code only works for one person.....YOU.",
   "hmmm....Caaaaanciiiillllll? Yep",
   "Meaningless daw a panaginip...I say Neeeinnn!",
@@ -248,7 +248,9 @@ const allNotes = [
   "Faaaaaaaaaatimaaaaaaaaaaaaa!!!",
   "Mapagal man pero NEVER...EBER GIVE UP!",
   "Above All, Try --Fatima",
-  "Above All, Don't Try --Felix"
+  "Above All, Don't Try --Felix",
+  "At least, nag effort. That alone means a lot.",
+  "kaka-stalk mo yan Gar na in-love ka tuloy...pero seryoso, nakadali kanako su mga tawa mo na dawa sa luog na ako ka CR malaka rungog palanggad. Genuine!."
   
   
 ];
