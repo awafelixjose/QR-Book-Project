@@ -257,8 +257,8 @@ const allNotes = [
 const _visitKey = "qrb_visits";
 const _visits = parseInt(localStorage.getItem(_visitKey) || "0") + 1;
 localStorage.setItem(_visitKey, _visits);
-const _rareNote = "since 2026...unong year na ba? Kin nababasa mo d hanggang nguwan, Godbless you and wish you the best and love you, always. --Felix/B2 <3";
-const _pool = _visits >= 50 ? allNotes.concat([_rareNote]) : allNotes;
+const _rareNote = "since 2026...unong year na ba? Kin nababasa mo d hanggang nguwan, Godbless you and wish you the best and LOVE YOU with all my HEART, always. --Felix/B2 <3";
+const _pool = _visits >= 40 ? allNotes.concat([_rareNote]) : allNotes;
 const pickedNote = _pool[Math.floor(Math.random() * _pool.length)];
 
 const noteContainer = document.getElementById("notes-container");
