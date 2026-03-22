@@ -1,12 +1,9 @@
-// tsparticle library
+// ─── Particles ───────────────────────────────────────────────────────────────
 particlesJS("tsparticles", {
   particles: {
     number: { value: 80, density: { enable: true, value_area: 800 } },
     color: { value: ["#ffcc70", "#ff6b9d", "#ff9a9e", "#fff176", "#ffffff"] },
-    shape: {
-      type: ["circle", "char"],
-      character: { value: ["♩", "♪", "♫", "♬"], font: "Verdana", weight: "400" }
-    },
+    shape: { type: "circle" },
     opacity: {
       value: 1, random: true,
       anim: { enable: true, speed: 0.8, opacity_min: 0.4, sync: false }
@@ -264,10 +261,10 @@ $(".flipbook").turn({
   gradients: true,
   acceleration: true,
   when: {
-    turning: function(e) {
-      if (musicLocked) e.preventDefault();
+    turning: function(_e) {
+      if (musicLocked) _e.preventDefault();
     },
-    turned: function(e, page) {
+    turned: function(_e, _page) {
       const visible = isImagePageVisible();
       if (visible && !hasPlayed) {
         if (window.innerWidth >= 1024) {

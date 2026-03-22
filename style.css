@@ -125,24 +125,6 @@ body {
     transform: translateX(-4px);
 }
 
-.cover-front{
-    transform: translateZ(4px);
-}
-
-.cover-inside{
-    transform: translateZ(0px);
-}
-
-.cover-front::before{
-    content:"";
-    position:absolute;
-    left:-6px;
-    top:0;
-    width:6px;
-    height:100%;
-    background:#222;
-}
-
 .cover-title {
     position: absolute;
     top: 30%;
@@ -512,7 +494,6 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 30px;
     padding: 6px 14px 6px 8px;
-    display: none;
     align-items: center;
     gap: 10px;
     max-width: 280px;
@@ -531,11 +512,6 @@ body {
     flex-shrink: 0;
     background-size: cover;
     background-position: center;
-}
-
-@keyframes spin {
-    from { transform: rotate(0deg); }
-    to   { transform: rotate(360deg); }
 }
 
 #np-marquee-wrap {
