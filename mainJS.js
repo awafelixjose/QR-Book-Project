@@ -1,4 +1,4 @@
-// ─── Particles ───────────────────────────────────────────────────────────────
+// tsparticle library
 particlesJS("tsparticles", {
   particles: {
     number: { value: 80, density: { enable: true, value_area: 800 } },
@@ -32,7 +32,7 @@ particlesJS("tsparticles", {
   retina_detect: true
 });
 
-// ─── Audio ────────────────────────────────────────────────────────────────────
+// audio list
 const audioFiles = [
   "audio_list/track1.mp3",
   "audio_list/track2.mp3",
@@ -73,7 +73,7 @@ function deactivateEffects() {
   document.getElementById("particles-default").classList.remove("hidden");
 }
 
-// Mobile/tablet play button handler
+// play button for mobile/tablet
 window.triggerMusic = function() {
   if (hasPlayed) return;
   hasPlayed = true;
@@ -84,7 +84,7 @@ window.triggerMusic = function() {
   playTrack();
 };
 
-// ─── Login Gate ───────────────────────────────────────────────────────────────
+// login
 (function() {
   var _x = [107,117,114,100,97,112,121,97];
   function _chk(s) {
@@ -144,7 +144,7 @@ document.getElementById("name-input").addEventListener("keydown", function(e) {
   if (e.key === "Enter") primeAndGate();
 });
 
-// ─── Random Notes ─────────────────────────────────────────────────────────────
+// myRandomized_Notes List
 const allNotes = [
   "sungit baga ISUS ISUS...takot mo man",
   "ah ah ah...mga taga Nabuaaa talagaaa. Buko an considered na racist ta parehas lang kita sa rasa haha",
@@ -186,7 +186,7 @@ noteEl.style.opacity = "0";
 noteEl.style.transition = "opacity 1.2s ease";
 noteContainer.appendChild(noteEl);
 
-// ─── Book ─────────────────────────────────────────────────────────────────────
+// mainBook Logic
 function isImagePageVisible() {
   const el = document.getElementById("image-page");
   if (!el) return false;
