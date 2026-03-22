@@ -76,13 +76,25 @@ function playTrack() {
   showNowPlaying(currentTrack);
 }
 
+const gradientPresets = [
+  "preset-pastel", "preset-aurora", "preset-sunset", "preset-ocean",
+  "preset-rosegold", "preset-neon", "preset-forest", "preset-candy",
+  "preset-fire", "preset-midnight", "preset-spring", "preset-lavender"
+];
+
 function activateEffects() {
-  document.getElementById("gradient-bg").classList.add("active");
+  const el = document.getElementById("gradient-bg");
+  gradientPresets.forEach(function(p) { el.classList.remove(p); });
+  el.classList.add(gradientPresets[Math.floor(Math.random() * gradientPresets.length)]);
+  el.classList.add("active");
   document.getElementById("tsparticles").classList.add("active");
   document.getElementById("particles-default").classList.add("hidden");
 }
 
 function deactivateEffects() {
+  const el = document.getElementById("gradient-bg");
+  el.classList.remove("active");
+  gradientPresets.forEach(function(p) { el.classList.remove(p); });
   document.getElementById("gradient-bg").classList.remove("active");
   document.getElementById("tsparticles").classList.remove("active");
   document.getElementById("particles-default").classList.remove("hidden");
