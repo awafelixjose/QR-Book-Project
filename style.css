@@ -410,6 +410,9 @@ body.bg-main {
     line-height: 1.6;
     text-align: center;
     font-style: italic;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    max-width: 100%;
 }
 
 .flipbook .page small{
@@ -561,7 +564,7 @@ body.bg-main {
     }
     .cover-main-title { font-size: clamp(10px, 2.5vh, 28px); }
     .cover-subtitle    { font-size: clamp(6px, 1.2vh, 10px); }
-    .note-item         { font-size: clamp(8px, 2vh, 18px); }
+    .note-item         { font-size: clamp(9px, 2.8vw, 18px); }
     .flipbook .page small { font-size: clamp(6px, 1.2vh, 14px); }
 }
 
