@@ -156,17 +156,22 @@ window.triggerMusic = function() {
   function _unlock() {
     var ls = document.getElementById("login-screen");
     var mc = document.getElementById("main-content");
-    ls.style.transition = "opacity 0.8s ease";
+    ls.style.transition = "opacity 1s ease";
     ls.style.opacity = "0";
     document.body.classList.add("bg-main");
+    // Show main-content before login fully fades so there's no black flash
+    mc.classList.remove("hidden-main");
+    mc.style.visibility = "visible";
+    mc.style.opacity = "0";
+    mc.style.transition = "opacity 1s ease";
     setTimeout(function() {
       ls.style.display = "none";
-      mc.classList.remove("hidden-main");
-      mc.style.visibility = "visible";
-      mc.style.opacity = "0";
-      mc.style.transition = "opacity 0.8s ease";
-      setTimeout(function() { mc.style.opacity = "1"; }, 50);
-    }, 800);
+      requestAnimationFrame(function() {
+        requestAnimationFrame(function() {
+          mc.style.opacity = "1";
+        });
+      });
+    }, 200);
   }
   function _fail() {
     var err = document.getElementById("login-error");

@@ -453,13 +453,19 @@ body.bg-main {
     background-position: center center;
     background-repeat: no-repeat;
     background-color: #0a0a0a;
-    transition: opacity 0.8s ease;
+    transition: opacity 1s ease;
 }
 
-/* On portrait mobile, contain the image so it's not zoomed/cropped */
+/* Portrait mobile — shift anchor to top so image fills screen naturally */
 @media (max-width: 767px) and (orientation: portrait) {
     #login-screen {
-        background-size: contain;
+        background-position: top center;
+    }
+}
+
+/* Landscape mobile — center is fine but ensure no zoom artifacts */
+@media (max-width: 900px) and (orientation: landscape) {
+    #login-screen {
         background-position: center center;
     }
 }
