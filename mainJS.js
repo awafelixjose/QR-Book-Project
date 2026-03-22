@@ -43,7 +43,6 @@ const audioFiles = [
   "audio_list/Joe Lamont - Victims of Love.mp3",
   "audio_list/Jovit Baldivino - Pusong Bato.mp3",
   "audio_list/Katy Perry - The One That Got Away.mp3",
-  "audio_list/Katy Perry - Thinking Of You (Acoustic Version).mp3",
   "audio_list/Katy Perry - Thinking Of You.mp3",
   "audio_list/Kitchie Nadal - Huwag Na Huwag Mong Sasabihin.mp3",
   "audio_list/Kitchie Nadal - Majika.mp3",
