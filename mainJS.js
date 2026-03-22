@@ -235,17 +235,19 @@ const allNotes = [
   "since 2026...unong year na ba? Kin nababasa mo d hanggang nguwan, Godbless you and wish you the best and love you, always. --Felix/B2 <3",
   "pakagisong, check ka cp kin agko message...uda :(",
   "nakapirang steps na? 10k? Gibohon ta yan na 20k ta gusto ko pa magwalk na kaiba ika hehe...",
-  "Thank you? pa ulit ulit haha",
+  "Thank you? haha. Uyam mo Kurdapya",
   "If you're reading this, it means you scanned a little piece of my heart...",
   "Out of all the peeps in the wewld, I'm really glad I met you.",
   "Kin pinag scan mo d, ibig sabihon curious ika. Tauno ika curious? haha...keryes leng",
   "This QR code only works for one person: YOU.",
-  "Caaaaanciiiillllll hmm...",
+  "hmmm....Caaaaanciiiillllll? Yep",
   "Meaningless daw panaginip...I say Neeeinnn!",
   "01001001 00100000 01101100 01101111 01110110 01100101 00100000 01000010 01000010 01010111 hahaha :)",
-  "I made this little QR code just for you. Sometimes the smallest things carry the biggest feelings.",
+  "I made this little QR code just for you. Sometimes, the smallest things carry the biggest feelings.",
   "I don't know where this will go. But I do know that I really enjoy every moment I get to talk to you.",
-  "Loading Complete...Fatima scanned == Felix Happy :)"
+  "Loading Complete..............Fatima scanned == Felix happy :)",
+  "I always remember you laughing....at Manay Shuuushaaan HaHa",
+  "Faaaaaaaaaatimaaaaaaaaaaaaa!!!"
 ];
 
 const picked = allNotes[Math.floor(Math.random() * allNotes.length)];
