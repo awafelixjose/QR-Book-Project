@@ -140,7 +140,7 @@ window.triggerMusic = function() {
   activateEffects();
   document.getElementById("music-bar").style.display = "none";
   playTrack();
-  setTimeout(revealNote, 1800); // delay after song starts
+  setTimeout(revealNote, 300);
 };
 
 // login
@@ -252,21 +252,25 @@ noteContainer.appendChild(noteEl);
 let _typeTimer = null;
 
 function revealNote() {
+  clearInterval(_typeTimer);
+  noteEl.innerHTML = "";
   const full = "\u201C" + picked + "\u201D";
-  noteEl.textContent = "";
-  noteEl.style.opacity = "1";
-  let i = 0;
-  _typeTimer = setInterval(function() {
-    noteEl.textContent += full[i];
-    i++;
-    if (i >= full.length) clearInterval(_typeTimer);
-  }, 38); // ~38ms per char — feels natural, not too fast
+  const words = full.split(" ");
+  words.forEach(function(word, i) {
+    const span = document.createElement("span");
+    span.textContent = (i === 0 ? "" : " ") + word;
+    span.style.cssText = "opacity:0; transition: opacity 0.6s ease " + (i * 0.18 + 1.8) + "s;";
+    noteEl.appendChild(span);
+    // trigger reflow then fade in
+    requestAnimationFrame(function() {
+      requestAnimationFrame(function() { span.style.opacity = "1"; });
+    });
+  });
 }
 
 function hideNote() {
   clearInterval(_typeTimer);
-  noteEl.textContent = "";
-  noteEl.style.opacity = "1";
+  noteEl.innerHTML = "";
 }
 
 // mainBook Logic
@@ -311,7 +315,7 @@ $(".flipbook").turn({
           musicLocked = true;
           playTrack();
           activateEffects();
-          setTimeout(revealNote, 1800); // delay after song starts
+          setTimeout(revealNote, 300);
         } else {
           // Mobile/tablet: show play button
           document.getElementById("music-bar").style.display = "flex";
