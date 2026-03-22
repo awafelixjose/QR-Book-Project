@@ -20,9 +20,22 @@ body {
 
 	background-image: url('images/main_background1.jpg');
     background-size: cover;
-    background-position: center;
+    background-position: center center;
     background-repeat: no-repeat;
+    background-attachment: scroll;
     transition: background-image 0.8s ease;
+}
+
+/* Prevent background from zooming too much on portrait mobile */
+@media (max-width: 767px) and (orientation: portrait) {
+    body {
+        background-size: auto 100%;
+        background-position: center center;
+    }
+    #login-screen {
+        background-size: auto 100%;
+        background-position: center center;
+    }
 }
 
 body.bg-main {
@@ -171,6 +184,7 @@ body.bg-main {
         transparent 40%,
         rgba(0, 0, 0, 0.55) 100%
     );
+    transition: background 0.3s ease;
 }
 
 

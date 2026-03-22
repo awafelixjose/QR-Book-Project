@@ -247,6 +247,18 @@ noteEl.style.transition = "opacity 1.2s ease";
 noteContainer.appendChild(noteEl);
 
 // mainBook Logic
+function updateSpotlight() {
+  const wrapper = document.querySelector(".book-wrapper");
+  const spotlight = document.getElementById("spotlight");
+  if (!wrapper || !spotlight) return;
+  const rect = wrapper.getBoundingClientRect();
+  const cx = ((rect.left + rect.right) / 2 / window.innerWidth * 100).toFixed(1);
+  const cy = ((rect.top + rect.bottom) / 2 / window.innerHeight * 100).toFixed(1);
+  const rx = ((rect.width / window.innerWidth) * 55).toFixed(1);
+  const ry = ((rect.height / window.innerHeight) * 65).toFixed(1);
+  spotlight.style.background = `radial-gradient(ellipse ${rx}% ${ry}% at ${cx}% ${cy}%, transparent 0%, transparent 40%, rgba(0,0,0,0.55) 100%)`;
+}
+
 function isImagePageVisible() {
   const el = document.getElementById("image-page");
   if (!el) return false;
@@ -305,3 +317,7 @@ $(".flipbook").turn({
     }
   }
 });
+
+// Position spotlight over the book after layout settles
+setTimeout(updateSpotlight, 100);
+window.addEventListener("resize", updateSpotlight);
