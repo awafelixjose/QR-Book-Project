@@ -18,10 +18,15 @@ body {
     width: 100vw;
 	overflow: hidden;
 
-	background-image: url('images/mainbackground.jpg');
+	background-image: url('images/main_background1.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    transition: background-image 0.8s ease;
+}
+
+body.bg-main {
+    background-image: url('images/main_background2.jpg');
 }
 
 
@@ -93,7 +98,7 @@ body {
 }
 
 .flipbook .hard {
-    background-image: url('images/frontback_texture.jpg') !important;
+    background-image: url('images/cover_texture4.jpg') !important;
     background-size: cover;
     background-position: top center;
     background-repeat: no-repeat;
@@ -140,7 +145,7 @@ body {
 
 .cover-main-title {
     font-family: 'Dancing Script', cursive;
-    font-size: clamp(12px, 3vw, 36px);
+    font-size: clamp(18px, 4vw, 36px);
     font-weight: 700;
     color: #f5d78e;
     text-shadow:
@@ -173,7 +178,7 @@ body {
 
 
 .flipbook .page {
-    background-image: url('images/page_texture.jpg');
+    background-image: url('images/page_texture1.jpg');
     background-size: cover;
     background-position: top center;  /* adjust which part shows */
     background-repeat: no-repeat;
@@ -340,7 +345,7 @@ body {
     justify-content: center;
     align-items: center;
     z-index: 100;
-    background-image: url('images/mainbackground.jpg');
+    background-image: url('images/main_background1.jpg');
     background-size: cover;
     background-position: center;
 }

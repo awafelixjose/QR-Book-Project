@@ -144,6 +144,7 @@ window.triggerMusic = function() {
     var mc = document.getElementById("main-content");
     ls.style.transition = "opacity 0.8s ease";
     ls.style.opacity = "0";
+    document.body.classList.add("bg-main");
     setTimeout(function() {
       ls.style.display = "none";
       mc.classList.remove("hidden-main");
