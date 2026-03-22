@@ -34,15 +34,31 @@ particlesJS("tsparticles", {
 
 // audio list
 const audioFiles = [
-  "audio_list/track1.mp3",
-  "audio_list/track2.mp3",
-  "audio_list/track3.mp3",
-  "audio_list/track4.mp3",
-  "audio_list/track5.mp3",
-  "audio_list/track6.mp3",
-  "audio_list/track7.mp3",
-  "audio_list/track8.mp3",
-  "audio_list/track9.mp3"
+  "audio_list/Amazed - Lonestar.mp3",
+  "audio_list/Be Brave - Owl City.mp3",
+  "audio_list/Chris Brown - Next To You (feat. Justin Bieber).mp3",
+  "audio_list/Cup of Joe - Multo.mp3",
+  "audio_list/Eva Eugenio - Gulong Ng Palad.mp3",
+  "audio_list/I Will Be Here For You - Michael W. Smith.mp3",
+  "audio_list/Joe Lamont - Victims of Love.mp3",
+  "audio_list/Jovit Baldivino - Pusong Bato.mp3",
+  "audio_list/Katy Perry - The One That Got Away.mp3",
+  "audio_list/Katy Perry - Thinking Of You (Acoustic Version).mp3",
+  "audio_list/Katy Perry - Thinking Of You.mp3",
+  "audio_list/Kitchie Nadal - Huwag Na Huwag Mong Sasabihin.mp3",
+  "audio_list/Kitchie Nadal - Majika.mp3",
+  "audio_list/Lady A - Need You Now.mp3",
+  "audio_list/Last Christmas - Wham!.mp3",
+  "audio_list/Lucid Dream - Owl City.mp3",
+  "audio_list/My Chemical Romance - I Don t Love You.mp3",
+  "audio_list/Next To You (ft. Justin Bieber) - Chris Brown.mp3",
+  "audio_list/ONE OK ROCK - Take What You Want (feat. 5 Seconds of Summer).mp3",
+  "audio_list/Over October - Alive.mp3",
+  "audio_list/The 1975 - About You.mp3",
+  "audio_list/The Climb - Miley Cyrus.mp3",
+  "audio_list/The Script - Six Degrees of Separation.mp3",
+  "audio_list/Then You Look at Me - Celine Dion.mp3",
+  "audio_list/Two is Better than One (ft. Talor Swift) - BOYS LIKE GIRLS.mp3"
 ];
 
 const audio = new Audio();
