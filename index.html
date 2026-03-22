@@ -12,6 +12,7 @@
 </head>
 
 <body>
+
   <!-- Login Screen -->
   <div id="login-screen">
     <div id="login-box">
@@ -70,7 +71,7 @@
 
   </div> <!-- end main-content -->
 
-  <!-- Music player UI — shown on mobile when image page is visible -->
+  <!-- Music bar — shown on mobile/tablet when image page is visible -->
   <div id="music-bar">
     <button id="music-play-btn" onclick="window.triggerMusic()">&#9654; Tap Here</button>
   </div>
@@ -79,214 +80,7 @@
   <script src="turn.js"></script>
   <script src="particles.min.js"></script>
   <script src="mainJS.js"></script>
-  <script id="c07xnp">
-    const audioFiles = [
-      "audio_list/track1.mp3",
-      "audio_list/track2.mp3",
-      "audio_list/track3.mp3",
-      "audio_list/track4.mp3",
-      "audio_list/track5.mp3",
-      "audio_list/track6.mp3",
-      "audio_list/track7.mp3",
-      "audio_list/track8.mp3",
-      "audio_list/track9.mp3"
-    ];
 
-    const audio = new Audio();
-    let musicLocked = false;
-    let hasPlayed = false;
-
-    // Preload a random track in the background after login
-    function preloadTrack() {
-      audio.src = audioFiles[Math.floor(Math.random() * audioFiles.length)];
-      audio.volume = 1;
-      audio.load();
-    }
-
-    // Play whatever is already loaded
-    function playTrack() {
-      audio.volume = 1;
-      audio.play().catch(function(e) { console.warn("play failed:", e); });
-      audio.onended = function() { musicLocked = false; };
-    }
-
-    // Mobile play button
-    window.triggerMusic = function() {
-      if (hasPlayed) return;
-      hasPlayed = true;
-      musicLocked = true;
-      document.getElementById("gradient-bg").classList.add("active");
-      document.getElementById("tsparticles").classList.add("active");
-      document.getElementById("particles-default").classList.add("hidden");
-      document.getElementById("music-bar").style.display = "none";
-      noteEl.style.opacity = "1";
-      playTrack();
-    };
-
-    // Gate logic
-    (function() {
-      var _x = [107,117,114,100,97,112,121,97];
-      function _chk(s) {
-        if (s.length !== _x.length) return false;
-        for (var i = 0; i < s.length; i++) {
-          if (s.charCodeAt(i) !== _x[i]) return false;
-        }
-        return true;
-      }
-      function _unlock() {
-        var ls = document.getElementById("login-screen");
-        var mc = document.getElementById("main-content");
-        ls.style.transition = "opacity 0.8s ease";
-        ls.style.opacity = "0";
-        setTimeout(function() {
-          ls.style.display = "none";
-          mc.classList.remove("hidden-main");
-          mc.style.visibility = "visible";
-          mc.style.opacity = "0";
-          mc.style.transition = "opacity 0.8s ease";
-          setTimeout(function() { mc.style.opacity = "1"; }, 50);
-        }, 800);
-      }
-      function _fail() {
-        var err = document.getElementById("login-error");
-        err.textContent = "That\u2019s not right. Try again.";
-        var inp = document.getElementById("name-input");
-        inp.classList.add("shake");
-        setTimeout(function() { inp.classList.remove("shake"); }, 500);
-      }
-      window._gate = function() {
-        var v = document.getElementById("name-input").value.trim().toLowerCase();
-        if (_chk(v)) { _unlock(); } else { _fail(); }
-      };
-    })();
-
-    // On Enter button/key: unlock audio context with silent play, then gate, then preload real track
-    function primeAndGate() {
-      audio.src = audioFiles[0];
-      audio.volume = 0;
-      var p = audio.play();
-      function afterPrime() {
-        audio.pause();
-        audio.currentTime = 0;
-        window._gate();
-        preloadTrack(); // starts loading random track while user flips pages
-      }
-      if (p !== undefined) {
-        p.then(afterPrime).catch(afterPrime);
-      } else {
-        afterPrime();
-      }
-    }
-
-    document.getElementById("enter-btn").addEventListener("click", primeAndGate);
-    document.getElementById("name-input").addEventListener("keydown", function(e) {
-      if (e.key === "Enter") primeAndGate();
-    });
-
-    // Random notes
-    const allNotes = [
-      "sungit baga ISUS ISUS...takot mo man",
-      "ah ah ah...mga taga Nabuaaa talagaaa. Buko an considered na racist ta parehas lang kita sa rasa haha",
-      "Salamat na very cold, grrrr....",
-      "Ya wowers haha",
-      "Hiii",
-      "Iniwi, Goood luck and ulways wish U the best of outcome!",
-      "si isay man kitun diri ma-fafall itun na smile malaka heavenly, bana man sana Anghel na chubby...:)",
-      "Ya WOW haha?...adi nanaman si 'Ya Wow Haha'",
-      "Thank you?",
-      "photo bomber si Voight haha",
-      "ako si Felix/Felicidad/B2, naghihintay parin hanggang ngayon at walang balak tumigil sa paghihintay. Amen <3",
-      "isi ko lang cringe ko, super...",
-      "Kurdapyaaaaa!",
-      "mala anghel na smile + heavenly tone na tawa pero kin seryoso talagang naka tiger look, yikes takot grrrr...pero cute pa rin :)",
-      "nagkagusto naman ako sa ibang babayi pero e-uutot ko lang su feelings and then vaaanish, pero ika, feeling ko bottomless pit hole na ulugan ko.",
-      "since 2026...unong year na ba? Kin nababasa mo d hanggang nguwan, Godbless you and wish you the best and love you, always. --Felix/B2 <3",
-      "pakagisong, check ka cp kin agko message...uda :(",
-      "nakapirang steps na? 10k? Gibohon ta yan na 20k ta gusto ko pa magwalk na kaiba ika hehe...",
-      "Thank you? pa ulit ulit haha",
-      "If you're reading this, it means you scanned a little piece of my heart...",
-      "Out of all the peeps in the wewld, I'm really glad I met you.",
-      "Kin pinag scan mo d, ibig sabihon curious ika. Tauno ika curious? haha...keryes leng",
-      "This QR code only works for one person: YOU.",
-      "Caaaaanciiiillllll hmm...",
-      "Meaningless daw panaginip...I say Neeeinnn!",
-      "01001001 00100000 01101100 01101111 01110110 01100101 00100000 01000010 01000010 01010111 hahaha :)",
-      "I made this little QR code just for you. Sometimes the smallest things carry the biggest feelings.",
-      "I don't know where this will go. But I do know that I really enjoy every moment I get to talk to you.",
-      "Loading Complete...Fatima scanned == Felix Happy :)"
-      
-    ];
-    const picked = allNotes[Math.floor(Math.random() * allNotes.length)];
-    const noteContainer = document.getElementById("notes-container");
-    const noteEl = document.createElement("p");
-    noteEl.className = "note-item";
-    noteEl.textContent = "\u201C" + picked + "\u201D";
-    noteEl.style.opacity = "0";
-    noteEl.style.transition = "opacity 1.2s ease";
-    noteContainer.appendChild(noteEl);
-
-    function isImagePageVisible() {
-      const el = document.getElementById("image-page");
-      if (!el) return false;
-      const rect = el.getBoundingClientRect();
-      const bookRect = document.querySelector(".flipbook").getBoundingClientRect();
-      return rect.width > 50 && rect.left >= bookRect.left && rect.right <= bookRect.right + 5;
-    }
-
-    function getBookSize() {
-      const vw = window.innerWidth;
-      const vh = window.innerHeight;
-      if (vw >= 1600) return { width: 1120, height: 700 };
-      if (vw >= 1024) return { width: 800, height: 500 };
-      if (vw >= 768)  return { width: 600, height: 375 };
-      const maxW = vw - 8;
-      const maxH = vh - 70;
-      const h = Math.round(maxW * 5 / 8);
-      if (h <= maxH) return { width: maxW, height: h };
-      return { width: Math.round(maxH * 8 / 5), height: maxH };
-    }
-
-    const bookSize = getBookSize();
-
-    $(".flipbook").turn({
-      width: bookSize.width,
-      height: bookSize.height,
-      gradients: true,
-      acceleration: true,
-      when: {
-        turning: function(e) {
-          if (musicLocked) e.preventDefault();
-        },
-        turned: function(e, page) {
-          const visible = isImagePageVisible();
-          if (visible && !hasPlayed) {
-            if (window.innerWidth >= 1024) {
-              // Desktop: play immediately — track is already preloaded
-              hasPlayed = true;
-              musicLocked = true;
-              playTrack();
-              document.getElementById("gradient-bg").classList.add("active");
-              document.getElementById("tsparticles").classList.add("active");
-              document.getElementById("particles-default").classList.add("hidden");
-              noteEl.style.opacity = "1";
-            } else {
-              // Mobile/tablet: show play button
-              document.getElementById("music-bar").style.display = "flex";
-            }
-          } else if (!visible) {
-            document.getElementById("music-bar").style.display = "none";
-            noteEl.style.opacity = "0";
-            audio.pause();
-            audio.currentTime = 0;
-            musicLocked = false;
-            document.getElementById("gradient-bg").classList.remove("active");
-            document.getElementById("tsparticles").classList.remove("active");
-            document.getElementById("particles-default").classList.remove("hidden");
-          }
-        }
-      }
-    });
-  </script>
 </body>
 
 </html>
