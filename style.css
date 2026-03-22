@@ -497,3 +497,69 @@ body {
 #music-play-btn:hover {
     background: rgba(255, 255, 255, 0.25);
 }
+
+/* Now Playing Bar */
+#now-playing {
+    display: none;
+    position: fixed;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    background: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 30px;
+    padding: 6px 14px 6px 8px;
+    display: none;
+    align-items: center;
+    gap: 10px;
+    max-width: 280px;
+    width: max-content;
+}
+
+#np-art {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ff6b9d, #ffcc70);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    flex-shrink: 0;
+    animation: spin 4s linear infinite;
+    background-size: cover;
+    background-position: center;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+
+#np-marquee-wrap {
+    overflow: hidden;
+    width: 180px;
+    white-space: nowrap;
+}
+
+#np-marquee {
+    display: inline-flex;
+    gap: 40px;
+    animation: marquee 12s linear infinite;
+}
+
+#np-marquee span {
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    color: #fff;
+    white-space: nowrap;
+}
+
+@keyframes marquee {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}

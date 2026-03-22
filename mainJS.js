@@ -50,7 +50,6 @@ const audioFiles = [
   "audio_list/Last Christmas - Wham!.mp3",
   "audio_list/Lucid Dream - Owl City.mp3",
   "audio_list/My Chemical Romance - I Don t Love You.mp3",
-  "audio_list/Next To You (ft. Justin Bieber) - Chris Brown.mp3",
   "audio_list/ONE OK ROCK - Take What You Want (feat. 5 Seconds of Summer).mp3",
   "audio_list/Over October - Alive.mp3",
   "audio_list/The 1975 - About You.mp3",
@@ -64,8 +63,11 @@ const audio = new Audio();
 let musicLocked = false;
 let hasPlayed = false;
 
+let currentTrack = "";
+
 function preloadTrack() {
-  audio.src = audioFiles[Math.floor(Math.random() * audioFiles.length)];
+  currentTrack = audioFiles[Math.floor(Math.random() * audioFiles.length)];
+  audio.src = currentTrack;
   audio.volume = 1;
   audio.load();
 }
@@ -74,6 +76,7 @@ function playTrack() {
   audio.volume = 1;
   audio.play().catch(function(e) { console.warn("play failed:", e); });
   audio.onended = function() { musicLocked = false; };
+  showNowPlaying(currentTrack);
 }
 
 function activateEffects() {
@@ -86,6 +89,36 @@ function deactivateEffects() {
   document.getElementById("gradient-bg").classList.remove("active");
   document.getElementById("tsparticles").classList.remove("active");
   document.getElementById("particles-default").classList.remove("hidden");
+}
+
+function showNowPlaying(trackPath) {
+  const name = trackPath.replace("audio_list/", "").replace(".mp3", "");
+  const titleEl = document.getElementById("np-title");
+  const cloneEl = document.getElementById("np-title-clone");
+  const artEl = document.getElementById("np-art");
+  titleEl.textContent = name;
+  cloneEl.textContent = name;
+
+  // Try to load matching cover image
+  const coverPath = "audio_images/" + name + ".jpg";
+  const img = new Image();
+  img.onload = function() {
+    artEl.style.backgroundImage = "url('" + coverPath + "')";
+    artEl.style.backgroundSize = "cover";
+    artEl.style.backgroundPosition = "center";
+    artEl.textContent = "";
+  };
+  img.onerror = function() {
+    artEl.style.backgroundImage = "";
+    artEl.textContent = "♫";
+  };
+  img.src = coverPath;
+
+  document.getElementById("now-playing").style.display = "flex";
+}
+
+function hideNowPlaying() {
+  document.getElementById("now-playing").style.display = "none";
 }
 
 // play button for mobile/tablet
@@ -254,6 +287,7 @@ $(".flipbook").turn({
         audio.pause();
         audio.currentTime = 0;
         musicLocked = false;
+        hideNowPlaying();
         deactivateEffects();
       }
     }

@@ -76,6 +76,17 @@
     <button id="music-play-btn" onclick="window.triggerMusic()">&#9654; Secret Button</button>
   </div>
 
+  <!-- Now playing bar — shown when music starts -->
+  <div id="now-playing">
+    <div id="np-art">♫</div>
+    <div id="np-marquee-wrap">
+      <div id="np-marquee">
+        <span id="np-title"></span>
+        <span id="np-title-clone"></span>
+      </div>
+    </div>
+  </div>
+
   <script src="jquery.js"></script>
   <script src="turn.js"></script>
   <script src="particles.min.js"></script>
