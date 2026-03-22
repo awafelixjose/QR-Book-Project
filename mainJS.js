@@ -127,7 +127,7 @@ function showNowPlaying(trackPath) {
   };
   img.onerror = function() {
     artEl.style.backgroundImage = "";
-    artEl.textContent = "♫";
+    artEl.textContent = "\u266b";
   };
   img.src = coverPath;
 
@@ -165,7 +165,6 @@ window.triggerMusic = function() {
     ls.style.transition = "opacity 1s ease";
     ls.style.opacity = "0";
     document.body.classList.add("bg-main");
-    // Show main-content before login fully fades so there's no black flash
     mc.classList.remove("hidden-main");
     mc.style.visibility = "visible";
     mc.style.opacity = "0";
@@ -228,29 +227,40 @@ const allNotes = [
   "Thank you?",
   "photo bomber si Voight haha",
   "ako si Felix/Felicidad/B2, naghihintay parin hanggang ngayon at walang balak tumigil sa paghihintay. Amen <3",
-  "isi ko lang cringe ko, super...",
+  "isi ko lang cringe ko, suuuperrr...",
   "Kurdapyaaaaa!",
   "mala anghel na smile + heavenly tone na tawa pero kin seryoso talagang naka tiger look, yikes takot grrrr...pero cute pa rin :)",
-  "nagkagusto naman ako sa ibang babayi pero e-uutot ko lang su feelings and then vaaanish, pero ika, feeling ko bottomless pit hole na ulugan ko.",
-  "since 2026...unong year na ba? Kin nababasa mo d hanggang nguwan, Godbless you and wish you the best and love you, always. --Felix/B2 <3",
+  "nagkagusto naman ako sa ibang babayi pero e-uutot ko lang su feelings and then vaaanish, pero ika, feeling ko bottomless pit traphole na ulugan ko ayayay.",
   "pakagisong, check ka cp kin agko message...uda :(",
   "nakapirang steps na? 10k? Gibohon ta yan na 20k ta gusto ko pa magwalk na kaiba ika hehe...",
   "Thank you? haha. Uyam mo Kurdapya",
   "If you're reading this, it means you scanned a little piece of my heart...",
   "Out of all the peeps in the wewld, I'm really glad I met you.",
   "Kin pinag scan mo d, ibig sabihon curious ika. Tauno ika curious? haha...keryes leng",
-  "This QR code only works for one person: YOU.",
+  "This QR code only works for one person...YOU. Is YOU!",
   "hmmm....Caaaaanciiiillllll? Yep",
-  "Meaningless daw panaginip...I say Neeeinnn!",
+  "Meaningless daw a panaginip...I say Neeeinnn!",
   "01001001 00100000 01101100 01101111 01110110 01100101 00100000 01000010 01000010 01010111 hahaha :)",
   "I made this little QR code just for you. Sometimes, the smallest things carry the biggest feelings.",
   "I don't know where this will go. But I do know that I really enjoy every moment I get to talk to you.",
   "Loading Complete..............Fatima scanned == Felix happy :)",
-  "I always remember you laughing....at Manay Shuuushaaan HaHa",
-  "Faaaaaaaaaatimaaaaaaaaaaaaa!!!"
+  "I always remember you laughing....at Manay Shuuushaaan.",
+  "Faaaaaaaaaatimaaaaaaaaaaaaa!!!",
+  "Mapagal man pero NEVER...EBER GIVE UP!",
+  "Above All, Try --Fatima",
+  "Above All, Don't Try --Felix"
+  
+  
 ];
 
-const picked = allNotes[Math.floor(Math.random() * allNotes.length)];
+// Rare note — only enters the pool after 50 visits on this device
+const _visitKey = "qrb_visits";
+const _visits = parseInt(localStorage.getItem(_visitKey) || "0") + 1;
+localStorage.setItem(_visitKey, _visits);
+const _rareNote = "since 2026...unong year na ba? Kin nababasa mo d hanggang nguwan, Godbless you and wish you the best and love you, always. --Felix/B2 <3";
+const _pool = _visits >= 50 ? allNotes.concat([_rareNote]) : allNotes;
+const pickedNote = _pool[Math.floor(Math.random() * _pool.length)];
+
 const noteContainer = document.getElementById("notes-container");
 const noteEl = document.createElement("p");
 noteEl.className = "note-item";
@@ -262,14 +272,13 @@ let _typeTimer = null;
 function revealNote() {
   clearInterval(_typeTimer);
   noteEl.innerHTML = "";
-  const full = "\u201C" + picked + "\u201D";
+  const full = "\u201C" + pickedNote + "\u201D";
   const words = full.split(" ");
   words.forEach(function(word, i) {
     const span = document.createElement("span");
     span.textContent = (i === 0 ? "" : " ") + word;
     span.style.cssText = "opacity:0; transition: opacity 0.6s ease " + (i * 0.18 + 1.8) + "s;";
     noteEl.appendChild(span);
-    // trigger reflow then fade in
     requestAnimationFrame(function() {
       requestAnimationFrame(function() { span.style.opacity = "1"; });
     });
