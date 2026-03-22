@@ -98,6 +98,42 @@ body.bg-main {
     background: linear-gradient(270deg, #c471ed, #f64f59, #c471ed, #12c2e9, #a855f7);
     background-size: 400% 400%;
 }
+#gradient-bg.preset-peach {
+    background: linear-gradient(270deg, #f7971e, #ffd200, #f7971e, #ff6b6b, #ffecd2);
+    background-size: 400% 400%;
+}
+#gradient-bg.preset-arctic {
+    background: linear-gradient(270deg, #74ebd5, #acb6e5, #74ebd5, #ffffff, #9face6);
+    background-size: 400% 400%;
+}
+#gradient-bg.preset-toxic {
+    background: linear-gradient(270deg, #adff2f, #00ff00, #7fff00, #39ff14, #adff2f);
+    background-size: 400% 400%;
+}
+#gradient-bg.preset-galaxy {
+    background: linear-gradient(270deg, #2c003e, #6a0572, #a100f2, #ff00ff, #2c003e);
+    background-size: 400% 400%;
+}
+#gradient-bg.preset-ember {
+    background: linear-gradient(270deg, #1a0000, #8b0000, #ff4500, #ff8c00, #ff4500);
+    background-size: 400% 400%;
+}
+#gradient-bg.preset-mint {
+    background: linear-gradient(270deg, #00b09b, #96c93d, #00b09b, #a8ff78, #78ffd6);
+    background-size: 400% 400%;
+}
+#gradient-bg.preset-dusk {
+    background: linear-gradient(270deg, #2d1b69, #11998e, #38ef7d, #2d1b69, #6a3093);
+    background-size: 400% 400%;
+}
+#gradient-bg.preset-cherry {
+    background: linear-gradient(270deg, #eb3349, #f45c43, #eb3349, #ff6b6b, #c0392b);
+    background-size: 400% 400%;
+}
+#gradient-bg.preset-steel {
+    background: linear-gradient(270deg, #1c1c1c, #4a4a4a, #868686, #4a4a4a, #1c1c1c);
+    background-size: 400% 400%;
+}
 
 @keyframes morphGradient {
     0%   { background-position: 0% 50%; }
@@ -121,10 +157,26 @@ body.bg-main {
     opacity: 1;
 }
 
+#spotlight {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+    background: radial-gradient(
+        ellipse 55% 65% at 50% 50%,
+        transparent 0%,
+        transparent 40%,
+        rgba(0, 0, 0, 0.55) 100%
+    );
+}
+
 
 .book-wrapper{
     position: relative;
-    z-index: 1;
+    z-index: 2;
     display: flex;
     justify-content: center;
     align-items: center;

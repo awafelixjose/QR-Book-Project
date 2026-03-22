@@ -79,7 +79,9 @@ function playTrack() {
 const gradientPresets = [
   "preset-pastel", "preset-aurora", "preset-sunset", "preset-ocean",
   "preset-rosegold", "preset-neon", "preset-forest", "preset-candy",
-  "preset-fire", "preset-midnight", "preset-spring", "preset-lavender"
+  "preset-fire", "preset-midnight", "preset-spring", "preset-lavender",
+  "preset-peach", "preset-arctic", "preset-toxic", "preset-galaxy",
+  "preset-ember", "preset-mint", "preset-dusk", "preset-cherry", "preset-steel"
 ];
 
 function activateEffects() {
