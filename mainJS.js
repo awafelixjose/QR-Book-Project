@@ -62,11 +62,17 @@ let hasPlayed = false;
 
 let currentTrack = "";
 
+let _preloadedCover = null;
+
 function preloadTrack() {
   currentTrack = audioFiles[Math.floor(Math.random() * audioFiles.length)];
   audio.src = currentTrack;
   audio.volume = 1;
   audio.load();
+  // Preload cover image in parallel so it's cached when the bar shows
+  const name = currentTrack.replace("audio_list/", "").replace(".mp3", "");
+  _preloadedCover = new Image();
+  _preloadedCover.src = "audio_images/" + name + ".jpg";
 }
 
 function playTrack() {
