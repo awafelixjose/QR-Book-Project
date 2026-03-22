@@ -47,92 +47,92 @@ body.bg-main {
 }
 
 #gradient-bg.active {
-    opacity: 0.92;
+    opacity: 1;
 }
 
 /* Randomized color presets — all keep the same morphGradient animation */
 #gradient-bg.preset-pastel {
-    background: linear-gradient(270deg, #ff1493, #ff6600, #ff1493, #cc00ff, #ff69b4);
+    background: linear-gradient(270deg, #ff6b9d, #ffcc70, #ff9a9e, #a18cd1, #fbc2eb);
     background-size: 400% 400%;
 }
 #gradient-bg.preset-aurora {
-    background: linear-gradient(270deg, #00ffcc, #00ff44, #00ccff, #00ffcc, #11ff88);
+    background: linear-gradient(270deg, #00c9ff, #92fe9d, #00c9ff, #a8edea, #43e97b);
     background-size: 400% 400%;
 }
 #gradient-bg.preset-sunset {
-    background: linear-gradient(270deg, #ff0000, #ff6600, #ffcc00, #ff3300, #ff0066);
+    background: linear-gradient(270deg, #f83600, #f9d423, #ff6b6b, #feca57, #ff9f43);
     background-size: 400% 400%;
 }
 #gradient-bg.preset-ocean {
-    background: linear-gradient(270deg, #0000ff, #0066ff, #00ccff, #0033cc, #6600ff);
+    background: linear-gradient(270deg, #0f0c29, #302b63, #24243e, #4776e6, #8e54e9);
     background-size: 400% 400%;
 }
 #gradient-bg.preset-rosegold {
-    background: linear-gradient(270deg, #ff0066, #ff6699, #ff3399, #cc0044, #ff99bb);
+    background: linear-gradient(270deg, #b76e79, #f4a7b9, #e8c4b8, #d4a5a5, #c9a0a0);
     background-size: 400% 400%;
 }
 #gradient-bg.preset-neon {
-    background: linear-gradient(270deg, #ff00ff, #cc00ff, #00ffff, #ff00cc, #0099ff);
+    background: linear-gradient(270deg, #f953c6, #b91d73, #00f2fe, #4facfe, #f953c6);
     background-size: 400% 400%;
 }
 #gradient-bg.preset-forest {
-    background: linear-gradient(270deg, #00cc44, #009933, #00ff66, #006622, #33ff99);
+    background: linear-gradient(270deg, #134e5e, #71b280, #134e5e, #2ecc71, #1a6b3c);
     background-size: 400% 400%;
 }
 #gradient-bg.preset-candy {
-    background: linear-gradient(270deg, #ff0099, #ffcc00, #cc00ff, #00ffcc, #ff0099);
+    background: linear-gradient(270deg, #fd79a8, #fdcb6e, #6c5ce7, #00cec9, #fd79a8);
     background-size: 400% 400%;
 }
 #gradient-bg.preset-fire {
-    background: linear-gradient(270deg, #ff0000, #ff6600, #ffff00, #ff3300, #ff0000);
+    background: linear-gradient(270deg, #ff0000, #ff7300, #fffb00, #ff4500, #ff0000);
     background-size: 400% 400%;
 }
 #gradient-bg.preset-midnight {
-    background: linear-gradient(270deg, #110033, #330066, #6600cc, #cc0066, #ff0044);
+    background: linear-gradient(270deg, #0a0a0a, #1a1a2e, #16213e, #533483, #e94560);
     background-size: 400% 400%;
 }
 #gradient-bg.preset-spring {
-    background: linear-gradient(270deg, #ffcc00, #ff3300, #ff9900, #ffee00, #ff6600);
+    background: linear-gradient(270deg, #f9d423, #ff4e50, #fc913a, #f9d423, #e8f5e9);
     background-size: 400% 400%;
 }
 #gradient-bg.preset-lavender {
-    background: linear-gradient(270deg, #cc00ff, #ff0066, #9900ff, #00ccff, #ff00cc);
+    background: linear-gradient(270deg, #c471ed, #f64f59, #c471ed, #12c2e9, #a855f7);
     background-size: 400% 400%;
 }
 #gradient-bg.preset-peach {
-    background: linear-gradient(270deg, #ff9900, #ffcc00, #ff6600, #ff3300, #ffaa00);
+    background: linear-gradient(270deg, #f7971e, #ffd200, #f7971e, #ff6b6b, #ffecd2);
     background-size: 400% 400%;
 }
 #gradient-bg.preset-arctic {
-    background: linear-gradient(270deg, #00ffee, #0099ff, #00ffcc, #00ccff, #33aaff);
+    background: linear-gradient(270deg, #74ebd5, #acb6e5, #74ebd5, #ffffff, #9face6);
     background-size: 400% 400%;
 }
 #gradient-bg.preset-toxic {
-    background: linear-gradient(270deg, #aaff00, #00ff00, #ccff00, #33ff00, #88ff00);
+    background: linear-gradient(270deg, #adff2f, #00ff00, #7fff00, #39ff14, #adff2f);
     background-size: 400% 400%;
 }
 #gradient-bg.preset-galaxy {
-    background: linear-gradient(270deg, #330066, #9900cc, #cc00ff, #ff00ff, #6600cc);
+    background: linear-gradient(270deg, #2c003e, #6a0572, #a100f2, #ff00ff, #2c003e);
     background-size: 400% 400%;
 }
 #gradient-bg.preset-ember {
-    background: linear-gradient(270deg, #cc0000, #ff3300, #ff6600, #ff0000, #cc3300);
+    background: linear-gradient(270deg, #1a0000, #8b0000, #ff4500, #ff8c00, #ff4500);
     background-size: 400% 400%;
 }
 #gradient-bg.preset-mint {
-    background: linear-gradient(270deg, #00ffaa, #00cc66, #00ff88, #33ffcc, #00ee77);
+    background: linear-gradient(270deg, #00b09b, #96c93d, #00b09b, #a8ff78, #78ffd6);
     background-size: 400% 400%;
 }
 #gradient-bg.preset-dusk {
-    background: linear-gradient(270deg, #6600cc, #00cc99, #00ff66, #330099, #9900ff);
+    background: linear-gradient(270deg, #2d1b69, #11998e, #38ef7d, #2d1b69, #6a3093);
     background-size: 400% 400%;
 }
 #gradient-bg.preset-cherry {
-    background: linear-gradient(270deg, #ff0033, #ff3300, #cc0022, #ff0055, #dd0000);
+    background: linear-gradient(270deg, #eb3349, #f45c43, #eb3349, #ff6b6b, #c0392b);
     background-size: 400% 400%;
 }
 #gradient-bg.preset-steel {
-    background: linear-gradient(270deg, #003366, #0066cc, #0099ff, #004488, #0055aa);
+    background: linear-gradient(270deg, #1c1c1c, #4a4a4a, #868686, #4a4a4a, #1c1c1c);
     background-size: 400% 400%;
 }
 
