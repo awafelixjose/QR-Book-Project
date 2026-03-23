@@ -36,6 +36,7 @@ const audioFiles = [
   "audio_list/Next To You (ft. Justin Bieber) - Chris Brown.mp3",
   "audio_list/Cup of Joe - Multo.mp3",
   "audio_list/Eva Eugenio - Gulong Ng Palad.mp3",
+  "audio_list/Ellie Goulding - Love Me Like You Do.mp3",
   "audio_list/George Michael - Careless Whisper.mp3",
   "audio_list/I Will Be Here For You - Michael W. Smith.mp3",
   "audio_list/Joe Lamont - Victims of Love.mp3",
