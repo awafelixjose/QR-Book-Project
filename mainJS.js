@@ -275,7 +275,8 @@ const allNotes = [
   "kaka-stalk mo yan Gar na in-love ka tuloy...pero seryoso, nakadali kanako su mga tawa na dawa sa luog na ako ka CR malaka rungog palanggad.",
   "Leng criiinge menn...bwahahaha!",
   "kacute mo magbayle, super <3 --Felix>_>_>_>_>_>_>_>_>_>_>Leng criiinge me nenemen, ende me rew--Fatima",
-  "CHUBBY SUPREMACY, BBW ALL THE WAY LEZZ GO! 🥵🔥"
+  "CHUBBY SUPREMACY, BBW ALL THE WAY LEZZ GO! 🥵🔥",
+  "Felix, F-E-L-I-X, Felix...B2 na sana raw kin buko, Toy nalang ulit bana kan Nunuy/Bubuy bwahahaha"
   
   
 ];
