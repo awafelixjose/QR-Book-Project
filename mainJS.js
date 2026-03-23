@@ -64,8 +64,26 @@ let currentTrack = "";
 
 let _preloadedCover = null;
 
+// Shuffle bag — ensures every track plays once before repeating
+function _nextTrack() {
+  const key = "qrb_bag";
+  let bag = [];
+  try { bag = JSON.parse(localStorage.getItem(key) || "[]"); } catch(e) {}
+  if (!bag.length) {
+    // Refill and shuffle
+    bag = audioFiles.slice();
+    for (let i = bag.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      const tmp = bag[i]; bag[i] = bag[j]; bag[j] = tmp;
+    }
+  }
+  const track = bag.pop();
+  localStorage.setItem(key, JSON.stringify(bag));
+  return track;
+}
+
 function preloadTrack() {
-  currentTrack = audioFiles[Math.floor(Math.random() * audioFiles.length)];
+  currentTrack = _nextTrack();
   audio.src = currentTrack;
   audio.volume = 1;
   audio.load();
