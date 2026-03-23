@@ -241,13 +241,13 @@ const allNotes = [
   "nag message sa salamat pero bana lang agnow ku salamat.",
   "Ya wowers haha",
   "Hiii",
-  "Iniwi, Goood luck and ulways wish U the best of outcome!",
+  "Iniwi, Goood luck and ulways wish U the best!",
   "si isay man kitun diri ma-fafall itun na smile malaka heavenly, bana man sana Anghel na chubby...:)",
-  "Ya WOW haha?...adi nanaman si 'Ya Wow Haha'",
+  "Ya WOW haha?...pirmi naman sana baga.....",
   "Thank you?",
   "photo bomber si Voight",
-  "ako si Felix/Felicidad/B2, naghihintay parin hanggang ngayon at walang balak tumigil sa paghihintay. Amen <3",
-  "isi ko lang cringe ko, suuuperrr...",
+  "Isi ko na lang baba ka chance ko sobra pero.....I'll take my chances. Amen",
+  "Prepare for the cringe attack! Cringe shell loaded...aiming...target locked-in...Cringe Cannon Fire! Cringey n Chubby Girl Hit :P",
   "Kurdapyaaaaa!",
   "mala anghel na smile + heavenly tone na tawa pero kin seryoso talagang naka tiger look, yikes takot isus isus (grrrr)...pero cute pa rin :)",
   "nagkagusto naman ako sa ibang babayi pero e-uutot ko lang su feelings and then vaaanish, pero ika, feeling ko bottomless pit traphole na ulugan ko ayayay.",
@@ -266,16 +266,18 @@ const allNotes = [
   "Loading Complete..............Fatima scanned == Felix happy :)",
   "I always remember you laughing....at Manay Shuuushaaan.",
   "Faaaaaaaaaatimaaaaaaaaaaaaa!!!",
-  "Mapagal man pero NEVER...EBER GIVE UP!",
+  "Mapagal man pero NEVER GIVE UP, EBER!!!",
   "Above All, Try --Fatima",
   "Above All, Don't Try --Felix",
   "At least, nag effort. That alone means a lot.",
-  "kaka-stalk mo yan Gar na in-love ka tuloy...pero seryoso, nakadali kanako su mga tawa mo na dawa sa luog na ako ka CR malaka rungog palanggad."
+  "kaka-stalk mo yan Gar na in-love ka tuloy...pero seryoso, nakadali kanako su mga tawa na dawa sa luog na ako ka CR malaka rungog palanggad.",
+  "Leng criiinge menn...bwahahaha!",
+  "kacute mo magbayle, super <3 --Felix>_>_>_>_>_>_>_>_>_>_>Leng criiinge me nenemen, ende me rew--Fatima"
   
   
 ];
 
-// Rare note — only enters the pool after 40 visits on this device
+// Rare note
 const _visitKey = "qrb_visits";
 const _visits = parseInt(localStorage.getItem(_visitKey) || "0") + 1;
 localStorage.setItem(_visitKey, _visits);
