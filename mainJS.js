@@ -33,9 +33,10 @@ particlesJS("tsparticles", {
 const audioFiles = [
   "audio_list/Amazed - Lonestar.mp3",
   "audio_list/Be Brave - Owl City.mp3",
-  "audio_list/Chris Brown - Next To You (feat. Justin Bieber).mp3",
+  "audio_list/Next To You (ft. Justin Bieber) - Chris Brown.mp3",
   "audio_list/Cup of Joe - Multo.mp3",
   "audio_list/Eva Eugenio - Gulong Ng Palad.mp3",
+  "audio_list/George Michael - Careless Whisper.mp3",
   "audio_list/I Will Be Here For You - Michael W. Smith.mp3",
   "audio_list/Joe Lamont - Victims of Love.mp3",
   "audio_list/Jovit Baldivino - Pusong Bato.mp3",
