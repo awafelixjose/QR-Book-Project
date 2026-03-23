@@ -236,18 +236,18 @@ document.getElementById("name-input").addEventListener("keydown", function(e) {
 
 // myRandomized_Notes List
 const allNotes = [
-  "sungit baga ISUS ISUS...takot mo man",
+  "sungit baga ISUS ISUS...takot mo man 😱",
   "Ah Ah Ah",
   "nag message sa salamat pero bana lang agnow ku salamat.",
   "Ya wowers haha",
   "Hiii",
   "Iniwi, Goood luck and ulways wish U the best!",
-  "si isay man kitun diri ma-fafall itun na smile malaka heavenly, bana man sana Anghel na chubby...:)",
+  "si isay man kitun diri ma-fafall itun na smile malaka heavenly, bana man sana hulog ng langit na Angel na chubby :)",
   "Ya WOW haha?...pirmi naman sana baga.....",
   "Thank you?",
-  "photo bomber si Voight",
+  "photo bomber si Voight 🤣",
   "Isi ko na lang baba ka chance ko sobra pero.....I'll take my chances. Amen",
-  "Prepare for the cringe attack! Cringe shell loaded...aiming...target locked-in...Cringe Cannon Fire! Cringey n Chubby Girl Hit :P",
+  "Cringe shell loaded...aiming...aiming...target locked-in...Cringe Cannon Fire! Cringey Chubby Girl Hit....Ende me rew, leng criiinge me nenemen...🤣",
   "Kurdapyaaaaa!",
   "mala anghel na smile + heavenly tone na tawa pero kin seryoso talagang naka tiger look, yikes takot isus isus (grrrr)...pero cute pa rin :)",
   "nagkagusto naman ako sa ibang babayi pero e-uutot ko lang su feelings and then vaaanish, pero ika, feeling ko bottomless pit traphole na ulugan ko ayayay.",
@@ -272,7 +272,8 @@ const allNotes = [
   "At least, nag effort. That alone means a lot.",
   "kaka-stalk mo yan Gar na in-love ka tuloy...pero seryoso, nakadali kanako su mga tawa na dawa sa luog na ako ka CR malaka rungog palanggad.",
   "Leng criiinge menn...bwahahaha!",
-  "kacute mo magbayle, super <3 --Felix>_>_>_>_>_>_>_>_>_>_>Leng criiinge me nenemen, ende me rew--Fatima"
+  "kacute mo magbayle, super <3 --Felix>_>_>_>_>_>_>_>_>_>_>Leng criiinge me nenemen, ende me rew--Fatima",
+  "CHUBBY SUPREMACY, BBW ALL THE WAY LEZZ GO! 🥵🔥"
   
   
 ];
