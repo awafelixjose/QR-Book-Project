@@ -1,0 +1,4 @@
+This is a sample text file for automation testing.
+It contains multiple lines and words.
+Automation is fun and useful!
+Python makes automation easy.

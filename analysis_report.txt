@@ -1,0 +1,9 @@
+Text File Analysis Report
+Generated: 2026-03-22 21:41:33
+File: sample_input.txt
+
+Statistics:
+- Total lines: 4
+- Total words: 24
+- Total characters: 148
+- Average words per line: 6.00
