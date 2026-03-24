@@ -291,7 +291,7 @@ const allNotes = [
   Fatima: okayy
   Felix: Ika?
   Fatima: Ok man
-  Felix:.....Thank you for caring
+  Felix:Good to hear.....and Thank you for caring.
   .................`
 
   
