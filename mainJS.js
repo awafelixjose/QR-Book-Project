@@ -276,7 +276,7 @@ const allNotes = [
   "Leng criiinge menn...bwahahaha!",
   "kacute mo magbayle, super <3 --Felix>_>_>_>_>_>_>_>_>_>_>Leng criiinge me nenemen, ende me rew--Fatima",
   "CHUBBY SUPREMACY, BBW ALL THE WAY LEZZ GO! 🥵🔥",
-  "Felix, F-E-L-I-X, Felix...B2 na sana raw kin buko, Toy nalang ulit bana kan Nunuy/Bubuy bwahahaha"
+  "Felix, F-E-L-I-X, Felix...B2 na sana raw kin buko, Toy nalang ulit kindi bana man ako kan Nunuy/Bubuy bwahahaha","I'll never ask you for anything, not even a single coin. Being with you is more than enough for me. --Felix"
   
   
 ];
