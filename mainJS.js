@@ -263,7 +263,7 @@ const allNotes = [
   "Thank you?...Thank you.",
   "photo bomber si Voight 🤣",
   "Isi ko na lang baba ka chance ko sobra pero.....I'll take my chances. Amen",
-  "Cringe shell loaded...aiming...aiming...target locked-in...Cringe Cannon Fire! Cringey Chubby Girl Hit....Ende me rew, leng criiinge me nenemen...🤣",
+  "Cringe shell loaded...target locked-in...Cringe Cannon Payr! Cringey Chubby Girl Hit....Ende me rew, leng criiinge me nenemen...🤣",
   "Kurdapyaaaaa!",
   "mala anghel na smile + heavenly tone na tawa pero kin seryoso talagang naka tiger look, yikes takot isus isus (grrrr)...pero cute pa rin :)",
   "nagkagusto naman ako sa ibang babayi pero e-uutot ko lang su feelings and then vaaanish, pero ika, feeling ko bottomless pit traphole na ulugan ko ayayay.",
