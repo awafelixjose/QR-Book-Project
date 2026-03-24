@@ -277,7 +277,22 @@ const allNotes = [
   "kacute mo magbayle, super --Felix>_____Leng criiinge me nenemen, ende me rew--Fatima",
   "CHUBBY SUPREMACY, LEZZ GO! 🥵🔥",
   "Felix, F-E-L-I-X, Felix...B2 na sana raw kin lang hirap e-pronounce o kaya Toy nalang ulit kindi bana man ako kan Nunuy/Bubuy bwahahaha","I'll never ask you for anything, not even a single coin. Being with you is more than enough for me. --Felix",
-  "Gorio: Hi\nKurdapya: Hello\nGorio: You eat?\nKurdapya: I ate\nGorio: okie\nKurdapya: okayy\n............."
+  `Gorio: Hi
+  Fatima: Hello 
+  Gorio: You eat?
+  Fatima: I ate
+  Gorio: okay
+  Fatima: okayy
+  .............`,
+  `Fatima: Hiii
+  Felix: Hiii 
+  Fatima: Kumusta?
+  Felix: ok man like always
+  Fatima: okayy
+  Felix: Ika?
+  Fatima: Ok man
+  Felix:.....Thank you for caring
+  .................`
 
   
   
