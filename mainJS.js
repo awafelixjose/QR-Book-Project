@@ -66,6 +66,18 @@ let currentTrack = "";
 
 let _preloadedCover = null;
 
+// Preload the track immediately on page load so it's buffered before user reaches image page
+(function() {
+  currentTrack = _nextTrack();
+  audio.src = currentTrack;
+  audio.volume = 1;
+  audio.preload = "auto";
+  audio.load();
+  const name = currentTrack.replace("audio_list/", "").replace(".mp3", "");
+  _preloadedCover = new Image();
+  _preloadedCover.src = "audio_images/" + name + ".jpg";
+})();
+
 // Shuffle bag — ensures every track plays once before repeating
 function _nextTrack() {
   const key = "qrb_bag";
@@ -88,8 +100,8 @@ function preloadTrack() {
   currentTrack = _nextTrack();
   audio.src = currentTrack;
   audio.volume = 1;
+  audio.preload = "auto";
   audio.load();
-  // Preload cover image in parallel so it's cached when the bar shows
   const name = currentTrack.replace("audio_list/", "").replace(".mp3", "");
   _preloadedCover = new Image();
   _preloadedCover.src = "audio_images/" + name + ".jpg";
@@ -98,7 +110,7 @@ function preloadTrack() {
 function playTrack() {
   audio.volume = 1;
   audio.play().catch(function(e) { console.warn("play failed:", e); });
-  audio.onended = function() { musicLocked = false; };
+  audio.onended = function() { musicLocked = false; preloadTrack(); };
   showNowPlaying(currentTrack);
 }
 
@@ -215,17 +227,19 @@ window.triggerMusic = function() {
 
 // Unlock audio context on user gesture, then open the book and preload track
 function primeAndGate() {
-  audio.src = audioFiles[0];
   audio.volume = 0;
   var p = audio.play();
   function afterPrime() {
     audio.pause();
     audio.currentTime = 0;
+    audio.volume = 1;
     window._gate();
-    preloadTrack();
   }
   if (p !== undefined) {
-    p.then(afterPrime).catch(afterPrime);
+    p.then(afterPrime).catch(function() {
+      audio.volume = 1;
+      window._gate();
+    });
   } else {
     afterPrime();
   }
