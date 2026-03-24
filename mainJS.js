@@ -276,7 +276,7 @@ const allNotes = [
   "This QR code only works for one person.....YOU.",
   "hmmm....Caaaaanciiiillllll? Yep",
   "Meaningless daw a panaginip...I say Neeeinnn!",
-  "01001001 00100000 01101100 01101111 01110110 01100101 00100000 01000010 01000010 01010111 hahaha :)",
+  "agko ako mga fetish, usad na san a _________.",
   "I made this little QR code just for you. Sometimes, the smallest things carry the biggest feelings.",
   "I don't know where this will go. But I do know that I really enjoy every moment I get to talk to you.",
   "Loading Complete...................\nFatima scanned == Felix happy :)",
