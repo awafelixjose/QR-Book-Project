@@ -276,7 +276,8 @@ const allNotes = [
   "Leng criiinge menn...bwahahaha!",
   "kacute mo magbayle, super --Felix>_____Leng criiinge me nenemen, ende me rew--Fatima",
   "CHUBBY SUPREMACY, LEZZ GO! 🥵🔥",
-  "Felix, F-E-L-I-X, Felix...B2 na sana raw kin lang hirap e-pronounce o kaya Toy nalang ulit kindi bana man ako kan Nunuy/Bubuy bwahahaha","I'll never ask you for anything, not even a single coin. Being with you is more than enough for me. --Felix",
+  "Felix, F-E-L-I-X, Felix...B2 na sana raw kin lang hirap e-pronounce o kaya Toy nalang ulit kindi bana man ako kan Nunuy/Bubuy bwahahaha",
+  "I'll never ask you for anything, not even a single coin. Being with you is more than enough for me. --Felix",
   `Gorio: Hi
   Fatima: Hello 
   Gorio: You eat?
@@ -294,7 +295,8 @@ const allNotes = [
   Felix:Good to hear.....Thank you for caring.
   Fatima: okayy
   .................`,
-  "Hello po Maam good morning 👀 -12/13/25-"
+  "Hello po Maam good morning 👀 -12/13/25-",
+  "I'll keep trying..."
 
   
   
