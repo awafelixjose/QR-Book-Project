@@ -278,23 +278,8 @@ const allNotes = [
   "CHUBBY SUPREMACY, LEZZ GO! 🥵🔥",
   "Felix, F-E-L-I-X, Felix...B2 na sana raw kin lang hirap e-pronounce o kaya Toy nalang ulit kindi bana man ako kan Nunuy/Bubuy bwahahaha",
   "I'll never ask you for anything, not even a single coin. Being with you is more than enough for me. --Felix",
-  `Gorio: Hi
-  Fatima: Hello 
-  Gorio: You eat?
-  Fatima: I ate
-  Gorio: okay
-  Fatima: okayy
-  .............`,
-  `Fatima: Hiii
-  Felix: Hiii 
-  Fatima: Kumusta?
-  Felix: ok man like always
-  Fatima: okayy
-  Felix: Ika?
-  Fatima: Ok man
-  Felix:Good to hear.....Thank you for caring.
-  Fatima: okayy
-  .................`,
+  "Gorio: Hi\nFatima: Hello\nGorio: You eat?\nFatima: I ate\nGorio: okay\nFatima: okayy\n.............",
+  "Fatima: Hiii\nFelix: Hiii\nFatima: Kumusta?\nFelix: ok man like always\nFatima: okayy\nFelix: Ika?\nFatima: Ok man\nFelix: Good to hear.....Thank you for caring.\nFatima: okayy\n.................",
   "Hello po Maam good morning 👀 -12/13/25-",
   "I'll keep trying..."
 
@@ -322,14 +307,24 @@ function revealNote() {
   clearInterval(_typeTimer);
   noteEl.innerHTML = "";
   const full = "\u201C" + pickedNote + "\u201D";
-  const words = full.split(" ");
-  words.forEach(function(word, i) {
-    const span = document.createElement("span");
-    span.textContent = (i === 0 ? "" : " ") + word;
-    span.style.cssText = "opacity:0; transition: opacity 0.6s ease " + (i * 0.18 + 1.8) + "s;";
-    noteEl.appendChild(span);
-    requestAnimationFrame(function() {
-      requestAnimationFrame(function() { span.style.opacity = "1"; });
+  // Split by newlines first, then words within each line
+  const lines = full.split("\n");
+  let wordIndex = 0;
+  lines.forEach(function(line, lineIdx) {
+    if (lineIdx > 0) {
+      const br = document.createElement("br");
+      noteEl.appendChild(br);
+    }
+    const words = line.split(" ");
+    words.forEach(function(word) {
+      const span = document.createElement("span");
+      span.textContent = (wordIndex === 0 ? "" : " ") + word;
+      span.style.cssText = "opacity:0; transition: opacity 0.6s ease " + (wordIndex * 0.18 + 1.8) + "s;";
+      noteEl.appendChild(span);
+      requestAnimationFrame(function() {
+        requestAnimationFrame(function() { span.style.opacity = "1"; });
+      });
+      wordIndex++;
     });
   });
 }
