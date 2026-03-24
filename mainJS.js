@@ -244,9 +244,9 @@ const allNotes = [
   "Ya wowers haha",
   "Hiii",
   "Iniwi, Goood luck and ulways wish U the best!",
-  "si isay man kitun diri ma-fafall itun na smile malaka heavenly, bana man sana hulog ng langit na Angel na chubby :)",
+  "si isay man kitun diri ma-fafall itun na smile malaka heavenly, bana man sana hulog ng langit na Angel, Angel na Chubby to be precise :)",
   "Ya WOW haha?...pirmi naman sana baga.....",
-  "Thank you?",
+  "Thank you?...Thank you.",
   "photo bomber si Voight 🤣",
   "Isi ko na lang baba ka chance ko sobra pero.....I'll take my chances. Amen",
   "Cringe shell loaded...aiming...aiming...target locked-in...Cringe Cannon Fire! Cringey Chubby Girl Hit....Ende me rew, leng criiinge me nenemen...🤣",
@@ -265,7 +265,7 @@ const allNotes = [
   "01001001 00100000 01101100 01101111 01110110 01100101 00100000 01000010 01000010 01010111 hahaha :)",
   "I made this little QR code just for you. Sometimes, the smallest things carry the biggest feelings.",
   "I don't know where this will go. But I do know that I really enjoy every moment I get to talk to you.",
-  "Loading Complete..............Fatima scanned == Felix happy :)",
+  "Loading Complete....................Fatima scanned == Felix happy :)",
   "I always remember you laughing....at Manay Shuuushaaan.",
   "Faaaaaaaaaatimaaaaaaaaaaaaa!!!",
   "Mapagal man pero NEVER GIVE UP, EBER!!!",
@@ -274,9 +274,11 @@ const allNotes = [
   "At least, nag effort. That alone means a lot.",
   "kaka-stalk mo yan Gar na in-love ka tuloy...pero seryoso, nakadali kanako su mga tawa na dawa sa luog na ako ka CR malaka rungog palanggad.",
   "Leng criiinge menn...bwahahaha!",
-  "kacute mo magbayle, super <3 --Felix>_>_>_>_>_>_>_>_>_>_>Leng criiinge me nenemen, ende me rew--Fatima",
-  "CHUBBY SUPREMACY, BBW ALL THE WAY LEZZ GO! 🥵🔥",
-  "Felix, F-E-L-I-X, Felix...B2 na sana raw kin buko, Toy nalang ulit kindi bana man ako kan Nunuy/Bubuy bwahahaha","I'll never ask you for anything, not even a single coin. Being with you is more than enough for me. --Felix"
+  "kacute mo magbayle, super --Felix>_____Leng criiinge me nenemen, ende me rew--Fatima",
+  "CHUBBY SUPREMACY, LEZZ GO! 🥵🔥",
+  "Felix, F-E-L-I-X, Felix...B2 na sana raw kin lang hirap e-pronounce o kaya Toy nalang ulit kindi bana man ako kan Nunuy/Bubuy bwahahaha","I'll never ask you for anything, not even a single coin. Being with you is more than enough for me. --Felix",
+  "Gorio: Hi\nKurdapya: Hello\nGorio: You eat?\nKurdapya: I ate\nGorio: okie\nKurdapya: okayy\n............."
+
   
   
 ];
