@@ -265,7 +265,7 @@ const allNotes = [
   "01001001 00100000 01101100 01101111 01110110 01100101 00100000 01000010 01000010 01010111 hahaha :)",
   "I made this little QR code just for you. Sometimes, the smallest things carry the biggest feelings.",
   "I don't know where this will go. But I do know that I really enjoy every moment I get to talk to you.",
-  "Loading Complete....................Fatima scanned == Felix happy :)",
+  "Loading Complete...................\nFatima scanned == Felix happy :)",
   "I always remember you laughing....at Manay Shuuushaaan.",
   "Faaaaaaaaaatimaaaaaaaaaaaaa!!!",
   "Mapagal man pero NEVER GIVE UP, EBER!!!",
@@ -275,13 +275,13 @@ const allNotes = [
   "kaka-stalk mo yan Gar na in-love ka tuloy...pero seryoso, nakadali kanako su mga tawa na dawa sa luog na ako ka CR malaka rungog palanggad.",
   "Leng criiinge menn...bwahahaha!",
   "kacute mo magbayle, super --Felix>_____Leng criiinge me nenemen, ende me rew--Fatima",
-  "CHUBBY SUPREMACY, LEZZ GO! 🥵🔥",
+  "CHUBBY SUPREMACY 🥵🔥",
   "Felix, F-E-L-I-X, Felix...B2 na sana raw kin lang hirap e-pronounce o kaya Toy nalang ulit kindi bana man ako kan Nunuy/Bubuy bwahahaha",
   "I'll never ask you for anything, not even a single coin. Being with you is more than enough for me. --Felix",
   "Gorio: Hi\nFatima: Hello\nGorio: You eat?\nFatima: I ate\nGorio: okay\nFatima: okayy\n.............",
   "Fatima: Hiii\nFelix: Hiii\nFatima: Kumusta?\nFelix: ok man like always\nFatima: okayy\nFelix: Ika?\nFatima: Ok man\nFelix: Good to hear.....Thank you for caring.\nFatima: okayy\n.................",
-  "Hello po Maam good morning 👀 -12/13/25-",
-  "I'll keep trying..."
+  "Hello po Maam good morning 👀 -12/13/25-", "uno gusto mo mabasa? haha"
+
 
   
   
