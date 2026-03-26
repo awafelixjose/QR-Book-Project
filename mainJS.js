@@ -1,7 +1,8 @@
 // ─── Particles ───────────────────────────────────────────────────────────────
+var isMobile = window.innerWidth < 1024;
 particlesJS("tsparticles", {
   particles: {
-    number: { value: 80, density: { enable: true, value_area: 800 } },
+    number: { value: isMobile ? 35 : 80, density: { enable: true, value_area: 800 } },
     color: { value: ["#ffcc70", "#ff6b9d", "#ff9a9e", "#fff176", "#ffffff"] },
     shape: { type: "circle" },
     opacity: {
@@ -378,19 +379,27 @@ $(".flipbook").turn({
   when: {
     turning: function(_e) {
       if (musicLocked) _e.preventDefault();
+      // Only pause effects during flip when music isn't playing
+      if (!hasPlayed) {
+        document.getElementById("tsparticles").style.visibility = "hidden";
+        document.getElementById("gradient-bg").style.transition = "none";
+        document.getElementById("gradient-bg").style.animationPlayState = "paused";
+      }
     },
     turned: function(_e, _page) {
+      // Restore after flip
+      document.getElementById("tsparticles").style.visibility = "visible";
+      document.getElementById("gradient-bg").style.animationPlayState = "running";
+      document.getElementById("gradient-bg").style.transition = "";
       const visible = isImagePageVisible();
       if (visible && !hasPlayed) {
         if (window.innerWidth >= 1024) {
-          // Desktop: auto-play, track already preloaded
           hasPlayed = true;
           musicLocked = true;
           playTrack();
           activateEffects();
           setTimeout(revealNote, 300);
         } else {
-          // Mobile/tablet: show play button
           document.getElementById("music-bar").style.display = "flex";
         }
       } else if (!visible) {

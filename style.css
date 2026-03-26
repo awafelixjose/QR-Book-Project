@@ -191,6 +191,14 @@ body.bg-main {
 
 .flipbook {
     overflow: visible;
+    will-change: transform;
+}
+
+.flipbook .page,
+.flipbook .hard {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
 }
 
 .flipbook .hard {
