@@ -29,6 +29,8 @@ particlesJS("tsparticles", {
   retina_detect: true
 });
 
+// ─── Login Vanta Background ───────────────────────────────────────────────────
+
 // audio list
 const audioFiles = [
   "audio_list/Amazed - Lonestar.mp3",
@@ -50,7 +52,6 @@ const audioFiles = [
   "audio_list/Lucid Dream - Owl City.mp3",
   "audio_list/My Chemical Romance - I Don t Love You.mp3",
   "audio_list/ONE OK ROCK - Take What You Want (feat. 5 Seconds of Summer).mp3",
-  "audio_list/Over October - Alive.mp3",
   "audio_list/The 1975 - About You.mp3",
   "audio_list/The Climb - Miley Cyrus.mp3",
   "audio_list/The Script - Six Degrees of Separation.mp3",
@@ -208,6 +209,7 @@ window.triggerMusic = function() {
       requestAnimationFrame(function() {
         requestAnimationFrame(function() {
           mc.style.opacity = "1";
+          document.querySelector(".book-wrapper").classList.add("drop-in");
         });
       });
     }, 200);
@@ -291,7 +293,7 @@ const allNotes = [
   "CHUBBY SUPREMACY 🥵🔥",
   "Felix, F-E-L-I-X, Felix...B2 na sana raw kin lang hirap e-pronounce o kaya Toy nalang ulit kindi bana man ako kan Nunuy/Bubuy bwahahaha",
   "I'll never ask you for anything, not even a single coin. Being with you is more than enough for me. --Felix",
-  "Hello po Maam good morning 👀 -12/13/25-", "uno gusto mo mabasa? haha", "A special set of random messages hidden in this QR code… meant only for YOU.", "lang takot nanaman kitun lalawgon mo, pag smile raw ta sayang ka beauty. Beauty in the best.", "share ko lang...sher ke leng kene."
+  "Hello po Maam good morning 👀 -12/13/25-", "uno gusto mo mabasa? haha", "A special set of random messages hidden in this QR code… meant only for YOU.", "lang takot nanaman kitun lalawgon mo, pag smile raw ta sayang ka beauty. Beauty in the best.", "share ko lang...sher ke leng kene. Sabihon mo gusto mo lang magchat...same here."
 
   
   

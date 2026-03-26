@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="style.css?v=12" />
+  <link rel="stylesheet" href="style.css?v=15" />
   <title>The Empty Book</title>
   <style>
     #main-content { visibility: hidden; opacity: 0; }
@@ -15,6 +15,27 @@
 
   <!-- Login Screen -->
   <div id="login-screen">
+    <div id="login-heart">
+      <svg viewBox="0 0 100 90" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="heartGrad" cx="50%" cy="40%" r="60%">
+            <stop offset="0%" stop-color="rgba(255,180,210,0.22)"/>
+            <stop offset="60%" stop-color="rgba(200,80,140,0.12)"/>
+            <stop offset="100%" stop-color="rgba(120,30,100,0.04)"/>
+          </radialGradient>
+          <filter id="heartGlow">
+            <feGaussianBlur stdDeviation="2.5" result="blur"/>
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+        <path d="M50 85 C50 85 5 55 5 28 C5 12 17 2 30 2 C38 2 45 7 50 13 C55 7 62 2 70 2 C83 2 95 12 95 28 C95 55 50 85 50 85 Z"
+          fill="url(#heartGrad)"
+          stroke="rgba(255,150,190,0.18)"
+          stroke-width="1"
+          filter="url(#heartGlow)"
+        />
+      </svg>
+    </div>
     <div id="login-box">
       <h2>Uno ngaran mo?</h2>
       <p>E-type ang Pangalan</p>
