@@ -290,6 +290,10 @@ body.bg-main {
         0 10px 20px rgba(0,0,0,0.25);
 }
 
+.flipbook .page.left-page {
+    background-image: url('images/page_texture1_left.jpg');
+}
+
 .flipbook .page::before{
     content:"";
     position:absolute;
