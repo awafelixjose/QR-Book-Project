@@ -60,7 +60,7 @@ const audioFiles = [
   "audio_list/Two is Better than One (ft. Talor Swift) - BOYS LIKE GIRLS.mp3",
   "audio_list/Dayseeker - Burial Plot.mp3",
   "audio_list/M2M - Pretty Boy.mp3",
-  "audio_list/Phil Collins - You'll Be In My Heart.mp3",
+  "audio_list/Phil Collins - Youll Be In My Heart.mp3",
   "audio_list/Pikotaro - PPAP (Pen Pineapple Apple Pen) (Long Version).mp3",
   "audio_list/Rico Blanco - Balisong (Transformed).mp3",
   "audio_list/Wacko Geco - Chicken Song.mp3"
@@ -83,7 +83,7 @@ let _preloadedCover = null;
   audio.load();
   const name = currentTrack.replace("audio_list/", "").replace(".mp3", "");
   _preloadedCover = new Image();
-  _preloadedCover.src = "audio_images/" + encodeURIComponent(name) + ".jpg";
+  _preloadedCover.src = "audio_images/" + name + ".jpg";
 })();
 
 // Shuffle bag — ensures every track plays once before repeating
@@ -112,13 +112,20 @@ function preloadTrack() {
   audio.load();
   const name = currentTrack.replace("audio_list/", "").replace(".mp3", "");
   _preloadedCover = new Image();
-  _preloadedCover.src = "audio_images/" + encodeURIComponent(name) + ".jpg";
+  _preloadedCover.src = "audio_images/" + name + ".jpg";
 }
 
 function playTrack() {
   audio.volume = 1;
   audio.play().catch(function(e) { console.warn("play failed:", e); });
   audio.onended = function() { musicLocked = false; preloadTrack(); };
+  // Disco mode for Chicken Song
+  var gradEl = document.getElementById("gradient-bg");
+  if (currentTrack.indexOf("Chicken Song") !== -1) {
+    gradEl.classList.add("disco");
+  } else {
+    gradEl.classList.remove("disco");
+  }
   showNowPlaying(currentTrack);
 }
 
@@ -142,7 +149,7 @@ function activateEffects() {
 
 function deactivateEffects() {
   const el = document.getElementById("gradient-bg");
-  el.classList.remove("active");
+  el.classList.remove("active", "disco");
   gradientPresets.forEach(function(p) { el.classList.remove(p); });
   document.getElementById("gradient-bg").classList.remove("active");
   document.getElementById("tsparticles").classList.remove("active");
@@ -159,7 +166,7 @@ function showNowPlaying(trackPath) {
   cloneEl.textContent = name;
 
   // Try to load matching cover image
-  const coverPath = "audio_images/" + encodeURIComponent(name) + ".jpg";
+  const coverPath = "audio_images/" + name + ".jpg";
   const img = new Image();
   img.onload = function() {
     artEl.style.backgroundImage = "url('" + coverPath + "')";
