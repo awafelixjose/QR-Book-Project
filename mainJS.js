@@ -254,7 +254,54 @@ document.getElementById("name-input").addEventListener("keydown", function(e) {
 });
 
 // myRandomized_Notes List
-const allNotes = [];
+const allNotes = [
+  "sungit baga ISUS ISUS...takot mo man 😱",
+  "Ah Ah Ah",
+  "nag message sa salamat pero bana lang agnow ku salamat.",
+  "Ya wowers haha",
+  "Hiii",
+  "Iniwi, Goood luck and ulways wish U the best!",
+  "si isay man kitun diri ma-fafall itun na smile malaka heavenly, bana man sana hulog ng langit na Angel, Angel na Chubby to be precise :)",
+  "Ya WOW haha?...pirmi naman sana baga.....",
+  "Thank you?...Thank you and you're welcome.",
+  "photo bomber si Voight 🤣",
+  "Isi ko na lang baba ka chance ko sobra pero.....I'll take my chances. Amen",
+  "Insert CRINGEY message...loading...Ende me rew, leng criiinge me nenemen...🤣",
+  "Kurdapyaaaaa!",
+  "mala anghel na smile + heavenly tone na tawa pero kin seryoso talagang naka tiger look, yikes takot isus isus (grrrr)...pero cute pa rin :)",
+  "nagkagusto naman ako sa ibang babayi pero e-uutot ko lang su feelings and then vaaanish arog lang kadto, pero ika, feeling ko bottomless pit traphole na ulugan ko. Dipisil makabalik pataas.",
+  "pakagisong, check ka cp kin agko message...uda :(",
+  "nakapirang steps na? 10k? Gibohon ta yan na 20k ta gusto ko pa magwalk na kaiba ika hehe...",
+  "Thank you? haha. Uyam mo Kurdapya",
+  "If you're reading this, it means you scanned a little piece of my heart...curious yan? aawwhhh",
+  "Out of all the peeps in the wewld, I'm really glad I met you.",
+  "Kin pinag scan mo d, ibig sabihon curious ika. Ya wow.",
+  "This QR code only works for one person.....YOU.",
+  "hmmm....Caaaaanciiiillllll? Yep",
+  "Meaningless daw a panaginip...I say Neeeinnn!",
+  "I made this little QR code just for you. Sometimes, the smallest things carry the BIGGEST feelings.",
+  "I don't know where this will go. But I do know that I really enjoy every moment I get to talk to you.",
+  "Loading Complete...................\nFatima scanned == Felix happy :)",
+  "I always remember you laughing....at Manay Shuuushaaan.",
+  "Faaaaaaaaaatimaaaaaaaaaaaaa!!!",
+  "Mapagal man pero NEVER GIVE UP, EBER!!!",
+  "Above All, Try --Fatima",
+  "Above All, Don't Try --Felix",
+  "At least, nag effort. That alone means a lot.",
+  "kaka-stalk mo yan Gar na in-love ka tuloy...pero seryoso, na-inlove ako dahil ku mga tawa na dawa sa luog na ako ka CR malaka rungog palanggad.",
+  "Leng criiinge menn...bwahahaha!",
+  "kacute mo magbayle, super --Felix>_____Leng criiinge me nenemen, ende me rew--Fatima",
+  "CHUBBY SUPREMACY 🥵🔥",
+  "Felix, F-E-L-I-X, Felix...B2 na sana raw kin lang hirap e-pronounce o kaya Toy nalang ulit kindi bana man ako kan bubuy, bwahahaha",
+  "I'll never ask you for anything, not even a single coin. Being with you is more than enough for me. --Felix",
+  "Hello po Maam good morning 👀 -12/13/25-", "uno gusto mo mabasa? haha", "A special set of random messages hidden in this QR code… meant only for YOU.", "lang takot nanaman kitun lalawgon mo, pag smile raw ta sayang ka beauty. Beauty in the best.", "share ko lang...sher ke leng kene. Sabihon mo gusto mo lang magchat...same here.",
+  "Toy? Akala ko ba Love Story, yun pala Toy Story...",
+  "Dawa man stress, pagal, pirot, basta BYOTEPOWL, keep smiling.",
+  "Good morning Miss BYOTEPOWL Sunshine", "Travesered through heavy rain storm just for you, proven and tested pati brief basang basa bwahaha"
+
+  
+  
+];
 
 // Rare note
 const _visitKey = "qrb_visits";
@@ -276,7 +323,7 @@ function revealNote() {
   clearInterval(_typeTimer);
   noteEl.innerHTML = "";
   const full = "\u201C" + pickedNote + "\u201D";
-
+  // Split by newlines first, then words within each line
   const lines = full.split("\n");
   let wordIndex = 0;
   lines.forEach(function(line, lineIdx) {
@@ -335,7 +382,7 @@ $(".flipbook").turn({
   when: {
     turning: function(_e) {
       if (musicLocked) _e.preventDefault();
-    
+      // Only pause effects during flip when music isn't playing
       if (!hasPlayed) {
         document.getElementById("tsparticles").style.visibility = "hidden";
         document.getElementById("gradient-bg").style.transition = "none";
