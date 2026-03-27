@@ -292,9 +292,12 @@ const allNotes = [
   "Leng criiinge menn...bwahahaha!",
   "kacute mo magbayle, super --Felix>_____Leng criiinge me nenemen, ende me rew--Fatima",
   "CHUBBY SUPREMACY 🥵🔥",
-  "Felix, F-E-L-I-X, Felix...B2 na sana raw kin lang hirap e-pronounce o kaya Toy nalang ulit kindi bana man ako kan Nunuy/Bubuy bwahahaha",
+  "Felix, F-E-L-I-X, Felix...B2 na sana raw kin lang hirap e-pronounce o kaya Toy nalang ulit kindi bana man ako kan bubuy, bwahahaha",
   "I'll never ask you for anything, not even a single coin. Being with you is more than enough for me. --Felix",
-  "Hello po Maam good morning 👀 -12/13/25-", "uno gusto mo mabasa? haha", "A special set of random messages hidden in this QR code… meant only for YOU.", "lang takot nanaman kitun lalawgon mo, pag smile raw ta sayang ka beauty. Beauty in the best.", "share ko lang...sher ke leng kene. Sabihon mo gusto mo lang magchat...same here."
+  "Hello po Maam good morning 👀 -12/13/25-", "uno gusto mo mabasa? haha", "A special set of random messages hidden in this QR code… meant only for YOU.", "lang takot nanaman kitun lalawgon mo, pag smile raw ta sayang ka beauty. Beauty in the best.", "share ko lang...sher ke leng kene. Sabihon mo gusto mo lang magchat...same here.",
+  "Toy? Akala ko ba Love Story, yun pala Toy Story...",
+  "Dawa man stress, pagal, pirot, basta BYOTEPOWL, keep smiling.",
+  "Good morning Miss BYOTEPOWL Sunshine"
 
   
   
