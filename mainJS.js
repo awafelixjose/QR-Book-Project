@@ -120,11 +120,10 @@ function playTrack() {
   audio.play().catch(function(e) { console.warn("play failed:", e); });
   audio.onended = function() { musicLocked = false; preloadTrack(); };
   // Disco mode for Chicken Song
-  var gradEl = document.getElementById("gradient-bg");
   if (currentTrack.indexOf("Chicken Song") !== -1) {
-    gradEl.classList.add("disco");
+    startDisco();
   } else {
-    gradEl.classList.remove("disco");
+    stopDisco();
   }
   showNowPlaying(currentTrack);
 }
@@ -155,6 +154,56 @@ function deactivateEffects() {
   document.getElementById("tsparticles").classList.remove("active");
   document.getElementById("particles-default").classList.remove("hidden");
   document.getElementById("main-content").classList.remove("vignette-on");
+  stopDisco();
+}
+
+var _discoTimer = null;
+var _discoColors = [
+  "#ff0080","#ff4400","#ffcc00","#00ff88","#00ccff",
+  "#aa00ff","#ff00ff","#ffffff","#ff6600","#00ffff"
+];
+
+function startDisco() {
+  var container = document.getElementById("disco-lights");
+  container.innerHTML = "";
+  container.classList.add("active");
+  var count = 8;
+  for (var i = 0; i < count; i++) {
+    var spot = document.createElement("div");
+    spot.className = "dspot";
+    var size = 300 + Math.random() * 300;
+    spot.style.cssText = [
+      "width:" + size + "px",
+      "height:" + size + "px",
+      "top:" + (Math.random() * 100) + "%",
+      "left:" + (Math.random() * 100) + "%",
+      "transform:translate(-50%,-50%)",
+      "background:radial-gradient(circle," + _discoColors[i % _discoColors.length] + " 0%,transparent 70%)",
+      "animation-duration:" + (0.3 + Math.random() * 0.5) + "s",
+      "animation-delay:" + (Math.random() * 0.5) + "s"
+    ].join(";");
+    container.appendChild(spot);
+  }
+  // Reposition spots randomly every 600ms for movement
+  _discoTimer = setInterval(function() {
+    var spots = container.querySelectorAll(".dspot");
+    Array.prototype.forEach.call(spots, function(spot) {
+      var size = 300 + Math.random() * 300;
+      var color = _discoColors[Math.floor(Math.random() * _discoColors.length)];
+      spot.style.top = (Math.random() * 100) + "%";
+      spot.style.left = (Math.random() * 100) + "%";
+      spot.style.width = size + "px";
+      spot.style.height = size + "px";
+      spot.style.background = "radial-gradient(circle," + color + " 0%,transparent 70%)";
+    });
+  }, 600);
+}
+
+function stopDisco() {
+  clearInterval(_discoTimer);
+  var container = document.getElementById("disco-lights");
+  container.classList.remove("active");
+  container.innerHTML = "";
 }
 
 function showNowPlaying(trackPath) {
