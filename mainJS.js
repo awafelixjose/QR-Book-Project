@@ -57,7 +57,13 @@ const audioFiles = [
   "audio_list/The Climb - Miley Cyrus.mp3",
   "audio_list/The Script - Six Degrees of Separation.mp3",
   "audio_list/Then You Look at Me - Celine Dion.mp3",
-  "audio_list/Two is Better than One (ft. Talor Swift) - BOYS LIKE GIRLS.mp3"
+  "audio_list/Two is Better than One (ft. Talor Swift) - BOYS LIKE GIRLS.mp3",
+  "audio_list/Dayseeker - Burial Plot.mp3",
+  "audio_list/M2M - Pretty Boy.mp3",
+  "audio_list/Phil Collins - You'll Be In My Heart.mp3",
+  "audio_list/Pikotaro - PPAP (Pen Pineapple Apple Pen) (Long Version).mp3",
+  "audio_list/Rico Blanco - Balisong (Transformed).mp3",
+  "audio_list/Wacko Geco - Chicken Song.mp3"
 ];
 
 const audio = new Audio();
@@ -295,9 +301,9 @@ const allNotes = [
   "Felix, F-E-L-I-X, Felix...B2 na sana raw kin lang hirap e-pronounce o kaya Toy nalang ulit kindi bana man ako kan bubuy, bwahahaha",
   "I'll never ask you for anything, not even a single coin. Being with you is more than enough for me. --Felix",
   "Hello po Maam good morning 👀 -12/13/25-", "uno gusto mo mabasa? haha", "A special set of random messages hidden in this QR code… meant only for YOU.", "lang takot nanaman kitun lalawgon mo, pag smile raw ta sayang ka beauty. Beauty in the best.", "share ko lang...sher ke leng kene. Sabihon mo gusto mo lang magchat...same here.",
-  "Toy? Akala ko ba Love Story, yun pala Toy Story...",
+  "Toy? Akala ko Love Story, yun pala Toy Story?...",
   "Dawa man stress, pagal, pirot, basta BYOTEPOWL, keep smiling.",
-  "Good morning Miss BYOTEPOWL Sunshine", "Travesered through heavy rain storm just for you, proven and tested pati brief basang basa bwahaha"
+  "Good morning Miss BYOTEPOWL Sunshine", "Travesered through heavy rain storm just for you, proven and tested pati brief na basa pa.", "You'll be in my heart, always. ah ah ah.", "You don’t have to face everything all at once. Just take it one step, one hour, one day at a time.", "Even if it feels like you’re alone sometimes, you’re not. There are people who genuinely care about you… and I’m one of them.", "Even if things get tough, just know someone out here cares about you.", "kayang kaya ko kumapot sa ulod para lang kanimo, promise.", "Just a random reminder that someone out here hopes you’re smiling today.", "Just passing by to say I hope your day gets a little brighter today."
 
   
   
@@ -335,7 +341,7 @@ function revealNote() {
     words.forEach(function(word) {
       const span = document.createElement("span");
       span.textContent = (wordIndex === 0 ? "" : " ") + word;
-      span.style.cssText = "opacity:0; transition: opacity 0.6s ease " + (wordIndex * 0.18 + 1.8) + "s;";
+      span.style.cssText = "opacity:0; transition: opacity 1.2s ease " + (wordIndex * 0.35 + 2.5) + "s;";
       noteEl.appendChild(span);
       requestAnimationFrame(function() {
         requestAnimationFrame(function() { span.style.opacity = "1"; });
