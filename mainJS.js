@@ -83,7 +83,7 @@ let _preloadedCover = null;
   audio.load();
   const name = currentTrack.replace("audio_list/", "").replace(".mp3", "");
   _preloadedCover = new Image();
-  _preloadedCover.src = "audio_images/" + name + ".jpg";
+  _preloadedCover.src = "audio_images/" + encodeURIComponent(name) + ".jpg";
 })();
 
 // Shuffle bag — ensures every track plays once before repeating
@@ -112,7 +112,7 @@ function preloadTrack() {
   audio.load();
   const name = currentTrack.replace("audio_list/", "").replace(".mp3", "");
   _preloadedCover = new Image();
-  _preloadedCover.src = "audio_images/" + name + ".jpg";
+  _preloadedCover.src = "audio_images/" + encodeURIComponent(name) + ".jpg";
 }
 
 function playTrack() {
@@ -159,7 +159,7 @@ function showNowPlaying(trackPath) {
   cloneEl.textContent = name;
 
   // Try to load matching cover image
-  const coverPath = "audio_images/" + name + ".jpg";
+  const coverPath = "audio_images/" + encodeURIComponent(name) + ".jpg";
   const img = new Image();
   img.onload = function() {
     artEl.style.backgroundImage = "url('" + coverPath + "')";
@@ -303,7 +303,7 @@ const allNotes = [
   "Hello po Maam good morning 👀 -12/13/25-", "uno gusto mo mabasa? haha", "A special set of random messages hidden in this QR code… meant only for YOU.", "lang takot nanaman kitun lalawgon mo, pag smile raw ta sayang ka beauty. Beauty in the best.", "share ko lang...sher ke leng kene. Sabihon mo gusto mo lang magchat...same here.",
   "Toy? Akala ko Love Story, yun pala Toy Story?...",
   "Dawa man stress, pagal, pirot, basta BYOTEPOWL, keep smiling.",
-  "Good morning Miss BYOTEPOWL Sunshine", "Travesered through heavy rain storm just for you, proven and tested pati brief na basa pa.", "You'll be in my heart, always. ah ah ah.", "You don’t have to face everything all at once. Just take it one step, one hour, one day at a time.", "Even if it feels like you’re alone sometimes, you’re not. There are people who genuinely care about you… and I’m one of them.", "Even if things get tough, just know someone out here cares about you.", "kayang kaya ko kumapot sa ulod para lang kanimo, promise.", "Just a random reminder that someone out here hopes you’re smiling today.", "Just passing by to say I hope your day gets a little brighter today."
+  "Good morning Miss BYOTEPOWL Sunshine", "Travesered through heavy rain storm just for you, proven and tested pati brief na basa pa.", "You'll be in my heart, always. ah ah ah.", "You don’t have to face everything all at once. Just take it one step, one hour, one day at a time.", "Even if it feels like you’re alone sometimes, you’re not. There are people who genuinely care about you… and I’m one of them.", "Even if things get tough, just know someone out here cares about you.", "kayang kaya ko kumapot sa ulod para lang kanimo, promise.", "Just a random reminder that someone out here hopes you’re smiling today.", "Just passing by to say I hope your day gets a little brighter today.", "buko man talaga ako stalker, mahilig lang ako mag-research sa mga random subjects tungkol sa history, coding/programming, animal kingdom. Favorite subject ko? YOU.", "Bigla kaya nag-unlock kaya nakabwelo lugod si Manuy.....sabi ni Manuy; WOW!", "since 2026, I hope you're doing A-OK!", "lang uyam mo haha bana ika submarine, lumubog-lumitaw...pero sasabayan ko ika. 2geder ", "Shurry na wag kana magaliiit. (>_<) UWU BWAHAHAHAHAHA", "I’m starting to suspect my brain is broken because you keep appearing in my thoughts like a default setting. Pero ok lang uda man ako balak na mag-factory reset."
 
   
   
