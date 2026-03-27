@@ -263,7 +263,7 @@ const allNotes = [
   "Iniwi, Goood luck and ulways wish U the best!",
   "si isay man kitun diri ma-fafall itun na smile malaka heavenly, bana man sana hulog ng langit na Angel, Angel na Chubby to be precise :)",
   "Ya WOW haha?...pirmi naman sana baga.....",
-  "Thank you?...Thank you and you're welcome.",
+  "Thank you?...Thank you.",
   "photo bomber si Voight 🤣",
   "Isi ko na lang baba ka chance ko sobra pero.....I'll take my chances. Amen",
   "Insert CRINGEY message...loading...Ende me rew, leng criiinge me nenemen...🤣",
