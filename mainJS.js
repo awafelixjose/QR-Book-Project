@@ -193,7 +193,7 @@ window.triggerMusic = function() {
 
 // login
 (function() {
-  var _x = [107,117,114,100,97,112,121,97];
+  var _x = [107,117,114,100,97,112,121,97,50,53];
   function _chk(s) {
     if (s.length !== _x.length) return false;
     for (var i = 0; i < s.length; i++) {
