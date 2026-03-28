@@ -345,7 +345,7 @@ const allNotes = [
   "I don't know where this will go. But I do know that I really enjoy every moment I get to talk to you.",
   "Loading Complete...................\nFatima scanned == Felix happy :)",
   "I always remember you laughing....at Manay Shuuushaaan.",
-  "Faaaaaaaaaatimaaaaaaaaaaaaa!!!",
+  "Go Fatimaaa hehe",
   "Mapagal man pero NEVER GIVE UP, EBER!!!",
   "Above All, Try --Fatima",
   "Above All, Don't Try --Felix",
