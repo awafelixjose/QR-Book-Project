@@ -63,7 +63,9 @@ const audioFiles = [
   "audio_list/Phil Collins - Youll Be In My Heart.mp3",
   "audio_list/Pikotaro - PPAP (Pen Pineapple Apple Pen) (Long Version).mp3",
   "audio_list/Rico Blanco - Balisong (Transformed).mp3",
-  "audio_list/Wacko Geco - Chicken Song.mp3"
+  "audio_list/Wacko Geco - Chicken Song.mp3",
+  "audio_list/Taylor Swift - Back To December (Taylor s Version).mp3",
+  "audio_list/Taylor Swift - Back To December.mp3"
 ];
 
 const audio = new Audio();
