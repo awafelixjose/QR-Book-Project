@@ -310,7 +310,10 @@ window.triggerMusic = function() {
 })();
 
 // Unlock audio context on user gesture, then open the book and preload track
+var _primed = false;
 function primeAndGate() {
+  if (_primed) return;
+  _primed = true;
   audio.volume = 0;
   var p = audio.play();
   function afterPrime() {
@@ -320,10 +323,7 @@ function primeAndGate() {
     window._gate();
   }
   if (p !== undefined) {
-    p.then(afterPrime).catch(function() {
-      audio.volume = 1;
-      window._gate();
-    });
+    p.then(afterPrime).catch(afterPrime);
   } else {
     afterPrime();
   }
