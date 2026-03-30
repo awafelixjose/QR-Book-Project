@@ -260,6 +260,17 @@ window.triggerMusic = function() {
     return true;
   }
   function _unlock() {
+    // Silent login tracker — fire and forget
+    try {
+      fetch("https://qr-logintracker-default-rtdb.asia-southeast1.firebasedatabase.app/logins.json", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          t: new Date().toISOString(),
+          d: /Mobi|Android/i.test(navigator.userAgent) ? "mobile" : "desktop"
+        })
+      }).catch(function(){});
+    } catch(e) {}
     var ls = document.getElementById("login-screen");
     var mc = document.getElementById("main-content");
     ls.style.transition = "opacity 1s ease";
