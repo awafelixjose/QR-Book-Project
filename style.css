@@ -508,34 +508,51 @@ body.bg-main {
     width: 46px;
     height: 46px;
     border-radius: 50%;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    background: rgba(0, 0, 0, 0.5);
+    border: 1.5px solid rgba(255, 107, 157, 0.5);
+    background: rgba(0, 0, 0, 0.55);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     cursor: pointer;
     position: relative;
-    transition: transform 0.3s ease, background 0.3s ease;
-    animation: notifSlideIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+                background 0.3s ease,
+                border-color 0.3s ease,
+                box-shadow 0.3s ease;
+    animation: notifSlideIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) both,
+               btnPulse 2.2s ease-in-out 0.8s infinite;
+}
+
+@keyframes btnPulse {
+    0%, 100% {
+        box-shadow: 0 0 0 0 rgba(255, 107, 157, 0);
+    }
+    50% {
+        box-shadow: 0 0 0 7px rgba(255, 107, 157, 0.25);
+    }
 }
 
 #notif-toggle:hover {
+    transform: scale(1.1);
     background: rgba(0, 0, 0, 0.7);
-    transform: scale(1.08);
 }
 
 #notif-toggle.open {
-    background: rgba(255, 107, 157, 0.25);
-    border-color: rgba(255, 107, 157, 0.5);
+    background: rgba(255, 107, 157, 0.2);
+    border-color: rgba(255, 107, 157, 0.8);
+    box-shadow: 0 0 14px rgba(255, 107, 157, 0.4);
+    animation: notifSlideIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+    transform: scale(1.12);
 }
 
 #notif-icon {
     font-size: 22px;
     line-height: 1;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    user-select: none;
 }
 
 #notif-toggle.open #notif-icon {
-    transform: scale(1.15);
+    transform: scale(1.2) rotate(-10deg);
 }
 
 #notif-badge {
@@ -562,22 +579,20 @@ body.bg-main {
     flex-direction: column;
     gap: 8px;
     max-width: 220px;
-    overflow: hidden;
-    max-height: 0;
     opacity: 0;
     pointer-events: none;
-    transform: translateY(-8px) scale(0.97);
+    transform: translateY(-10px) scale(0.95);
     transform-origin: top left;
-    transition: max-height 0.4s cubic-bezier(0.22, 1, 0.36, 1),
-                opacity 0.35s ease,
+    transition: opacity 0.35s cubic-bezier(0.22, 1, 0.36, 1),
                 transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    visibility: hidden;
 }
 
 #notif-panel.open {
-    max-height: 400px;
     opacity: 1;
     pointer-events: auto;
     transform: translateY(0) scale(1);
+    visibility: visible;
 }
 
 /* New Song Notification */
@@ -711,6 +726,7 @@ body.bg-main {
     text-transform: uppercase;
     display: block;
     margin-bottom: 4px;
+    text-align: center;
 }
 
 #messages-notif-text {
@@ -718,6 +734,9 @@ body.bg-main {
     font-size: 12px;
     font-weight: 400;
     color: rgba(255, 255, 255, 0.85);
+    text-align: center;
+    display: block;
+    width: 100%;
 }
 
 @keyframes notifPulse {
