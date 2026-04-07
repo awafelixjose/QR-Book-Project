@@ -547,10 +547,20 @@ body.bg-main {
 }
 
 #notif-icon {
-    font-size: 22px;
+    font-size: 28px;
     line-height: 1;
     transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
     user-select: none;
+}
+
+@media (max-width: 768px) {
+    #notif-toggle {
+        width: 54px;
+        height: 54px;
+    }
+    #notif-icon {
+        font-size: 32px;
+    }
 }
 
 #notif-toggle.open #notif-icon {
@@ -728,7 +738,6 @@ body.bg-main {
     text-transform: uppercase;
     display: block;
     margin-bottom: 4px;
-    text-align: center;
 }
 
 #messages-notif-text {
