@@ -343,7 +343,7 @@ window.triggerMusic = function() {
   }
   function _fail() {
     var err = document.getElementById("login-error");
-    err.textContent = "Lipat na ku ngaran niya...";
+    err.textContent = "Lingaw na ku password...";
     var inp = document.getElementById("name-input");
     inp.classList.add("shake");
     setTimeout(function() { inp.classList.remove("shake"); }, 500);
