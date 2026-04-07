@@ -496,8 +496,88 @@ body.bg-main {
     z-index: 2;
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+/* Toggle button */
+#notif-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    cursor: pointer;
+    position: relative;
+    transition: transform 0.3s ease, background 0.3s ease;
+    animation: notifSlideIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+#notif-toggle:hover {
+    background: rgba(0, 0, 0, 0.7);
+    transform: scale(1.08);
+}
+
+#notif-toggle.open {
+    background: rgba(255, 107, 157, 0.25);
+    border-color: rgba(255, 107, 157, 0.5);
+}
+
+#notif-icon {
+    font-size: 22px;
+    line-height: 1;
+    transition: transform 0.3s ease;
+}
+
+#notif-toggle.open #notif-icon {
+    transform: scale(1.15);
+}
+
+#notif-badge {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    background: #ff6b9d;
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1.5px solid rgba(0,0,0,0.4);
+}
+
+/* Notification panel */
+#notif-panel {
+    display: flex;
+    flex-direction: column;
     gap: 8px;
     max-width: 220px;
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-8px) scale(0.97);
+    transform-origin: top left;
+    transition: max-height 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+                opacity 0.35s ease,
+                transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+#notif-panel.open {
+    max-height: 400px;
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0) scale(1);
 }
 
 /* New Song Notification */
@@ -508,7 +588,6 @@ body.bg-main {
     border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 10px;
     padding: 7px 10px 7px 8px;
-    animation: notifSlideIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 #new-song-label {
@@ -566,7 +645,9 @@ body.bg-main {
     #notif-stack {
         top: 10px;
         left: 10px;
-        max-width: 150px;
+    }
+    #notif-panel {
+        max-width: 170px;
     }
     #new-song-art {
         width: 44px;
@@ -583,13 +664,21 @@ body.bg-main {
     }
 }
 
-/* Landscape phones — shrink stack so it doesn't overlap login box */
+/* Landscape phones */
 @media (max-height: 500px) {
     #notif-stack {
         top: 8px;
         left: 8px;
-        max-width: 140px;
-        gap: 5px;
+    }
+    #notif-toggle {
+        width: 38px;
+        height: 38px;
+    }
+    #notif-icon {
+        font-size: 18px;
+    }
+    #notif-panel {
+        max-width: 160px;
     }
     #new-song-art {
         width: 36px;
@@ -611,7 +700,6 @@ body.bg-main {
     border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 10px;
     padding: 8px 10px 8px 8px;
-    animation: notifSlideIn 0.8s cubic-bezier(0.22, 1, 0.36, 1) both, notifPulse 2.5s ease-in-out 0.8s infinite;
 }
 
 #messages-notif-label {

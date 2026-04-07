@@ -50,24 +50,28 @@
       <div id="headphone-text">Hii, Use Headphones<br>For Better Experience Poe</div>
     </div>
     <div id="notif-stack">
-      <div id="new-song-notif">
-        <span id="new-song-label">🎵 New Songs Added</span>
-        <div id="new-song-display">
-          <img id="new-song-art" src="" alt="" />
-          <div id="new-song-title-wrap">
-            <span id="new-song-title"></span>
+      <button id="notif-toggle" aria-label="Toggle notifications" aria-expanded="false">
+        <span id="notif-icon">✉️</span>
+        <span id="notif-badge">2</span>
+      </button>
+      <div id="notif-panel">
+        <div id="new-song-notif">
+          <span id="new-song-label">🎵 New Songs Added</span>
+          <div id="new-song-display">
+            <img id="new-song-art" src="" alt="" />
+            <div id="new-song-title-wrap">
+              <span id="new-song-title"></span>
+            </div>
           </div>
+          <div class="notif-entry" data-img="audio_images/Crazy Frog - Axel F (Radio Edit).jpg" data-title="Crazy Frog - Axel F (Radio Edit)"></div>
+          <div class="notif-entry" data-img="audio_images/Taylor Swift - Back To December (Taylor s Version).jpg" data-title="Taylor Swift - Back To December (Taylor's Version)"></div>
+          <div class="notif-entry" data-img="audio_images/Taylor Swift - Back To December.jpg" data-title="Taylor Swift - Back To December"></div>
         </div>
-        <!-- Add up to 5 entries: data-img and data-title -->
-        <div class="notif-entry" data-img="audio_images/Crazy Frog - Axel F (Radio Edit).jpg" data-title="Crazy Frog - Axel F (Radio Edit)"></div>
-        <div class="notif-entry" data-img="audio_images/Taylor Swift - Back To December (Taylor s Version).jpg" data-title="Taylor Swift - Back To December (Taylor's Version)"></div>
-        <div class="notif-entry" data-img="audio_images/Taylor Swift - Back To December.jpg" data-title="Taylor Swift - Back To December"></div>
-      </div>
-
-      <div id="messages-notif">
-        <span id="messages-notif-label">💬 New Messages</span>
-        <div id="messages-notif-content">
-          <span id="messages-notif-text">3 new messages added</span>
+        <div id="messages-notif">
+          <span id="messages-notif-label">💬 New Messages</span>
+          <div id="messages-notif-content">
+            <span id="messages-notif-text">3 new messages</span>
+          </div>
         </div>
       </div>
     </div>

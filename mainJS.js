@@ -98,6 +98,27 @@ let currentTrack = "";
   }
 })();
 
+// ─── Notification Toggle ─────────────────────────────────────────────────────
+(function() {
+  var btn = document.getElementById("notif-toggle");
+  var panel = document.getElementById("notif-panel");
+  if (!btn || !panel) return;
+  btn.addEventListener("click", function() {
+    var isOpen = panel.classList.contains("open");
+    panel.classList.toggle("open", !isOpen);
+    btn.classList.toggle("open", !isOpen);
+    btn.setAttribute("aria-expanded", String(!isOpen));
+  });
+  // close panel when clicking outside
+  document.addEventListener("click", function(e) {
+    if (!btn.contains(e.target) && !panel.contains(e.target)) {
+      panel.classList.remove("open");
+      btn.classList.remove("open");
+      btn.setAttribute("aria-expanded", "false");
+    }
+  });
+})();
+
 // ─── Shuffle Bag ─────────────────────────────────────────────────────────────
 function _nextTrack() {
   const key = "qrb_bag";
