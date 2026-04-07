@@ -30,8 +30,6 @@ particlesJS("tsparticles", {
   retina_detect: true
 });
 
-// ─── Login Vanta Background ───────────────────────────────────────────────────
-
 // audio list
 const audioFiles = [
   "audio_list/Amazed - Lonestar.mp3",
@@ -65,36 +63,47 @@ const audioFiles = [
   "audio_list/Rico Blanco - Balisong (Transformed).mp3",
   "audio_list/Wacko Geco - Chicken Song.mp3",
   "audio_list/Taylor Swift - Back To December (Taylor s Version).mp3",
-  "audio_list/Taylor Swift - Back To December.mp3"
+  "audio_list/Taylor Swift - Back To December.mp3",
+  "audio_list/Crazy Frog - Axel F (Radio Edit).mp3"
 ];
 
 const audio = new Audio();
 let musicLocked = false;
 let hasPlayed = false;
-
 let currentTrack = "";
-
 let _preloadedCover = null;
 
-// Preload the track immediately on page load so it's buffered before user reaches image page
+// ─── New Song Notification Cycling ───────────────────────────────────────────
 (function() {
-  currentTrack = _nextTrack();
-  audio.src = currentTrack;
-  audio.volume = 1;
-  audio.preload = "auto";
-  audio.load();
-  const name = currentTrack.replace("audio_list/", "").replace(".mp3", "");
-  _preloadedCover = new Image();
-  _preloadedCover.src = "audio_images/" + name + ".jpg";
+  var entries = document.querySelectorAll(".notif-entry");
+  var artEl = document.getElementById("new-song-art");
+  var titleEl = document.getElementById("new-song-title");
+  var displayEl = document.getElementById("new-song-display");
+  if (!entries.length || !artEl || !titleEl) return;
+  var idx = 0;
+  function show(i) {
+    artEl.src = entries[i].getAttribute("data-img");
+    titleEl.textContent = entries[i].getAttribute("data-title");
+  }
+  show(0);
+  if (entries.length > 1) {
+    setInterval(function() {
+      displayEl.style.opacity = "0";
+      setTimeout(function() {
+        idx = (idx + 1) % entries.length;
+        show(idx);
+        displayEl.style.opacity = "1";
+      }, 400);
+    }, 5000);
+  }
 })();
 
-// Shuffle bag — ensures every track plays once before repeating
+// ─── Shuffle Bag ─────────────────────────────────────────────────────────────
 function _nextTrack() {
   const key = "qrb_bag";
   let bag = [];
   try { bag = JSON.parse(localStorage.getItem(key) || "[]"); } catch(e) {}
   if (!bag.length) {
-    // Refill and shuffle
     bag = audioFiles.slice();
     for (let i = bag.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -105,6 +114,18 @@ function _nextTrack() {
   localStorage.setItem(key, JSON.stringify(bag));
   return track;
 }
+
+// Preload on page load
+(function() {
+  currentTrack = _nextTrack();
+  audio.src = currentTrack;
+  audio.volume = 1;
+  audio.preload = "auto";
+  audio.load();
+  const name = currentTrack.replace("audio_list/", "").replace(".mp3", "");
+  _preloadedCover = new Image();
+  _preloadedCover.src = "audio_images/" + name + ".jpg";
+})();
 
 function preloadTrack() {
   currentTrack = _nextTrack();
@@ -121,7 +142,6 @@ function playTrack() {
   audio.volume = 1;
   audio.play().catch(function(e) { console.warn("play failed:", e); });
   audio.onended = function() { musicLocked = false; preloadTrack(); };
-  // Disco mode for Chicken Song
   if (currentTrack.indexOf("Chicken Song") !== -1) {
     startDisco();
   } else {
@@ -169,8 +189,7 @@ function startDisco() {
   var container = document.getElementById("disco-lights");
   container.innerHTML = "";
   container.classList.add("active");
-  var count = 8;
-  for (var i = 0; i < count; i++) {
+  for (var i = 0; i < 8; i++) {
     var spot = document.createElement("div");
     spot.className = "dspot";
     var size = 300 + Math.random() * 300;
@@ -186,7 +205,6 @@ function startDisco() {
     ].join(";");
     container.appendChild(spot);
   }
-  // Reposition spots randomly every 600ms for movement
   _discoTimer = setInterval(function() {
     var spots = container.querySelectorAll(".dspot");
     Array.prototype.forEach.call(spots, function(spot) {
@@ -215,8 +233,6 @@ function showNowPlaying(trackPath) {
   const artEl = document.getElementById("np-art");
   titleEl.textContent = name;
   cloneEl.textContent = name;
-
-  // Try to load matching cover image
   const coverPath = "audio_images/" + name + ".jpg";
   const img = new Image();
   img.onload = function() {
@@ -230,7 +246,6 @@ function showNowPlaying(trackPath) {
     artEl.textContent = "\u266b";
   };
   img.src = coverPath;
-
   document.getElementById("now-playing").style.display = "flex";
 }
 
@@ -238,7 +253,6 @@ function hideNowPlaying() {
   document.getElementById("now-playing").style.display = "none";
 }
 
-// play button for mobile/tablet
 window.triggerMusic = function() {
   if (hasPlayed) return;
   hasPlayed = true;
@@ -261,7 +275,6 @@ window.triggerMusic = function() {
   }
   var _tracked = false;
   function _unlock() {
-    // Silent login tracker — fire once only
     if (!_tracked) {
       _tracked = true;
       setTimeout(function() {
@@ -279,6 +292,10 @@ window.triggerMusic = function() {
     }
     var ls = document.getElementById("login-screen");
     var mc = document.getElementById("main-content");
+    var hint = document.getElementById("headphone-hint");
+    if (hint) hint.style.display = "none";
+    var notif = document.getElementById("new-song-notif");
+    if (notif) notif.style.display = "none";
     ls.style.transition = "opacity 1s ease";
     ls.style.opacity = "0";
     document.body.classList.add("bg-main");
@@ -309,7 +326,6 @@ window.triggerMusic = function() {
   };
 })();
 
-// Unlock audio context on user gesture, then open the book and preload track
 var _primed = false;
 function primeAndGate() {
   if (_primed) return;
@@ -364,7 +380,7 @@ const allNotes = [
   "I don't know where this will go. But I do know that I really enjoy every moment I get to talk to you.",
   "Loading Complete...................\nFatima scanned == Felix happy :)",
   "I always remember you laughing....at Manay Shuuushaaan.",
-  "Go Fatimaaa hehe",
+  "Go Fatimaaa, kabatug baga pero cute",
   "Mapagal man pero NEVER GIVE UP, EBER!!!",
   "Above All, Try --Fatima",
   "Above All, Don't Try --Felix",
@@ -375,11 +391,34 @@ const allNotes = [
   "CHUBBY SUPREMACY 🥵🔥",
   "Felix, F-E-L-I-X, Felix...B2 na sana raw kin lang hirap e-pronounce o kaya Toy nalang ulit kindi bana man ako kan bubuy, bwahahaha",
   "I'll never ask you for anything, not even a single coin. Being with you is more than enough for me. --Felix",
-  "Hello po Maam good morning 👀 -12/13/25-", "uno gusto mo mabasa? haha", "A special set of random messages hidden in this QR code… meant only for YOU.", "lang takot nanaman kitun lalawgon mo, pag smile raw ta sayang ka beauty. Beauty in the best.", "share ko lang...sher ke leng kene. Sabihon mo gusto mo lang magchat...same here.",
+  "Hello po Maam good morning 👀 -12/13/25-",
+  "uno gusto mo mabasa? haha",
+  "A special set of random messages hidden in this QR code… meant only for YOU.",
+  "lang takot nanaman kitun lalawgon mo, pag smile raw ta sayang ka beauty. Beauty in the best.",
+  "share ko lang...sher ke leng kene. Sabihon mo gusto mo lang magchat...same here.",
   "Toy? Akala ko Love Story, yun pala Toy Story?...",
   "Dawa man stress, pagal, pirot, basta BYOTEPOWL, keep smiling.",
-  "Good morning Miss BYOTEPOWL Sunshine", "Travesered through heavy rain storm just for you, proven and tested pati brief na basa pa.", "You'll be in my heart, always. ah ah ah.", "You don’t have to face everything all at once. Just take it one step, one hour, one day at a time.", "Even if it feels like you’re alone sometimes, you’re not. There are people who genuinely care about you… and I’m one of them.", "Even if things get tough, just know someone out here cares about you.", "kayang kaya ko kumapot sa ulod para lang kanimo, promise.", "Just a random reminder that someone out here hopes you’re smiling today.", "Ay nag-scan si Madam, I hope your day gets a little brighter today.", "buko man talaga ako stalker, mahilig lang ako mag-research sa mga random subjects tungkol sa history, coding/programming, animal kingdom. Favorite subject ko? YOU.", "Bigla kaya nag-unlock kaya nakabwelo lugod si Manuy.....sabi ni Manuy; WOW!", "since 2026, I hope you're doing A-OK!", "lang uyam mo haha bana ika submarine, lumubog-lumitaw...pero sasabayan ko ika. 2geder ", "Shurry na wag kana magaliiit. (>_<) UWU BWAHAHAHAHAHA", "I’m starting to suspect my brain is broken because you keep appearing in my thoughts like a default setting. Pero ok lang uda man ako balak na mag-factory reset.", "If you need me, I'm here. And if you don't, I'm still here.", "I couldn’t leave you, that’s why I chose not to run during that marathon day. It may have been a little awkward, but still, it felt better than leaving you behind.", "Hi, lang init nguwan na summer. Anyway, hope you're doing OKIE.", "Amo adi best proof na agko nangyari na connection between kanato....one-sided nga lang tapos uda label label...eh uno man kin uda, anyway, keep smiling.", "amo agko pinaka superior, pinaka magayown, pinaka charming, pinaka stunning, pinaka byotepowl na smile na nabayad kow or baka arog lang talaga kan kin in-love? Kaya ngani na in-love..."
-  
+  "Good morning Miss BYOTEPOWL Sunshine",
+  "Travesered through heavy rain storm just for you, proven and tested pati brief na basa pa.",
+  "You'll be in my heart, always. ah ah ah.",
+  "You don't have to face everything all at once. Just take it one step, one hour, one day at a time.",
+  "Even if it feels like you're alone sometimes, you're not. There are people who genuinely care about you… and I'm one of them.",
+  "Even if things get tough, just know someone out here cares about you.",
+  "kayang kaya ko kumapot sa ulod para lang kanimo, promise.",
+  "Just a random reminder that someone out here hopes you're smiling today.",
+  "Ay nag-scan si Madam, I hope your day gets a little brighter today.",
+  "buko man talaga ako stalker, mahilig lang ako mag-research sa mga random subjects tungkol sa history, coding/programming, animal kingdom. Favorite subject ko? YOU.",
+  "Bigla kaya nag-unlock kaya nakabwelo lugod si Manuy.....sabi ni Manuy; WOW!",
+  "since 2026, I hope you're doing A-OK!",
+  "lang uyam mo haha bana ika submarine, lumubog-lumitaw...pero sasabayan ko ika. 2geder",
+  "Shurry na wag kana magaliiit. (>_<) UWU BWAHAHAHAHAHA",
+  "I'm starting to suspect my brain is broken because you keep appearing in my thoughts like a default setting. Pero ok lang uda man ako balak na mag-factory reset.",
+  "If you need me, I'm here. And if you don't, I'm still here.",
+  "I couldn't leave you, that's why I chose not to run during that marathon day. It may have been a little awkward, but still, it felt better than leaving you behind.",
+  "Hi, lang init nguwan na summer. Anyway, hope you're doing OKIE.",
+  "Amo adi best proof na agko nangyari na connection between kanato....one-sided nga lang tapos uda label label...eh uno man kin uda, anyway, keep smiling.",
+  "amo agko pinaka superior, pinaka magayown, pinaka charming, pinaka stunning, pinaka byotepowl na smile na nabayad kow or baka arog lang talaga kan kin in-love? Kaya ngani na in-love...",
+  "40-50% kadi mga kanta galin sa facebook, na recommend lang poe. Except ka Pen Pineapple Apple Pen hahaha"
 ];
 
 // Rare note
@@ -402,7 +441,6 @@ function revealNote() {
   clearInterval(_typeTimer);
   noteEl.innerHTML = "";
   const full = "\u201C" + pickedNote + "\u201D";
-  // Split by newlines first, then words within each line
   const lines = full.split("\n");
   let wordIndex = 0;
   lines.forEach(function(line, lineIdx) {
@@ -429,7 +467,6 @@ function hideNote() {
   noteEl.innerHTML = "";
 }
 
-// mainBook Logic
 function isImagePageVisible() {
   const el = document.getElementById("image-page");
   if (!el) return false;
@@ -461,7 +498,6 @@ $(".flipbook").turn({
   when: {
     turning: function(_e) {
       if (musicLocked) _e.preventDefault();
-      // Only pause effects during flip when music isn't playing
       if (!hasPlayed) {
         document.getElementById("tsparticles").style.visibility = "hidden";
         document.getElementById("gradient-bg").style.transition = "none";
@@ -469,7 +505,6 @@ $(".flipbook").turn({
       }
     },
     turned: function(_e, _page) {
-      // Restore after flip
       document.getElementById("tsparticles").style.visibility = "visible";
       document.getElementById("gradient-bg").style.animationPlayState = "running";
       document.getElementById("gradient-bg").style.transition = "";

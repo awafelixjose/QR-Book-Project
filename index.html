@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="style.css?v=20" />
+  <link rel="stylesheet" href="style.css?v=24" />
   <title>The Empty Book</title>
   <style>
     #main-content { visibility: hidden; opacity: 0; }
@@ -39,11 +39,26 @@
       </svg>
     </div>
     <div id="login-box">
-      <h2>Uno ngaran mo?</h2>
-      <p>E-type ang Pangalan</p>
-      <input type="text" id="name-input" placeholder="Your name..." autocomplete="off" />
+      <h2>Wat is da Passwurd?</h2>
+      <p>E-type and Passwurd</p>
+      <input type="text" id="name-input" placeholder="Admin" autocomplete="off" />
       <button id="enter-btn">Enter</button>
       <p id="login-error" class="login-error"></p>
+    </div>
+    <div id="headphone-hint">
+      <div id="headphone-icon">🎧</div>
+      <div id="headphone-text">Hii, Use Headphones<br>For Better Experience Poe</div>
+    </div>
+    <div id="new-song-notif">
+      <span id="new-song-label">🎵 New Songs Added</span>
+      <div id="new-song-display">
+        <img id="new-song-art" src="" alt="" />
+        <span id="new-song-title"></span>
+      </div>
+      <!-- Add up to 5 entries: data-img and data-title -->
+      <div class="notif-entry" data-img="audio_images/Crazy Frog - Axel F (Radio Edit).jpg" data-title="Crazy Frog - Axel F (Radio Edit)"></div>
+      <div class="notif-entry" data-img="audio_images/Taylor Swift - Back To December (Taylor s Version).jpg" data-title="Taylor Swift - Back To December (Taylor's Version)"></div>
+      <div class="notif-entry" data-img="audio_images/Taylor Swift - Back To December.jpg" data-title="Taylor Swift - Back To December"></div>
     </div>
   </div>
 
