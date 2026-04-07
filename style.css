@@ -15,6 +15,7 @@ body {
     display: grid;
     place-content: center;
     height: 100vh;
+    height: 100dvh;
     width: 100vw;
 	overflow: hidden;
     transition: background-image 0.8s ease;
@@ -497,11 +498,10 @@ body.bg-main {
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 12px;
-    padding: 10px 14px 10px 10px;
+    border-radius: 10px;
+    padding: 7px 10px 7px 8px;
     animation: notifSlideIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
-    min-width: 200px;
-    max-width: 240px;
+    max-width: 220px;
 }
 
 #new-song-label {
@@ -519,59 +519,111 @@ body.bg-main {
     display: flex;
     align-items: center;
     gap: 10px;
-    transition: opacity 0.4s ease;
+    transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
 #new-song-art {
-    width: 40px;
-    height: 40px;
+    width: 72px;
+    height: 72px;
     border-radius: 8px;
     object-fit: cover;
     flex-shrink: 0;
 }
 
+#new-song-title-wrap {
+    overflow: hidden;
+    width: 120px;
+    white-space: nowrap;
+}
+
 #new-song-title {
     font-family: 'Poppins', sans-serif;
-    font-size: 11px;
-    font-weight: 400;
-    color: rgba(255, 255, 255, 0.9);
+    font-size: 12px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.95);
     white-space: nowrap;
+    display: inline-block;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: 160px;
+    max-width: 100%;
 }
 
 .notif-entry { display: none; }
 
-#new-song-info {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
+@keyframes notifSlideIn {
+    0%   { opacity: 0; transform: translateX(-30px); }
+    100% { opacity: 1; transform: translateX(0); }
 }
 
-#new-song-label {
+@media (max-width: 480px) {
+    #new-song-notif {
+        top: 10px;
+        left: 10px;
+        max-width: 160px;
+        padding: 5px 8px 5px 6px;
+    }
+    #new-song-art {
+        width: 48px;
+        height: 48px;
+    }
+    #new-song-title-wrap {
+        width: 90px;
+    }
+    #messages-notif {
+        top: 10px;
+        right: 10px;
+        padding: 8px 10px;
+    }
+    #messages-notif-label {
+        font-size: 10px;
+    }
+    #messages-notif-text {
+        font-size: 11px;
+    }
+}
+
+/* Messages Notification */
+#messages-notif {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 2;
+    background: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
+    padding: 12px 16px 12px 14px;
+    width: fit-content;
+    animation: notifSlideInRight 0.6s cubic-bezier(0.22, 1, 0.36, 1) both, notifPulse 2.5s ease-in-out 0.6s infinite;
+}
+
+#messages-notif-label {
     font-family: 'Poppins', sans-serif;
-    font-size: 10px;
+    font-size: 12px;
     font-weight: 600;
     color: #ff6b9d;
     letter-spacing: 0.5px;
     text-transform: uppercase;
+    display: block;
+    margin-bottom: 6px;
 }
 
-#new-song-title, .notif-title, #new-song-info {
+#messages-notif-text {
     font-family: 'Poppins', sans-serif;
-    font-size: 11px;
+    font-size: 13px;
     font-weight: 400;
-    color: rgba(255, 255, 255, 0.9);
-    max-width: 160px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    color: rgba(255, 255, 255, 0.85);
 }
 
-@keyframes notifSlideIn {
-    0%   { opacity: 0; transform: translateX(-30px); }
+@keyframes notifSlideInRight {
+    0%   { opacity: 0; transform: translateX(30px); }
     100% { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes notifPulse {
+    0%, 100% { box-shadow: 0 0 0px rgba(255, 107, 157, 0); }
+    50%       { box-shadow: 0 0 10px rgba(255, 107, 157, 0.5); }
 }
 
 #headphone-hint {
@@ -586,6 +638,11 @@ body.bg-main {
     gap: 6px;
     animation: hintPulse 2.5s ease-in-out infinite;
     white-space: nowrap;
+    max-width: calc(100vw - 40px);
+}
+
+@media (max-height: 600px) {
+    #headphone-hint { display: none; }
 }
 
 #headphone-icon {
@@ -625,10 +682,10 @@ body.bg-main {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 380px;
-    height: 380px;
-    margin-top: -190px;
-    margin-left: -190px;
+    width: min(380px, 80vw);
+    height: min(380px, 80vw);
+    margin-top: calc(min(380px, 80vw) / -2);
+    margin-left: calc(min(380px, 80vw) / -2);
     z-index: 0;
     pointer-events: none;
     animation: heartSpin 12s linear infinite;
@@ -664,7 +721,7 @@ body.bg-main {
     border-radius: 16px;
     padding: 40px 36px;
     text-align: center;
-    width: 300px;
+    width: min(300px, 90vw);
     border: 1px solid rgba(255, 255, 255, 0.15);
     box-shadow:
         0 0 0 1px rgba(255, 107, 157, 0.2),
@@ -698,7 +755,7 @@ body.bg-main {
     border: 1px solid rgba(255,255,255,0.3);
     background: rgba(255,255,255,0.1);
     color: #fff;
-    font-size: 14px;
+    font-size: 16px;
     outline: none;
     text-align: center;
     margin-bottom: 12px;
@@ -746,6 +803,7 @@ body.bg-main {
 #main-content {
     width: 100vw;
     height: 100vh;
+    height: 100dvh;
     display: grid;
     place-content: center;
 }
@@ -845,7 +903,7 @@ body.bg-main {
     padding: 6px 14px 6px 10px;
     align-items: center;
     gap: 12px;
-    max-width: 300px;
+    max-width: min(300px, calc(100vw - 24px));
     width: max-content;
     overflow: visible;
 }

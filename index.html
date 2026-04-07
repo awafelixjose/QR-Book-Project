@@ -41,7 +41,7 @@
     <div id="login-box">
       <h2>Wat is da Passwurd?</h2>
       <p>E-type and Passwurd</p>
-      <input type="text" id="name-input" placeholder="Admin" autocomplete="off" />
+      <input type="text" id="name-input" placeholder="Admin" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" />
       <button id="enter-btn">Enter</button>
       <p id="login-error" class="login-error"></p>
     </div>
@@ -53,12 +53,22 @@
       <span id="new-song-label">🎵 New Songs Added</span>
       <div id="new-song-display">
         <img id="new-song-art" src="" alt="" />
-        <span id="new-song-title"></span>
+        <div id="new-song-title-wrap">
+          <span id="new-song-title"></span>
+        </div>
       </div>
       <!-- Add up to 5 entries: data-img and data-title -->
       <div class="notif-entry" data-img="audio_images/Crazy Frog - Axel F (Radio Edit).jpg" data-title="Crazy Frog - Axel F (Radio Edit)"></div>
       <div class="notif-entry" data-img="audio_images/Taylor Swift - Back To December (Taylor s Version).jpg" data-title="Taylor Swift - Back To December (Taylor's Version)"></div>
       <div class="notif-entry" data-img="audio_images/Taylor Swift - Back To December.jpg" data-title="Taylor Swift - Back To December"></div>
+    </div>
+
+
+    <div id="messages-notif">
+      <span id="messages-notif-label">💬 New Messages</span>
+      <div id="messages-notif-content">
+        <span id="messages-notif-text">3 new messages added</span>
+      </div>
     </div>
   </div>
 
@@ -66,7 +76,6 @@
   <div id="main-content" class="hidden-main">
     <div id="gradient-bg"></div>
     <div id="disco-lights"></div>
-    <div id="particles-default"></div>
     <div id="tsparticles"></div>
 
     <div class="book-wrapper">

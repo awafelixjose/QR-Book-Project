@@ -32,7 +32,6 @@ particlesJS("tsparticles", {
 
 // audio list
 const audioFiles = [
-  "audio_list/Amazed - Lonestar.mp3",
   "audio_list/Be Brave - Owl City.mp3",
   "audio_list/Next To You (ft. Justin Bieber) - Chris Brown.mp3",
   "audio_list/Cup of Joe - Multo.mp3",
@@ -71,7 +70,6 @@ const audio = new Audio();
 let musicLocked = false;
 let hasPlayed = false;
 let currentTrack = "";
-let _preloadedCover = null;
 
 // ─── New Song Notification Cycling ───────────────────────────────────────────
 (function() {
@@ -89,11 +87,13 @@ let _preloadedCover = null;
   if (entries.length > 1) {
     setInterval(function() {
       displayEl.style.opacity = "0";
+      displayEl.style.transform = "scale(0.96)";
       setTimeout(function() {
         idx = (idx + 1) % entries.length;
         show(idx);
         displayEl.style.opacity = "1";
-      }, 400);
+        displayEl.style.transform = "scale(1)";
+      }, 500);
     }, 5000);
   }
 })();
@@ -122,9 +122,6 @@ function _nextTrack() {
   audio.volume = 1;
   audio.preload = "auto";
   audio.load();
-  const name = currentTrack.replace("audio_list/", "").replace(".mp3", "");
-  _preloadedCover = new Image();
-  _preloadedCover.src = "audio_images/" + name + ".jpg";
 })();
 
 function preloadTrack() {
@@ -133,16 +130,13 @@ function preloadTrack() {
   audio.volume = 1;
   audio.preload = "auto";
   audio.load();
-  const name = currentTrack.replace("audio_list/", "").replace(".mp3", "");
-  _preloadedCover = new Image();
-  _preloadedCover.src = "audio_images/" + name + ".jpg";
 }
 
 function playTrack() {
   audio.volume = 1;
   audio.play().catch(function(e) { console.warn("play failed:", e); });
   audio.onended = function() { musicLocked = false; preloadTrack(); };
-  if (currentTrack.indexOf("Chicken Song") !== -1) {
+  if (currentTrack.indexOf("Chicken Song") !== -1 || currentTrack.indexOf("Crazy Frog") !== -1) {
     startDisco();
   } else {
     stopDisco();
@@ -164,7 +158,6 @@ function activateEffects() {
   el.classList.add(gradientPresets[Math.floor(Math.random() * gradientPresets.length)]);
   el.classList.add("active");
   document.getElementById("tsparticles").classList.add("active");
-  document.getElementById("particles-default").classList.add("hidden");
   document.getElementById("main-content").classList.add("vignette-on");
 }
 
@@ -174,7 +167,6 @@ function deactivateEffects() {
   gradientPresets.forEach(function(p) { el.classList.remove(p); });
   document.getElementById("gradient-bg").classList.remove("active");
   document.getElementById("tsparticles").classList.remove("active");
-  document.getElementById("particles-default").classList.remove("hidden");
   document.getElementById("main-content").classList.remove("vignette-on");
   stopDisco();
 }
@@ -296,6 +288,8 @@ window.triggerMusic = function() {
     if (hint) hint.style.display = "none";
     var notif = document.getElementById("new-song-notif");
     if (notif) notif.style.display = "none";
+    var msgNotif = document.getElementById("messages-notif");
+    if (msgNotif) msgNotif.style.display = "none";
     ls.style.transition = "opacity 1s ease";
     ls.style.opacity = "0";
     document.body.classList.add("bg-main");
@@ -435,10 +429,7 @@ noteEl.className = "note-item";
 noteEl.style.opacity = "1";
 noteContainer.appendChild(noteEl);
 
-let _typeTimer = null;
-
 function revealNote() {
-  clearInterval(_typeTimer);
   noteEl.innerHTML = "";
   const full = "\u201C" + pickedNote + "\u201D";
   const lines = full.split("\n");
@@ -463,7 +454,6 @@ function revealNote() {
 }
 
 function hideNote() {
-  clearInterval(_typeTimer);
   noteEl.innerHTML = "";
 }
 
