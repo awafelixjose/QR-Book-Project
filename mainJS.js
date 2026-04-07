@@ -103,20 +103,31 @@ let currentTrack = "";
   var btn = document.getElementById("notif-toggle");
   var panel = document.getElementById("notif-panel");
   if (!btn || !panel) return;
-  btn.addEventListener("click", function() {
+
+  function toggle(e) {
+    e.stopPropagation();
     var isOpen = panel.classList.contains("open");
     panel.classList.toggle("open", !isOpen);
     btn.classList.toggle("open", !isOpen);
     btn.setAttribute("aria-expanded", String(!isOpen));
+  }
+
+  btn.addEventListener("click", toggle);
+  btn.addEventListener("touchend", function(e) {
+    e.preventDefault(); // prevent ghost click on mobile
+    toggle(e);
   });
-  // close panel when clicking outside
-  document.addEventListener("click", function(e) {
+
+  // close when tapping/clicking outside
+  function closeOutside(e) {
     if (!btn.contains(e.target) && !panel.contains(e.target)) {
       panel.classList.remove("open");
       btn.classList.remove("open");
       btn.setAttribute("aria-expanded", "false");
     }
-  });
+  }
+  document.addEventListener("click", closeOutside);
+  document.addEventListener("touchend", closeOutside);
 })();
 
 // ─── Shuffle Bag ─────────────────────────────────────────────────────────────
