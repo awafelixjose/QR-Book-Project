@@ -290,6 +290,8 @@ window.triggerMusic = function() {
     if (notif) notif.style.display = "none";
     var msgNotif = document.getElementById("messages-notif");
     if (msgNotif) msgNotif.style.display = "none";
+    var notifStack = document.getElementById("notif-stack");
+    if (notifStack) notifStack.style.display = "none";
     ls.style.transition = "opacity 1s ease";
     ls.style.opacity = "0";
     document.body.classList.add("bg-main");

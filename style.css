@@ -488,12 +488,20 @@ body.bg-main {
     animation: blobMove2 12s ease-in-out infinite alternate;
 }
 
+/* Notification Stack */
+#notif-stack {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-width: 220px;
+}
+
 /* New Song Notification */
 #new-song-notif {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    z-index: 2;
     background: rgba(0, 0, 0, 0.45);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
@@ -501,7 +509,6 @@ body.bg-main {
     border-radius: 10px;
     padding: 7px 10px 7px 8px;
     animation: notifSlideIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
-    max-width: 220px;
 }
 
 #new-song-label {
@@ -556,69 +563,73 @@ body.bg-main {
 }
 
 @media (max-width: 480px) {
-    #new-song-notif {
+    #notif-stack {
         top: 10px;
         left: 10px;
-        max-width: 160px;
-        padding: 5px 8px 5px 6px;
+        max-width: 150px;
     }
     #new-song-art {
-        width: 48px;
-        height: 48px;
+        width: 44px;
+        height: 44px;
     }
     #new-song-title-wrap {
-        width: 90px;
+        width: 80px;
     }
-    #messages-notif {
-        top: 10px;
-        right: 10px;
-        padding: 8px 10px;
+    #new-song-label, #messages-notif-label {
+        font-size: 9px;
     }
-    #messages-notif-label {
+    #new-song-title, #messages-notif-text {
         font-size: 10px;
     }
-    #messages-notif-text {
-        font-size: 11px;
+}
+
+/* Landscape phones — shrink stack so it doesn't overlap login box */
+@media (max-height: 500px) {
+    #notif-stack {
+        top: 8px;
+        left: 8px;
+        max-width: 140px;
+        gap: 5px;
+    }
+    #new-song-art {
+        width: 36px;
+        height: 36px;
+    }
+    #new-song-title-wrap {
+        width: 76px;
+    }
+    #new-song-notif, #messages-notif {
+        padding: 5px 7px;
     }
 }
 
 /* Messages Notification */
 #messages-notif {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    z-index: 2;
     background: rgba(0, 0, 0, 0.45);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 10px;
-    padding: 12px 16px 12px 14px;
-    width: fit-content;
-    animation: notifSlideInRight 0.6s cubic-bezier(0.22, 1, 0.36, 1) both, notifPulse 2.5s ease-in-out 0.6s infinite;
+    padding: 8px 10px 8px 8px;
+    animation: notifSlideIn 0.8s cubic-bezier(0.22, 1, 0.36, 1) both, notifPulse 2.5s ease-in-out 0.8s infinite;
 }
 
 #messages-notif-label {
     font-family: 'Poppins', sans-serif;
-    font-size: 12px;
+    font-size: 10px;
     font-weight: 600;
     color: #ff6b9d;
     letter-spacing: 0.5px;
     text-transform: uppercase;
     display: block;
-    margin-bottom: 6px;
+    margin-bottom: 4px;
 }
 
 #messages-notif-text {
     font-family: 'Poppins', sans-serif;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 400;
     color: rgba(255, 255, 255, 0.85);
-}
-
-@keyframes notifSlideInRight {
-    0%   { opacity: 0; transform: translateX(30px); }
-    100% { opacity: 1; transform: translateX(0); }
 }
 
 @keyframes notifPulse {
