@@ -63,7 +63,8 @@ const audioFiles = [
   "audio_list/Wacko Geco - Chicken Song.mp3",
   "audio_list/Taylor Swift - Back To December (Taylor s Version).mp3",
   "audio_list/Taylor Swift - Back To December.mp3",
-  "audio_list/Crazy Frog - Axel F (Radio Edit).mp3"
+  "audio_list/Crazy Frog - Axel F (Radio Edit).mp3",
+  "audio_list/Hampton the Hamster - The HampsterDance Song.mp3"
 ];
 
 const audio = new Audio();
@@ -168,7 +169,7 @@ function playTrack() {
   audio.volume = 1;
   audio.play().catch(function(e) { console.warn("play failed:", e); });
   audio.onended = function() { musicLocked = false; preloadTrack(); };
-  if (currentTrack.indexOf("Chicken Song") !== -1 || currentTrack.indexOf("Crazy Frog") !== -1) {
+  if (currentTrack.indexOf("Chicken Song") !== -1 || currentTrack.indexOf("Crazy Frog") !== -1 || currentTrack.indexOf("HampsterDance") !== -1) {
     startDisco();
   } else {
     stopDisco();
@@ -444,9 +445,9 @@ const allNotes = [
   "If you need me, I'm here. And if you don't, I'm still here.",
   "I couldn't leave you, that's why I chose not to run during that marathon day. It may have been a little awkward, but still, it felt better than leaving you behind.",
   "Hi, lang init nguwan na summer. Anyway, hope you're doing OKIE.",
-  "Amo adi best proof na agko nangyari na connection between kanato....one-sided nga lang tapos uda label label...eh uno man kin uda, anyway, keep smiling.",
-  "amo agko pinaka superior, pinaka magayown, pinaka charming, pinaka stunning, pinaka byotepowl na smile na nabayad kow or baka arog lang talaga kan kin in-love? Kaya ngani na in-love...",
-  "40-50% kadi mga kanta galin sa facebook, na recommend lang poe. Except ka Pen Pineapple Apple Pen hahaha"
+  "Amo adi best proof na agko nangyari na connection between kanato....one-sided nga lang tapos uda label label...anyway, keep smiling.",
+  "pinaka magayown, pinaka charming, pinaka stunning, pinaka byotepowl na smile na nabayad kow or baka arog lang talaga kan kin in-love? Genuine",
+  "isi ko kaiyan ka taste ko sa music pero 40-50% kadi mga kanta galin sa facebook, na recommend lang. Except ka Pen Pineapple Apple Pen hahaha"
 ];
 
 // Rare note
